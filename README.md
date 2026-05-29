@@ -24,6 +24,8 @@ RULES AND TIPS:
   - Domum Ornamentum 1.0.295
   - Structurize 1.0.800
   - Multi-Piston 1.2.43-RELEASE
+  - TFC 3.2+
+  - Firmalife 2.1+
 
   Do not work on features that are marked as assigned or WIP to avoid confusion, if you believe the currently assigned contributor abbandoned the task ask Ckeeze first!
   
