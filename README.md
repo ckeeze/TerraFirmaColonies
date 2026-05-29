@@ -3,13 +3,13 @@ This is a work in progress project
 FOR CONTRIBUTORS:
 
 Resources / Documentations:
-  Minecolonies wiki: https://minecolonies.com/wiki/
-  Minecolonies github: https://github.com/ldtteam/minecolonies (outdated, double check everything in your JDE)
-  TFC github: https://github.com/TerraFirmaCraft/TerraFirmaCraft
-  TFC wiki: https://terrafirmacraft.github.io/Field-Guide/en_us/
-  TFC API wiki: https://terrafirmacraft.github.io/Documentation/
-  Firmalife github: https://github.com/eerussianguy/firmalife
-  Trello tasks list: https://trello.com/b/29ss2UaI/terrafirmacolonies
+  - Minecolonies wiki: https://minecolonies.com/wiki/
+  - Minecolonies github: https://github.com/ldtteam/minecolonies (outdated, double check everything in your JDE)
+  - TFC github: https://github.com/TerraFirmaCraft/TerraFirmaCraft
+  - TFC wiki: https://terrafirmacraft.github.io/Field-Guide/en_us/
+  - TFC API wiki: https://terrafirmacraft.github.io/Documentation/
+  - Firmalife github: https://github.com/eerussianguy/firmalife
+  - Trello tasks list: https://trello.com/b/29ss2UaI/terrafirmacolonies
 
 Tips and rules:
   I recommend using IntelliJ as your java dev envivorment if you want to contribute java code to the project. 
