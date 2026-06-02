@@ -5,8 +5,10 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "terrafirmacolonies.refmap.json",
   "mixins": [
+    "AbstractEntityAIHerderMixin",
     "BuildingFarmerMixin",
-    "EntityAIWorkFarmerMixin"
+    "EntityAIWorkFarmerMixin",
+    "EntityAIWorkSwineHerderMixin"
   ],
   "client": [
   ],

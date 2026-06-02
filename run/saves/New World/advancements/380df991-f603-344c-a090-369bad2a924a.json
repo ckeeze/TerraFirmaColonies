@@ -1057,5 +1057,137 @@
     },
     "done": true
   },
+  "tfc:world/hunter": {
+    "criteria": {
+      "special_condition": "2026-06-01 13:17:14 +0200"
+    },
+    "done": true
+  },
+  "minecolonies:recipes/misc/blockhutswineherder": {
+    "criteria": {
+      "has_items": "2026-06-01 13:18:37 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cooked_porkchop": {
+    "criteria": {
+      "has_porkchop": "2026-06-01 13:18:37 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cooked_porkchop_from_smoking": {
+    "criteria": {
+      "has_porkchop": "2026-06-01 13:18:37 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/cooked_porkchop_from_campfire_cooking": {
+    "criteria": {
+      "has_porkchop": "2026-06-01 13:18:37 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/bone_needle": {
+    "criteria": {
+      "has_item": "2026-06-01 13:19:36 +0200"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/bone_meal": {
+    "criteria": {
+      "has_bone": "2026-06-01 13:19:36 +0200"
+    },
+    "done": true
+  },
+  "minecolonies:recipes/misc/blockhutgraveyard": {
+    "criteria": {
+      "has_items": "2026-06-01 13:19:36 +0200"
+    },
+    "done": true
+  },
+  "firmalife:crafting/barley_dough": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_8": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_7": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_6": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_5": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_4": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_3": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_2": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/dough/barley_dough_1": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/cake": {
+    "criteria": {
+      "has_item": "2026-06-02 16:16:10 +0200"
+    },
+    "done": true
+  },
+  "firmalife:crafting/tomato_sauce_mix": {
+    "criteria": {
+      "has_item": "2026-06-02 18:27:45 +0200"
+    },
+    "done": true
+  },
+  "firmalife:crafting/salsa": {
+    "criteria": {
+      "has_item": "2026-06-02 18:27:45 +0200"
+    },
+    "done": true
+  },
+  "tfc:world/familiarity": {
+    "criteria": {
+      "special_condition": "2026-06-02 18:10:07 +0200"
+    },
+    "done": true
+  },
+  "tfc:crafting/melon_slice": {
+    "criteria": {
+      "has_item": "2026-06-02 18:28:32 +0200"
+    },
+    "done": true
+  },
   "DataVersion": 3465
 }
