@@ -37,6 +37,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,11 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
 
     @Shadow
     public boolean walkingToAnimal(Animal animal) {
+        return false;
+    }
+
+    @Shadow
+    protected boolean canBreedChildren() {
         return false;
     }
 
@@ -155,16 +163,17 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
 
                 boolean hasBreedingItem = terrafirmacolonies$HasBreeditems();
                 if (ColonyConstants.rand.nextDouble() < 0.2 && !this.searchForItemsInArea().isEmpty()) {
-                    LOGGER.info("HERDER_PICKUP");
+
+                    LOGGER.info("HERDER_PICKUP"); //remove later
                     return AIWorkerState.HERDER_PICKUP;
                 }
 
                 if (ColonyConstants.rand.nextDouble() < this.chanceToButcher(animals)) {
-                    LOGGER.info("HERDER_BUTCHER");
+                    LOGGER.info("HERDER_BUTCHER"); //remove later
                     return AIWorkerState.HERDER_BUTCHER;
                 }
 
-                if (numOfFeedableAnimals >= 1 && hasBreedingItem) {
+                if (numOfFeedableAnimals >= 1 && hasBreedingItem && this.canBreedChildren()) {
                     LOGGER.info("HERDER_FEED");
                     return AIWorkerState.HERDER_FEED;
                 }
@@ -226,7 +235,7 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
             for (TFCAnimal animalToButcher : allAnimals) {
                 if (!animalToButcher.isBaby()) {
                     ++grownUp;
-                    if (animalToButcher.getAgeType() == TFCAnimalProperties.Age.OLD) {
+                    if (animalToButcher.getAgeType() == TFCAnimalProperties.Age.ADULT) {
                         if (animalToButcher.getGender() == TFCAnimalProperties.Gender.FEMALE) {
                             ++females;
                         }
@@ -240,6 +249,7 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
             if (grownUp <= 4 || males <= 2 || females <= 2) {
                 return 0.0F;
             } else {
+                LOGGER.info("Chance to slaughter: {}", (double) 0.5F * (Math.pow(grownUp, 4.0F) / Math.pow(maxAnimals, 4.0F)));
                 return (double) 0.5F * (Math.pow(grownUp, 4.0F) / Math.pow(maxAnimals, 4.0F));
             }
         }
@@ -247,7 +257,24 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
 
     /**
      * @author Ckeeze
-     * @reason Change feeding/breeding behavior
+     * @reason Saving Pregnant animals from butchery
+     */
+    @Inject(
+            method = {"butcherAnimal"},
+            at = {@At("HEAD")},
+            remap = false
+    )
+    protected void butcherAnimal(Animal animal, CallbackInfo ci) {
+        TFCAnimal animalToSave = (TFCAnimal) animal;
+        assert animalToSave != null;
+        if (animalToSave.isFertilized()) {
+            return;
+        }
+    }
+
+    /**
+     * @author Ckeeze
+     * @reason Change feeding/breeding behavior to TFC
      */
     @Overwrite
     protected IAIState feedAnimal() {

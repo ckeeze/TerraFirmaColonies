@@ -18,6 +18,19 @@ public abstract class EntityAIWorkSwineHerderMixin extends AbstractEntityAIHerde
         super(job);
     }
 
+
+    //Overrides
+
+    /**
+     * @author Ckeeze
+     * @reason Increase butchering damage to improve worker Reliability
+     */
+    @Override
+    @Overwrite(remap = false)
+    public double getButcheringAttackDamage() {
+        return 5.0F + ((double) this.getPrimarySkillLevel() / (double) 10.0F);
+    }
+
     /**
      * @author Ckeeze
      * @reason Detect TFC items instead of vanilla
@@ -32,9 +45,6 @@ public abstract class EntityAIWorkSwineHerderMixin extends AbstractEntityAIHerde
 
         this.worker.setRenderMetadata(renderMeta);
     }
-
-    //Overrides
-
 
     //Uniques
 }
