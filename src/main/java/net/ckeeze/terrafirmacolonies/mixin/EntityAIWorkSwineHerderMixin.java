@@ -36,7 +36,7 @@ public abstract class EntityAIWorkSwineHerderMixin extends AbstractEntityAIHerde
      * @reason Detect TFC items instead of vanilla
      */
     @Override
-    @Overwrite
+    @Overwrite(remap = false)
     protected void updateRenderMetaData() {
         String renderMeta = this.getState() == AIWorkerState.IDLE ? "" : "working";
         if (this.worker.getCitizenInventoryHandler().hasItemInInventory(TFCItems.FOOD.get(Food.CARROT).get())) {

@@ -88,12 +88,12 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
         if (this.building != null && ((BuildingFarmer) this.building).getBuildingLevel() >= 1) {
             if (FertilizerInBuilding + FertilizerInInventory <= 0) {
                 if (((BuildingFarmer) this.building).requestFertilizer() && !((BuildingFarmer) this.building).hasWorkerOpenRequestsOfType(this.worker.getCitizenData().getId(), TypeToken.of(StackList.class))) {
-                    List<ItemStack> compostAbleItems = new ArrayList();
+                    List<ItemStack> compostAbleItems = new ArrayList<>();
                     compostAbleItems.add(new ItemStack(TFCItems.POWDERS.get(Powder.SYLVITE).get(), 1));
                     compostAbleItems.add(new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get(), 1));
                     compostAbleItems.add(new ItemStack(TFCItems.COMPOST.get(), 1));
                     compostAbleItems.add(new ItemStack(TFCBlocks.GROUNDCOVER.get(GroundcoverBlockType.GUANO).get().asItem(), 1));
-                    this.worker.getCitizenData().createRequestAsync(new StackList(compostAbleItems, "com.minecolonies.coremod.request.fertilizer", 64, 1));
+                    this.worker.getCitizenData().createRequestAsync(new StackList(compostAbleItems, "com.minecolonies.coremod.request.fertilizer", 32, 1));
                 }
             }
         }
