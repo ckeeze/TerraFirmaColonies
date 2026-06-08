@@ -30,9 +30,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Mixin(value = EntityAIWorkShepherd.class, remap = false)
-public abstract class EnityAIWorkShepherdMixin extends AbstractEntityAIHerder<JobShepherd, BuildingShepherd> {
+public abstract class EntityAIWorkShepherdMixin extends AbstractEntityAIHerder<JobShepherd, BuildingShepherd> {
 
-    public EnityAIWorkShepherdMixin(@NotNull JobShepherd job) {
+    public EntityAIWorkShepherdMixin(@NotNull JobShepherd job) {
         super(job);
     }
 

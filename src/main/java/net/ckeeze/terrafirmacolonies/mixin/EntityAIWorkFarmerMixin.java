@@ -50,6 +50,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static net.dries007.tfc.common.blockentities.FarmlandBlockEntity.NutrientType.*;
 import static net.dries007.tfc.common.blocks.soil.FarmlandBlock.getHydration;
@@ -85,9 +86,9 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
     private void terrafirmacolonies_prepareForFarming(CallbackInfoReturnable<IAIState> cir) {
         int FertilizerInBuilding = InventoryUtils.hasBuildingEnoughElseCount(this.building, this::isCompost, 1);
         int FertilizerInInventory = InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), this::isCompost);
-        if (this.building != null && ((BuildingFarmer) this.building).getBuildingLevel() >= 1) {
+        if (this.building != null && this.building.getBuildingLevel() >= 1) {
             if (FertilizerInBuilding + FertilizerInInventory <= 0) {
-                if (((BuildingFarmer) this.building).requestFertilizer() && !((BuildingFarmer) this.building).hasWorkerOpenRequestsOfType(this.worker.getCitizenData().getId(), TypeToken.of(StackList.class))) {
+                if (this.building.requestFertilizer() && !this.building.hasWorkerOpenRequestsOfType(this.worker.getCitizenData().getId(), TypeToken.of(StackList.class))) {
                     List<ItemStack> compostAbleItems = new ArrayList<>();
                     compostAbleItems.add(new ItemStack(TFCItems.POWDERS.get(Powder.SYLVITE).get(), 1));
                     compostAbleItems.add(new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get(), 1));
@@ -174,7 +175,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
 
                 CitizenItemUtils.damageItemInHand(this.worker, InteractionHand.MAIN_HAND, 1);
                 this.worker.decreaseSaturationForContinuousAction();
-                this.worker.getCitizenColonyHandler().getColonyOrRegister().getStatisticsManager().increment("land_tilled", this.worker.getCitizenColonyHandler().getColonyOrRegister().getDay());
+                Objects.requireNonNull(this.worker.getCitizenColonyHandler().getColonyOrRegister()).getStatisticsManager().increment("land_tilled", this.worker.getCitizenColonyHandler().getColonyOrRegister().getDay());
                 return true;
             } else {
                 return false;

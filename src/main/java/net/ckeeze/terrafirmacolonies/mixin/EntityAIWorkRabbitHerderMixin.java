@@ -14,10 +14,6 @@ public abstract class EntityAIWorkRabbitHerderMixin extends AbstractEntityAIHerd
         super(job);
     }
 
-    /**
-     * @author Ckeeze
-     * @reason Increase butchering damage to improve worker Reliability
-     */
     @Override
     public double getButcheringAttackDamage() {
         return 5.0F + ((double) this.getPrimarySkillLevel() / (double) 10.0F);
