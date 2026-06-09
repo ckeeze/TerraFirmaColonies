@@ -30,6 +30,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,11 +43,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
-
-import static com.mojang.text2speech.Narrator.LOGGER;
 
 @Mixin(value = AbstractEntityAIHerder.class, remap = false)
 public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B extends AbstractBuilding> extends AbstractEntityAIInteract<J, B> {
@@ -54,13 +54,9 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
     protected @Nullable AnimalHerdingModule current_module;
 
     @Unique
-    private List<Item> terrafirmacolonies$pigFood = Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(TFCTags.Items.PIG_FOOD).stream().toList();
-    @Unique
-    private List<Item> terrafirmacolonies$rabbitFood = Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(TFCTags.Items.RABBIT_FOOD).stream().toList();
-    @Unique
     private List<Item> terrafirmacolonies$cowFood = Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(TFCTags.Items.COW_FOOD).stream().toList();
     @Unique
-    private List<Item> terrafirmacolonies$chickenFood = Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(TFCTags.Items.CHICKEN_FOOD).stream().toList();
+    private List<Item> terrafirmacolonies$chickenFood = Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(TFCTags.Items.GOAT_FOOD).stream().toList();
     @Unique
     private List<Item> terrafirmacolonies$sheepFood = Objects.requireNonNull(ForgeRegistries.ITEMS.tags()).getTag(TFCTags.Items.SHEEP_FOOD).stream().toList();
 
@@ -77,18 +73,8 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
     }
 
     @Shadow
-    public @NotNull List<ItemStorage> getExtraItemsNeeded() {
-        return new ArrayList<>();
-    }
-
-    @Shadow
     public List<? extends ItemEntity> searchForItemsInArea() {
         return null;
-    }
-
-    @Shadow
-    public boolean equipItem(InteractionHand hand, List<ItemStorage> itemStacks) {
-        return false;
     }
 
     @Shadow
@@ -101,27 +87,26 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
         return false;
     }
 
+    @Shadow
+    public int getItemSlot(Item item) {
+        return 0;
+    }
+
     //Overwritten methods
 
     /**
      * @author Ckeeze
-     * @reason Adding proper breedItems to itemsNiceToHave
+     * @reason Remove Vanilla Carrots from itemsNiceToHave
      */
     @Override
     @Overwrite(remap = false)
     protected @NotNull List<ItemStorage> itemsNiceToHave() {
-        List<ItemStorage> list = super.itemsNiceToHave();
-        List<Item> stacklist = terrafirmacolonies$getBreedingitemsInList();
-        assert stacklist != null;
-        for (Item item : stacklist) {
-            list.add(new ItemStorage(item));
-        }
-        return list;
+        return super.itemsNiceToHave();
     }
 
     /**
      * @author Ckeeze
-     * @reason Detect TFC Animals, Animalmodule predicate is completely overwritten
+     * @reason Detect TFC Animals, Animalmodule predicates are completely overridden
      */
     @Overwrite(remap = false)
     public List<? extends TFCAnimal> searchForAnimals(Predicate<Animal> predicate) {
@@ -154,7 +139,6 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
             if (!animals.isEmpty()) {
                 this.current_module = module;
                 int numOfFeedableAnimals = 0;
-
                 for (TFCAnimal entity : animals) {
                     if (terrafirmacolonies$isFeedAble(entity)) {
                         ++numOfFeedableAnimals;
@@ -163,18 +147,14 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
 
                 boolean hasBreedingItem = terrafirmacolonies$HasBreeditems();
                 if (ColonyConstants.rand.nextDouble() < 0.2 && !this.searchForItemsInArea().isEmpty()) {
-
-                    LOGGER.info("HERDER_PICKUP"); //remove later
                     return AIWorkerState.HERDER_PICKUP;
                 }
 
                 if (ColonyConstants.rand.nextDouble() < this.chanceToButcher(animals)) {
-                    LOGGER.info("HERDER_BUTCHER"); //remove later
                     return AIWorkerState.HERDER_BUTCHER;
                 }
 
                 if (numOfFeedableAnimals >= 1 && hasBreedingItem && this.canBreedChildren()) {
-                    LOGGER.info("HERDER_FEED");
                     return AIWorkerState.HERDER_FEED;
                 }
             }
@@ -196,7 +176,7 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                 }
             }
 
-            int BreedItemInbuilding = InventoryUtils.hasBuildingEnoughElseCount(this.building, this::terrafirmacolonies$isBreedItem, 1);
+            int BreedItemInbuilding = InventoryUtils.hasBuildingEnoughElseCount(this.building, this::terrafirmacolonies$isBreedItem, 8);
             int BreedItemInInventory = InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), this::terrafirmacolonies$isBreedItem);
             if (this.building.getBuildingLevel() >= 1) {
                 if (BreedItemInbuilding + BreedItemInInventory <= 0) {
@@ -208,10 +188,6 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                         this.worker.getCitizenData().createRequestAsync(new StackList(breedItemStacks, "com.minecolonies.coremod.request.stacklist", 8, 1));
                     }
                 }
-            }
-
-            for (ItemStorage items : this.getExtraItemsNeeded()) {
-                this.checkIfRequestForItemExistOrCreateAsync(items.getItemStack(), items.getAmount(), items.getAmount());
             }
 
         }
@@ -245,11 +221,9 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                     }
                 }
             }
-
             if (grownUp <= 4 || males <= 2 || females <= 2) {
                 return 0.0F;
             } else {
-                LOGGER.info("Chance to slaughter: {}", (double) 0.5F * (Math.pow(grownUp, 4.0F) / Math.pow(maxAnimals, 4.0F)));
                 return (double) 0.5F * (Math.pow(grownUp, 4.0F) / Math.pow(maxAnimals, 4.0F));
             }
         }
@@ -290,11 +264,11 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
 
             for (TFCAnimal animal : animals) {
                 if (animal.isHungry()) {
-                    if (animal.getAgeType() == TFCAnimalProperties.Age.CHILD && animal.getFamiliarity() < 0.9F) {
+                    if (animal.getAgeType() == TFCAnimalProperties.Age.CHILD && animal.getFamiliarity() < 0.91F) {
                         toFeed = animal;
                         break;
                     }
-                    if (animal.getAgeType() == TFCAnimalProperties.Age.ADULT && (animal.isReadyToMate() || animal.getFamiliarity() < 0.9F)) {
+                    if (animal.getAgeType() == TFCAnimalProperties.Age.ADULT && (animal.isReadyToMate() || animal.getFamiliarity() < 0.91F)) {
                         toFeed = animal;
                         break;
                     }
@@ -325,11 +299,29 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
         }
     }
 
+    /**
+     * @author Ckeeze
+     * @reason Fixing Herder creating dozens of separete requests
+     */
+    @Overwrite
+    public boolean equipItem(InteractionHand hand, List<ItemStorage> itemStacks) {
+        Collection<ItemStack> stackCollection = new ArrayList<>(List.of());
+        for (ItemStorage itemStorage : itemStacks) {
+            stackCollection.add(itemStorage.getItemStack());
+            int slot = this.getItemSlot(itemStorage.getItemStack().getItem());
+            if (slot != -1) {
+                CitizenItemUtils.setHeldItem(this.worker, hand, slot);
+                return true;
+            }
+        }
+        this.checkIfRequestForItemExistOrCreateAsync(stackCollection);
+        return false;
+    }
+
     //Unique methods
     @Unique
     private boolean terrafirmacolonies$isFeedAble(TFCAnimal animal) {
-
-        return ((animal.isBaby() && animal.getFamiliarity() <= 0.9F) || animal.getFamiliarity() < animal.getAdultFamiliarityCap())
+        return ((animal.isBaby() && animal.getFamiliarity() <= 0.91F) || animal.getFamiliarity() < animal.getAdultFamiliarityCap())
                 && animal.getAgeType() != TFCAnimalProperties.Age.OLD
                 && !animal.isFertilized()
                 && animal.isHungry();
@@ -341,7 +333,6 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
         for (Item item : Objects.requireNonNull(terrafirmacolonies$getBreedingitemsInList())) {
             totalitems += InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), item);
         }
-        LOGGER.info("Entered if terrafirmacolonies$HasBreeditems() {}", totalitems);
         return totalitems > 0;
     }
 
@@ -349,9 +340,12 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
     private List<Item> terrafirmacolonies$getBreedingitemsInList() {
         JobEntry job = Objects.requireNonNull(this.worker.getCitizenJobHandler().getColonyJob()).getJobRegistryEntry();
         if (job == ModJobs.swineHerder.get()) {
-            return terrafirmacolonies$pigFood;
+            List<Item> pigfood = new ArrayList<>();
+            pigfood.add(Items.ROTTEN_FLESH);
+            pigfood.addAll(terrafirmacolonies$chickenFood);
+            return pigfood;
         } else if (job == ModJobs.rabbitHerder.get()) {
-            return terrafirmacolonies$rabbitFood;
+            return terrafirmacolonies$chickenFood;
         } else if (job == ModJobs.shepherd.get()) {
             return terrafirmacolonies$sheepFood;
         } else if (job == ModJobs.cowboy.get()) {
@@ -363,6 +357,11 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
     }
 
     @Unique
+    private boolean terrafirmacolonies$isBreedItem(ItemStack stack) {
+        return Objects.requireNonNull(terrafirmacolonies$getBreedingitemsInList()).contains(stack.getItem());
+    }
+
+    @Unique
     private List<ItemStorage> terrafirmacolonies$ConvertItemstoStacks(List<Item> Itemlist) {
         List<ItemStorage> ItemStorageList = new ArrayList<>();
         for (Item item : Itemlist) {
@@ -371,10 +370,7 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
         return ItemStorageList;
     }
 
-    @Unique
-    private boolean terrafirmacolonies$isBreedItem(ItemStack stack) {
-        return Objects.requireNonNull(terrafirmacolonies$getBreedingitemsInList()).contains(stack.getItem());
-    }
+
 }
 
 

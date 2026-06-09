@@ -76,14 +76,12 @@ public class TFCPlacementHandlers {
                 @Nullable CompoundTag tileEntityData,
                 boolean complete
         ) {
+            List<ItemStack> itemList = new ArrayList<>();
             if (blockState.getValue(BedBlock.PART) == BedPart.HEAD) {
-                return List.of(
-                        new ItemStack(TFCItems.HIDES.get(HideItemType.RAW).get(HideItemType.Size.LARGE).get().asItem()),
-                        new ItemStack(TFCBlocks.THATCH.get().asItem(), 2)
-                );
-            } else {
-                return null;
+                itemList.add(new ItemStack(TFCItems.HIDES.get(HideItemType.RAW).get(HideItemType.Size.LARGE).get().asItem()));
+                itemList.add(new ItemStack(TFCBlocks.THATCH.get().asItem(), 2));
             }
+            return itemList;
         }
     }
 

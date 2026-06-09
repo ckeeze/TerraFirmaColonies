@@ -2,7 +2,7 @@ package net.ckeeze.terrafirmacolonies.mixin;
 
 import com.minecolonies.api.entity.ai.statemachine.states.AIWorkerState;
 import com.minecolonies.api.entity.ai.statemachine.states.IAIState;
-import com.minecolonies.api.equipment.ModEquipmentTypes;
+import com.minecolonies.api.equipment.registry.EquipmentTypeEntry;
 import com.minecolonies.api.util.InventoryUtils;
 import com.minecolonies.api.util.WorldUtil;
 import com.minecolonies.api.util.constant.ColonyConstants;
@@ -72,7 +72,7 @@ public abstract class EntityAIWorkShepherdMixin extends AbstractEntityAIHerder<J
         WoolyAnimal sheep = this.terrafirmacolonies$findShearableAnimal();
         if (sheep == null) {
             return AIWorkerState.DECIDE;
-        } else if (!this.equipTool(InteractionHand.MAIN_HAND, ModEquipmentTypes.shears.get())) {
+        } else if (!this.equipTool(InteractionHand.MAIN_HAND, net.ckeeze.terrafirmacolonies.api.ModEquipmentTypes.tfcshears.get())) {
             return AIWorkerState.PREPARING;
         } else {
             if (this.worker.getMainHandItem() != null) {
@@ -124,5 +124,19 @@ public abstract class EntityAIWorkShepherdMixin extends AbstractEntityAIHerder<J
     public List<? extends TFCAnimal> searchForAnimals(Predicate<Animal> predicate) {
         Predicate<TFCAnimal> actualpredicate = (a) -> a instanceof WoolyAnimal;
         return WorldUtil.getEntitiesWithinBuilding(this.world, TFCAnimal.class, this.building, actualpredicate);
+    }
+
+    /**
+     * @author Ckeeze
+     * @reason fix TFC shears not being accepted
+     */
+    @Override
+    @Overwrite(remap = false)
+    public @NotNull List<EquipmentTypeEntry> getExtraToolsNeeded() {
+        List<EquipmentTypeEntry> toolsNeeded = super.getExtraToolsNeeded();
+        if (this.building.getSetting(BuildingShepherd.SHEARING).getValue()) {
+            toolsNeeded.add(net.ckeeze.terrafirmacolonies.api.ModEquipmentTypes.tfcshears.get());
+        }
+        return toolsNeeded;
     }
 }
