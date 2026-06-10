@@ -10,9 +10,14 @@
     "EntityAIWorkBeekeperMixin",
     "EntityAIWorkCowboyMixin",
     "EntityAIWorkFarmerMixin",
+    "EntityAIWorkFishermanMixin",
     "EntityAIWorkRabbitHerderMixin",
     "EntityAIWorkShepherdMixin",
-    "EntityAIWorkSwineHerderMixin"
+    "EntityAIWorkSwineHerderMixin",
+    "ModEquipmentTypesMixin",
+    "NewBobberEntityMixin",
+    "PathFindingUtilsMixin",
+    "PondMixin"
   ],
   "client": [
   ],

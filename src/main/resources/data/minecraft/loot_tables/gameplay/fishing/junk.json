@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfc:groundcover/sea_urchin",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:dirty_jute_net",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:plant/duckweed",
+          "weight": 17
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:plant/green_algae",
+          "weight": 17
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:plant/water_lily",
+          "weight": 17
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flower_pot",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:groundcover/driftwood",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.9,
+                "min": 0.0
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "minecraft:leather_boots",
+          "weight": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecraft:gameplay/fishing/junk"
+}

@@ -6,7 +6,6 @@ import net.dries007.tfc.common.items.ScytheItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -15,10 +14,6 @@ import java.util.function.Consumer;
 
 public class ModEquipmentTypes {
     public static final DeferredRegister<EquipmentTypeEntry> DEFERRED_REGISTER = DeferredRegister.create(new ResourceLocation("minecolonies", "equipmenttypes"), "minecolonies");
-
-    public static final RegistryObject<EquipmentTypeEntry> tfcfishing_rod = register("tfcrod", (builder) -> builder.setDisplayName(Component.translatable("com.minecolonies.coremod.tooltype.fishingrod")).setIsEquipment((itemStack, equipmentType) -> itemStack.is(Tags.Items.TOOLS_FISHING_RODS)).setEquipmentLevel((itemStack, equipmentType) -> getLevel(itemStack)).build());
-    public static final RegistryObject<EquipmentTypeEntry> tfcshears = register("tfcshears", (builder) -> builder.setDisplayName(Component.translatable("com.minecolonies.coremod.tooltype.shears")).setIsEquipment((itemStack, equipmentType) -> itemStack.is(Tags.Items.SHEARS)).setEquipmentLevel((itemStack, equipmentType) -> getLevel(itemStack)).build());
-    public static final RegistryObject<EquipmentTypeEntry> tfcshield = register("tfcshield", (builder) -> builder.setDisplayName(Component.translatable("com.minecolonies.coremod.tooltype.shield")).setIsEquipment((itemStack, equipmentType) -> itemStack.is(Tags.Items.TOOLS_SHIELDS)).setEquipmentLevel((itemStack, equipmentType) -> getLevel(itemStack)).build());
 
     public static final RegistryObject<EquipmentTypeEntry> tfcscythe = register("tfcscythe", (builder) -> builder.setDisplayName(Component.translatable("com.minecolonies.coremod.tooltype.shield")).setIsEquipment((itemStack, equipmentType) -> itemStack.getItem() instanceof ScytheItem).setEquipmentLevel((itemStack, equipmentType) -> getLevel(itemStack)).build());
     public static final RegistryObject<EquipmentTypeEntry> tfchammer = register("tfchammer", (builder) -> builder.setDisplayName(Component.translatable("com.minecolonies.coremod.tooltype.shield")).setIsEquipment((itemStack, equipmentType) -> itemStack.getItem() instanceof HammerItem).setEquipmentLevel((itemStack, equipmentType) -> getLevel(itemStack)).build());
@@ -40,10 +35,10 @@ public class ModEquipmentTypes {
         if (itemID.contains("iron")) {
             return 3;
         }
-        if (itemID.contains("_steel")) {
-            return 5;
-        }
         if (itemID.contains("steel")) {
+            if (itemID.contains("_steel")) {
+                return 5;
+            }
             return 4;
         }
         return 1;

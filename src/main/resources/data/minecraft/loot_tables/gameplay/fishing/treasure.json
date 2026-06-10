@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:name_tag"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:metal/chain/copper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:metal/chain/bronze"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:metal/chain/bismuth_bronze"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:metal/chain/black_bronze"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:metal/chain/wrought_iron"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecraft:gameplay/fishing/treasure"
+}
