@@ -21,9 +21,8 @@ public class ModEquipmentTypes {
     private static RegistryObject<EquipmentTypeEntry> register(String id, Consumer<EquipmentTypeEntry.Builder> consumer) {
         EquipmentTypeEntry.Builder equipmentType = (new EquipmentTypeEntry.Builder()).setRegistryName(new ResourceLocation("minecolonies", id));
         consumer.accept(equipmentType);
-        DeferredRegister var10000 = DEFERRED_REGISTER;
         Objects.requireNonNull(equipmentType);
-        return var10000.register(id, equipmentType::build);
+        return ((DeferredRegister) DEFERRED_REGISTER).register(id, equipmentType::build);
     }
 
 
