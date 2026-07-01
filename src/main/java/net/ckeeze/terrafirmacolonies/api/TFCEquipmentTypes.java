@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class ModEquipmentTypes {
+public class TFCEquipmentTypes {
     public static final DeferredRegister<EquipmentTypeEntry> DEFERRED_REGISTER = DeferredRegister.create(new ResourceLocation("minecolonies", "equipmenttypes"), "minecolonies");
 
     public static final RegistryObject<EquipmentTypeEntry> tfcscythe = register("tfcscythe", (builder) -> builder.setDisplayName(Component.translatable("com.minecolonies.coremod.tooltype.shield")).setIsEquipment((itemStack, equipmentType) -> itemStack.getItem() instanceof ScytheItem).setEquipmentLevel((itemStack, equipmentType) -> getLevel(itemStack)).build());
