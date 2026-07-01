@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = EntityAIWorkLumberjack.class, remap = false)
-public class EntityAIWorkLumberjackMixin {
+public abstract class EntityAIWorkLumberjackMixin {
 
     @Redirect(
         method = "prepareForWoodcutting",
@@ -20,7 +20,15 @@ public class EntityAIWorkLumberjackMixin {
         )
     )
     public boolean useScythe(EntityAIWorkLumberjack self, EquipmentTypeEntry equipmentType) {
-        return self.checkForToolOrWeapon(equipmentType) || equipmentType == ModEquipmentTypes.hoe.get() && self.checkForToolOrWeapon(TFCEquipmentTypes.tfcscythe.get());
+        if (equipmentType == ModEquipmentTypes.hoe.get()) {
+            boolean fail = self.checkForToolOrWeapon(TFCEquipmentTypes.tfcscythe.get());
+            if (fail) {
+                return self.checkForToolOrWeapon(ModEquipmentTypes.hoe.get());
+            } else {
+                return false;
+            }
+        }
+        return self.checkForToolOrWeapon(equipmentType);
     }
 
 }
