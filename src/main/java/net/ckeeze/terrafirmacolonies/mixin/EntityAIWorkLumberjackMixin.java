@@ -20,7 +20,7 @@ public class EntityAIWorkLumberjackMixin {
         )
     )
     public boolean useScythe(EntityAIWorkLumberjack self, EquipmentTypeEntry equipmentType) {
-        return self.checkForToolOrWeapon(equipmentType) || equipmentType == ModEquipmentTypes.shears.get() && self.checkForToolOrWeapon(TFCEquipmentTypes.tfcscythe.get());
+        return self.checkForToolOrWeapon(equipmentType) || equipmentType == ModEquipmentTypes.hoe.get() && self.checkForToolOrWeapon(TFCEquipmentTypes.tfcscythe.get());
     }
 
 }
