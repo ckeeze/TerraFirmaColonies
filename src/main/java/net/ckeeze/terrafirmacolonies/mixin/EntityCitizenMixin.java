@@ -1,5 +1,6 @@
 package net.ckeeze.terrafirmacolonies.mixin;
 
+import com.minecolonies.api.colony.jobs.IJob;
 import com.minecolonies.api.entity.citizen.AbstractEntityCitizen;
 import com.minecolonies.api.entity.citizen.citizenhandlers.ICitizenJobHandler;
 import com.minecolonies.core.entity.citizen.EntityCitizen;
@@ -32,7 +33,8 @@ public abstract class EntityCitizenMixin extends AbstractEntityCitizen {
 
     @Inject(method = "aiStep", at = @At("RETURN"))
     public void addTorchLitLogic(CallbackInfo ci) {
-        if (TorchLitUtils.litJobs.contains(getCitizenJobHandler().getColonyJob().getJobRegistryEntry().getKey())) {
+        IJob<?> job = getCitizenJobHandler().getColonyJob();
+        if (job != null && TorchLitUtils.litJobs.contains(job.getJobRegistryEntry().getKey())) {
             litCooldown++;
             if (litCooldown > 20) {
                 litCooldown = 0;

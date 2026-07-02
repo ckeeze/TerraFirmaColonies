@@ -8,8 +8,10 @@ import com.minecolonies.core.colony.buildings.modules.SettingsModule;
 import com.minecolonies.core.colony.buildings.modules.settings.BlockSetting;
 import com.minecolonies.core.colony.buildings.workerbuildings.BuildingMiner;
 import net.ckeeze.terrafirmacolonies.api.WorkbenchUtils;
+import net.dries007.tfc.world.TFCChunkGenerator;
 import net.dries007.tfc.world.chunkdata.ChunkData;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -29,21 +31,23 @@ public abstract class BuildingMinerMixin extends AbstractBuildingStructureBuilde
     public void registerModule(@NotNull final IBuildingModule module) {
         if (module.getProducer() == BuildingModules.MINER_SETTINGS) {
             Level world = colony.getWorld();
-            if (world != null) {
+            if (world instanceof ServerLevel serverWorld && serverWorld.getChunkSource().getGenerator() instanceof TFCChunkGenerator) {
                 BlockPos pos = getLocation().getInDimensionLocation();
                 ChunkData chunkData = ChunkData.get(world.getChunkAt(pos));
-                Block cobble = chunkData.getRockData().getRock(pos).cobble();
-                ItemStack cobbleStack = new ItemStack(cobble);
-                WorkbenchUtils.getCraftingResult(
-                        world,
-                        List.of(
-                            cobbleStack, cobbleStack, cobbleStack,
-                            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-                            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
+                if (chunkData != ChunkData.EMPTY) {
+                    Block cobble = chunkData.getRockData().getRock(pos).cobble();
+                    ItemStack cobbleStack = new ItemStack(cobble);
+                    WorkbenchUtils.getCraftingResult(
+                            world,
+                            List.of(
+                                cobbleStack, cobbleStack, cobbleStack,
+                                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+                                ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
+                            )
                         )
-                    )
-                    .filter(slab -> slab.getItem() instanceof BlockItem)
-                    .ifPresent(slab -> ((SettingsModule) module).with(BuildingMiner.FILL_BLOCK, new BlockSetting((BlockItem) slab.getItem())));
+                        .filter(slab -> slab.getItem() instanceof BlockItem)
+                        .ifPresent(slab -> ((SettingsModule) module).with(BuildingMiner.FILL_BLOCK, new BlockSetting((BlockItem) slab.getItem())));
+                }
             }
         }
         super.registerModule(module);

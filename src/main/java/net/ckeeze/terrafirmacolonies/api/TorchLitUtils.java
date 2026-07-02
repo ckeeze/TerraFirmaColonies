@@ -39,7 +39,8 @@ public class TorchLitUtils {
                 for (int y = 0; y < 16; y++) {
                     for (int z = 0; z < 16; z++) {
                         p.set(startX + x, startY + y, startZ + z);
-                        if (world.getBlockState(p).getBlock() == TFCBlocks.TORCH.get()) {
+                        Block block = world.getBlockState(p).getBlock();
+                        if (block == TFCBlocks.TORCH.get() || block == TFCBlocks.DEAD_TORCH.get()) {
                             cacheEntry.knownTorches.add(p.immutable());
                         }
                     }
