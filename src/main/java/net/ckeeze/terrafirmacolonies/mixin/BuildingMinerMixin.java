@@ -29,20 +29,22 @@ public abstract class BuildingMinerMixin extends AbstractBuildingStructureBuilde
     public void registerModule(@NotNull final IBuildingModule module) {
         if (module.getProducer() == BuildingModules.MINER_SETTINGS) {
             Level world = colony.getWorld();
-            BlockPos pos = getLocation().getInDimensionLocation();
-            ChunkData chunkData = ChunkData.get(world.getChunkAt(pos));
-            Block cobble = chunkData.getRockData().getRock(pos).cobble();
-            ItemStack cobbleStack = new ItemStack(cobble);
-            WorkbenchUtils.getCraftingResult(
-                    world,
-                    List.of(
-                        cobbleStack, cobbleStack, cobbleStack,
-                        ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
-                        ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
+            if (world != null) {
+                BlockPos pos = getLocation().getInDimensionLocation();
+                ChunkData chunkData = ChunkData.get(world.getChunkAt(pos));
+                Block cobble = chunkData.getRockData().getRock(pos).cobble();
+                ItemStack cobbleStack = new ItemStack(cobble);
+                WorkbenchUtils.getCraftingResult(
+                        world,
+                        List.of(
+                            cobbleStack, cobbleStack, cobbleStack,
+                            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY,
+                            ItemStack.EMPTY, ItemStack.EMPTY, ItemStack.EMPTY
+                        )
                     )
-                )
-                .filter(slab -> slab.getItem() instanceof BlockItem)
-                .ifPresent(slab -> ((SettingsModule) module).with(BuildingMiner.FILL_BLOCK, new BlockSetting((BlockItem) slab.getItem())));
+                    .filter(slab -> slab.getItem() instanceof BlockItem)
+                    .ifPresent(slab -> ((SettingsModule) module).with(BuildingMiner.FILL_BLOCK, new BlockSetting((BlockItem) slab.getItem())));
+            }
         }
         super.registerModule(module);
     }
