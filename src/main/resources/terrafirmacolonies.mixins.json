@@ -5,20 +5,24 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "terrafirmacolonies.refmap.json",
   "mixins": [
+    "AbstractEntityAIBasicMixin",
     "AbstractEntityAIHerderMixin",
     "BuildingFarmerMixin",
+    "BuildingLumberjackMixin",
     "EntityAIWorkBeekeperMixin",
     "EntityAIWorkChickenWorkerMixin",
     "EntityAIWorkCowboyMixin",
     "EntityAIWorkFarmerMixin",
     "EntityAIWorkFishermanMixin",
+    "EntityAIWorkLumberjackMixin",
     "EntityAIWorkRabbitHerderMixin",
     "EntityAIWorkShepherdMixin",
     "EntityAIWorkSwineHerderMixin",
     "ModEquipmentTypesMixin",
     "NewBobberEntityMixin",
     "PathFindingUtilsMixin",
-    "PondMixin"
+    "PondMixin",
+    "WorkerUtilMixin"
   ],
   "client": [
   ],
