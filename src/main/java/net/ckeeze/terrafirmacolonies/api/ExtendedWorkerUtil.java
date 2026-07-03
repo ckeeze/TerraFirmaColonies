@@ -5,12 +5,16 @@ import com.ldtteam.domumornamentum.block.IMateriallyTexturedBlock;
 import com.minecolonies.api.equipment.ModEquipmentTypes;
 import com.minecolonies.api.equipment.registry.EquipmentTypeEntry;
 import com.minecolonies.api.util.Tuple;
+import com.minecolonies.api.util.WorldUtil;
 import com.minecolonies.core.colony.buildings.AbstractBuilding;
 import com.minecolonies.core.colony.buildings.modules.SettingsModule;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IForgeShearable;
 
@@ -44,5 +48,9 @@ public class ExtendedWorkerUtil {
         }
 
         return ImmutableSet.of();
+    }
+
+    public static boolean setBlockWithoutCollapse(LevelAccessor world, BlockPos pos, BlockState blockState){
+        return WorldUtil.setBlockState(world, pos, blockState, (~Block.UPDATE_NEIGHBORS) & Block.UPDATE_CLIENTS);
     }
 }
