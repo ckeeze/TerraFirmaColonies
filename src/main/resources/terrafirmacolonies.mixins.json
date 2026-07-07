@@ -7,9 +7,10 @@
   "mixins": [
     "AbstractEntityAIBasicMixin",
     "AbstractEntityAIHerderMixin",
-    "BuildingBeekeeperMixin",
     "BuildingFarmerMixin",
     "BuildingLumberjackMixin",
+    "BuildingMinerMixin",
+    "CitizenItemUtilsMixin",
     "EntityAIWorkBeekeperMixin",
     "EntityAIWorkChickenWorkerMixin",
     "EntityAIWorkCowboyMixin",
@@ -19,8 +20,9 @@
     "EntityAIWorkRabbitHerderMixin",
     "EntityAIWorkShepherdMixin",
     "EntityAIWorkSwineHerderMixin",
-    "ItemScepterBeekeeperMixin",
+    "EntityCitizenMixin",
     "ModEquipmentTypesMixin",
+    "NewBobberEntityMixin",
     "PathFindingUtilsMixin",
     "PondMixin",
     "WorkerUtilMixin"
