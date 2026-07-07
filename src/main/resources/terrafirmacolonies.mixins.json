@@ -22,7 +22,6 @@
     "EntityAIWorkSwineHerderMixin",
     "EntityCitizenMixin",
     "ModEquipmentTypesMixin",
-    "NewBobberEntityMixin",
     "PathFindingUtilsMixin",
     "PondMixin",
     "WorkerUtilMixin"
