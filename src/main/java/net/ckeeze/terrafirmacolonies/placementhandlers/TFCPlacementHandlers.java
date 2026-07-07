@@ -1,8 +1,8 @@
 package net.ckeeze.terrafirmacolonies.placementhandlers;
 
+import com.ldtteam.structurize.placement.IPlacementContext;
 import com.ldtteam.structurize.placement.handlers.placement.IPlacementHandler;
 import com.ldtteam.structurize.placement.handlers.placement.PlacementHandlers;
-import com.ldtteam.structurize.util.PlacementSettings;
 import net.dries007.tfc.common.blocks.StainedWattleBlock;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.ThatchBedBlock;
@@ -15,16 +15,19 @@ import net.dries007.tfc.common.blocks.rock.RockAnvilBlock;
 import net.dries007.tfc.common.items.HideItemType;
 import net.dries007.tfc.common.items.TFCItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Mutable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,26 +45,22 @@ public class TFCPlacementHandlers {
         }
 
         @Override
-        public ActionProcessingResult handle(
-                final Level world,
-                final BlockPos pos,
-                final BlockState blockState,
-                @Nullable final CompoundTag tileEntityData,
-                boolean complete,
-                BlockPos centerpos,
-                PlacementSettings settings
+        public IPlacementHandler.ActionProcessingResult handle(
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
         ) {
             if (blockState.getValue(BedBlock.PART) == BedPart.HEAD) {
-                var facing = blockState.getValue(BedBlock.FACING);
-                world.setBlock(
-                        pos.relative(facing.getOpposite()),
-                        blockState.setValue(BedBlock.PART, BedPart.FOOT),
-                        UPDATE_FLAG
-                );
-                world.setBlock(pos, blockState.setValue(BedBlock.PART, BedPart.HEAD), UPDATE_FLAG);
-                PlacementHandlers.handleTileEntityPlacement(tileEntityData, world, pos, settings);
-                PlacementHandlers.handleTileEntityPlacement(
-                        tileEntityData, world, pos.relative(facing.getOpposite()), settings);
+                Direction facing = blockState.getValue(BedBlock.FACING);
+                world.setBlock(pos.relative(facing.getOpposite()), blockState.setValue(BedBlock.PART, BedPart.FOOT), 3);
+                world.setBlock(pos, blockState.setValue(BedBlock.PART, BedPart.HEAD), 3);
+                if (tileEntityData != null) {
+                    PlacementHandlers.handleTileEntityPlacement(tileEntityData, world, pos, placementContext.getRotationMirror());
+                    PlacementHandlers.handleTileEntityPlacement(tileEntityData, world, pos.relative(facing.getOpposite()), placementContext.getRotationMirror());
+                }
+
                 return ActionProcessingResult.SUCCESS;
             } else {
                 return ActionProcessingResult.PASS;
@@ -69,12 +68,12 @@ public class TFCPlacementHandlers {
         }
 
         @Override
-        public @Mutable List<ItemStack> getRequiredItems(
+        public List<ItemStack> getRequiredItems(
                 Level world,
                 BlockPos pos,
                 BlockState blockState,
                 @Nullable CompoundTag tileEntityData,
-                boolean complete
+                @NotNull IPlacementContext placementContext
         ) {
             List<ItemStack> itemList = new ArrayList<>();
             if (blockState.getValue(BedBlock.PART) == BedPart.HEAD) {
@@ -82,6 +81,11 @@ public class TFCPlacementHandlers {
                 itemList.add(new ItemStack(TFCBlocks.THATCH.get().asItem(), 2));
             }
             return itemList;
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
         }
     }
 
@@ -94,27 +98,30 @@ public class TFCPlacementHandlers {
 
         @Override
         public ActionProcessingResult handle(
-                final Level world,
-                final BlockPos pos,
-                final BlockState blockState,
-                @Nullable final CompoundTag tileEntityData,
-                boolean complete,
-                BlockPos centerpos,
-                PlacementSettings settings
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
         ) {
             world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
             return ActionProcessingResult.SUCCESS;
         }
 
         @Override
-        public @Mutable List<ItemStack> getRequiredItems(
+        public List<ItemStack> getRequiredItems(
                 Level world,
                 BlockPos pos,
                 BlockState blockState,
                 @Nullable CompoundTag tileEntityData,
-                boolean complete
+                @NotNull IPlacementContext placementContext
         ) {
             return List.of(new ItemStack(Items.CHARCOAL, 7));
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
         }
     }
 
@@ -138,27 +145,30 @@ public class TFCPlacementHandlers {
 
         @Override
         public ActionProcessingResult handle(
-                final Level world,
-                final BlockPos pos,
-                final BlockState blockState,
-                @Nullable final CompoundTag tileEntityData,
-                boolean complete,
-                BlockPos centerpos,
-                PlacementSettings settings
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
         ) {
             world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
             return ActionProcessingResult.SUCCESS;
         }
 
         @Override
-        public @Mutable List<ItemStack> getRequiredItems(
+        public List<ItemStack> getRequiredItems(
                 Level world,
                 BlockPos pos,
                 BlockState blockState,
                 @Nullable CompoundTag tileEntityData,
-                boolean complete
+                @NotNull IPlacementContext placementContext
         ) {
             return List.of(new ItemStack(anvilToRock.get(blockState.getBlock()).asItem()));
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
         }
     }
 
@@ -171,25 +181,23 @@ public class TFCPlacementHandlers {
 
         @Override
         public ActionProcessingResult handle(
-                final Level world,
-                final BlockPos pos,
-                final BlockState blockState,
-                @Nullable final CompoundTag tileEntityData,
-                boolean complete,
-                BlockPos centerpos,
-                PlacementSettings settings
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
         ) {
             world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
             return ActionProcessingResult.SUCCESS;
         }
 
         @Override
-        public @Mutable List<ItemStack> getRequiredItems(
+        public List<ItemStack> getRequiredItems(
                 Level world,
                 BlockPos pos,
                 BlockState blockState,
                 @Nullable CompoundTag tileEntityData,
-                boolean complete
+                @NotNull IPlacementContext placementContext
         ) {
             List<ItemStack> list = new ArrayList<>(List.of(
                     new ItemStack(Items.STICK, 3)
@@ -202,8 +210,14 @@ public class TFCPlacementHandlers {
             }
             return list;
         }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
+        }
     }
 
+    //Wattle
     static class WattlePlacementHandler implements IPlacementHandler {
 
         @Override
@@ -213,25 +227,23 @@ public class TFCPlacementHandlers {
 
         @Override
         public ActionProcessingResult handle(
-                final Level world,
-                final BlockPos pos,
-                final BlockState blockState,
-                @Nullable final CompoundTag tileEntityData,
-                boolean complete,
-                BlockPos centerpos,
-                PlacementSettings settings
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
         ) {
             world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
             return ActionProcessingResult.SUCCESS;
         }
 
         @Override
-        public @Mutable List<ItemStack> getRequiredItems(
+        public List<ItemStack> getRequiredItems(
                 Level world,
                 BlockPos pos,
                 BlockState blockState,
                 @Nullable CompoundTag tileEntityData,
-                boolean complete
+                @NotNull IPlacementContext placementContext
         ) {
             List<ItemStack> list = new ArrayList<>(List.of(
                     new ItemStack(blockState.getBlock().asItem(), 1)
@@ -249,6 +261,11 @@ public class TFCPlacementHandlers {
                 list.add(new ItemStack(Items.STICK));
             }
             return list;
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
         }
     }
 }

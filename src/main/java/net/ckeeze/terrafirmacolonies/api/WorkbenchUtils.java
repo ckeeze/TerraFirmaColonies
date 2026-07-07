@@ -7,6 +7,7 @@ import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,7 @@ public class WorkbenchUtils {
             }
 
             @Override
-            public List<ItemStack> getItems() {
+            public @NotNull List<ItemStack> getItems() {
                 return input;
             }
 
@@ -43,22 +44,22 @@ public class WorkbenchUtils {
             }
 
             @Override
-            public ItemStack getItem(int i) {
+            public @NotNull ItemStack getItem(int i) {
                 return input.get(i);
             }
 
             @Override
-            public ItemStack removeItem(int i, int i1) {
+            public @NotNull ItemStack removeItem(int i, int i1) {
                 return input.get(i);
             }
 
             @Override
-            public ItemStack removeItemNoUpdate(int i) {
+            public @NotNull ItemStack removeItemNoUpdate(int i) {
                 return input.get(i);
             }
 
             @Override
-            public void setItem(int i, ItemStack itemStack) {
+            public void setItem(int i, @NotNull ItemStack itemStack) {
             }
 
             @Override
@@ -66,7 +67,7 @@ public class WorkbenchUtils {
             }
 
             @Override
-            public boolean stillValid(Player player) {
+            public boolean stillValid(@NotNull Player player) {
                 return true;
             }
 
@@ -76,12 +77,12 @@ public class WorkbenchUtils {
             }
 
             @Override
-            public void fillStackedContents(StackedContents stackedContents) {
+            public void fillStackedContents(@NotNull StackedContents stackedContents) {
 
             }
         };
         return world.getRecipeManager().getRecipeFor(RecipeType.CRAFTING, inv, world)
-            .map(recipe -> recipe.getResultItem(world.registryAccess()))
-            .filter(slab -> !slab.isEmpty());
+                .map(recipe -> recipe.getResultItem(world.registryAccess()))
+                .filter(slab -> !slab.isEmpty());
     }
 }

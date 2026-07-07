@@ -5,7 +5,6 @@ import com.minecolonies.api.colony.requestsystem.requestable.StackList;
 import com.minecolonies.api.entity.ai.statemachine.states.AIWorkerState;
 import com.minecolonies.api.entity.ai.statemachine.states.IAIState;
 import com.minecolonies.api.equipment.ModEquipmentTypes;
-import com.minecolonies.api.equipment.registry.EquipmentTypeEntry;
 import com.minecolonies.api.util.InventoryUtils;
 import com.minecolonies.api.util.WorldUtil;
 import com.minecolonies.core.blocks.BlockScarecrow;
@@ -90,6 +89,8 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
             if (FertilizerInBuilding + FertilizerInInventory <= 0) {
                 if (this.building.requestFertilizer() && !this.building.hasWorkerOpenRequestsOfType(this.worker.getCitizenData().getId(), TypeToken.of(StackList.class))) {
                     List<ItemStack> compostAbleItems = new ArrayList<>();
+                    //Adding TFC fertilizers to the list
+                    //Saltpeter is not present to prevent colonies from wasting the important gunpowder component
                     compostAbleItems.add(new ItemStack(TFCItems.POWDERS.get(Powder.SYLVITE).get(), 1));
                     compostAbleItems.add(new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get(), 1));
                     compostAbleItems.add(new ItemStack(TFCItems.COMPOST.get(), 1));
@@ -107,10 +108,12 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
     @Overwrite(remap = false)
     private BlockPos findHoeableSurface(@NotNull BlockPos position, @NotNull final FarmField farmField) {
         position = this.getSurfacePos(position);
+        //IDE inspection is incorrect position can actually be null
         if (position == null
                 || farmField.isNoPartOfField(world, position)
                 || (world.getBlockState(position.above()).getBlock() instanceof CropBlock)
                 || (world.getBlockState(position.above()).getBlock() instanceof BlockScarecrow)
+                //Our arguments:
                 || !(world.getBlockState(position).is(TFCBlocks.SOIL.get(SoilBlockType.DIRT).get(SoilBlockType.Variant.SANDY_LOAM).get())
                 || world.getBlockState(position).is(TFCBlocks.SOIL.get(SoilBlockType.DIRT).get(SoilBlockType.Variant.LOAM).get())
                 || world.getBlockState(position).is(TFCBlocks.SOIL.get(SoilBlockType.DIRT).get(SoilBlockType.Variant.SILT).get())
@@ -134,6 +137,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
         if (Math.abs(depth) <= 5 && WorldUtil.isBlockLoaded(this.world, position)) {
             BlockState curBlockState = this.world.getBlockState(position);
             Block curBlock = curBlockState.getBlock();
+            //Changed Arguments from banilla blocks
             if ((!curBlockState.isSolid() || curBlockState.is(TFCBlocks.PUMPKIN.get()) || curBlockState.is(TFCBlocks.MELON.get()) || curBlock instanceof WebBlock)) {
                 return depth > 0 ? position.below() : this.getSurfacePos(position.below(), depth - 1);
             } else {
@@ -151,12 +155,13 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
     @Overwrite(remap = false)
     private boolean hoeIfAble(BlockPos position, FarmField farmField) {
         position = this.findHoeableSurface(position, farmField);
-        if (position != null && !this.checkForToolOrWeapon((EquipmentTypeEntry) ModEquipmentTypes.hoe.get())) {
+        if (position != null && !this.checkForToolOrWeapon(ModEquipmentTypes.hoe.get())) {
             if (this.mineBlock(position.above())) {
                 this.didWork = true;
                 this.equipHoe();
                 this.worker.swing(this.worker.getUsedItemHand());
 
+                //Added branches
                 if (world.getBlockState(position).is(TFCBlocks.SOIL.get(SoilBlockType.GRASS).get(SoilBlockType.Variant.LOAM).get()) ||
                         world.getBlockState(position).is(TFCBlocks.SOIL.get(SoilBlockType.DIRT).get(SoilBlockType.Variant.LOAM).get())) {
                     world.setBlockAndUpdate(position, TFCBlocks.SOIL.get(SoilBlockType.FARMLAND).get(SoilBlockType.Variant.LOAM).get().defaultBlockState());
@@ -203,6 +208,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
             } else {
                 Item seed = item.getItem();
 
+                //Added branches
                 if (seed == TFCItems.CROP_SEEDS.get(Crop.JUTE).get() && Hyd >= 25 && Temp >= 8.0 && Temp <= 34.0) {
                     this.world.setBlockAndUpdate(position.above(), TFCBlocks.CROPS.get(Crop.JUTE).get().defaultBlockState());
                     cropplanted = true;
@@ -316,6 +322,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
     @Overwrite(remap = false)
     private BlockPos findPlantableSurface(@NotNull BlockPos position, @NotNull FarmField farmField) {
         position = this.getSurfacePos(position);
+        //position can in fact be null here
         return position != null && !farmField.isNoPartOfField(this.world, position) && ((this.world.getBlockState(position.above()).getBlock() instanceof AirBlock) || (this.world.getBlockState(position.above()).getFluidState().is(TFCTags.Fluids.ANY_INFINITE_WATER))) ? position : null;
     }
 
@@ -346,6 +353,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
         } else {
             BlockState state = this.world.getBlockState(position.above());
             Block block = state.getBlock();
+            //Changed from vanilla Pumpkin and Melon
             if (block != TFCBlocks.PUMPKIN.get() && block != TFCBlocks.MELON.get() && !(block instanceof net.dries007.tfc.common.blocks.crop.DeadCropBlock)) {
                 if (block instanceof net.dries007.tfc.common.blocks.crop.CropBlock crop) {
                     if (crop.isMaxAge(state)) {
@@ -356,6 +364,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
                             return null;
                         } else if (Farmland instanceof IFarmland farmland) {
 
+                            //TFC Fertilizing behavior
                             int bone_mealSlot = this.worker.getCitizenInventoryHandler().findFirstSlotInInventoryWith(Items.BONE_MEAL);
                             int saltpeterSlot = this.worker.getCitizenInventoryHandler().findFirstSlotInInventoryWith(TFCItems.POWDERS.get(Powder.SALTPETER).get());
                             int wood_ashSlot = this.worker.getCitizenInventoryHandler().findFirstSlotInInventoryWith(TFCItems.POWDERS.get(Powder.WOOD_ASH).get());
@@ -463,9 +472,11 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
             if (slot != -1) {
                 return AIWorkerState.FARMER_PLANT;
             } else if (!this.walkToBuilding()) {
+                //Changed from module based seed check
                 terrafirmacolonies$getSeedIfNeeded(seeds);
                 return AIWorkerState.PREPARING;
             } else {
+                //Changed from module based seed check
                 terrafirmacolonies$getSeedIfNeeded(seeds);
                 seeds.setCount(seeds.getMaxStackSize());
                 if (!this.checkIfRequestForItemExistOrCreateAsync(seeds, seeds.getMaxStackSize(), 1)) {

@@ -33,15 +33,16 @@ public abstract class BuildingFarmerMixin extends AbstractBuilding {
     @Override
     @Overwrite
     public Map<Predicate<ItemStack>, Tuple<Integer, Boolean>> getRequiredItemsAndAmount() {
-        Map<Predicate<ItemStack>, Tuple<Integer, Boolean>> toKeep = new HashMap(super.getRequiredItemsAndAmount());
+        Map<Predicate<ItemStack>, Tuple<Integer, Boolean>> toKeep = new HashMap<>(super.getRequiredItemsAndAmount());
 
         for (BuildingExtensionsModule module : this.getModulesByType(BuildingExtensionsModule.class)) {
             for (IBuildingExtension field : module.getOwnedExtensions()) {
                 if (field instanceof FarmField farmField) {
                     if (!farmField.getSeed().isEmpty()) {
-                        toKeep.put((Predicate) (stack) -> ItemStack.isSameItem(farmField.getSeed(), (ItemStack) stack), new Tuple(64, true));
+                        toKeep.put((Predicate) (stack) -> ItemStack.isSameItem(farmField.getSeed(), (ItemStack) stack), new Tuple<>(64, true));
+                        //New if branch
                         if (farmField.getSeed().is(TFCItems.CROP_SEEDS.get(Crop.GREEN_BEAN).get()) || farmField.getSeed().is(TFCItems.CROP_SEEDS.get(Crop.TOMATO).get())) {
-                            toKeep.put((Predicate) (stack) -> ItemStack.isSameItem(Items.STICK.getDefaultInstance(), (ItemStack) stack), new Tuple(64, true));
+                            toKeep.put((Predicate) (stack) -> ItemStack.isSameItem(Items.STICK.getDefaultInstance(), (ItemStack) stack), new Tuple<>(64, true));
                         }
                     }
                 }

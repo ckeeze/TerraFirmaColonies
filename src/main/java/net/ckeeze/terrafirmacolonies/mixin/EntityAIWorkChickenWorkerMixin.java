@@ -33,8 +33,9 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
 
     @Override
     public IAIState decideWhatToDo() {
+        //Breeder IAIState is repurposed for egg collection
         IAIState result = super.decideWhatToDo();
-        if (((getNestWithEggs() != null) || AreNestsBroken()) && result.equals(AIWorkerState.START_WORKING)) {
+        if (((terrafirmacolonies$getNestWithEggs() != null) || terrafirmacolonies$AreNestsBroken()) && result.equals(AIWorkerState.START_WORKING)) {
             return AIWorkerState.HERDER_BREED;
         }
         return result;
@@ -47,15 +48,17 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
     @Override
     @Overwrite(remap = false)
     public IAIState breedAnimals() {
-        if (AreNestsBroken()) {
-            getNestPosList();
+        //Entirely new code
+        if (terrafirmacolonies$AreNestsBroken()) {
+            terrafirmacolonies$getNestPosList();
         }
         @Nullable
-        BlockPos eggpos = getNestWithEggs();
+        BlockPos eggpos = terrafirmacolonies$getNestWithEggs();
         if (eggpos != null) {
+            //Tested behavior walkToPos needs to be negated
             if (!EntityNavigationUtils.walkToPos(this.worker, eggpos, 2, true)) {
             } else {
-                ejectEggsFromNest(eggpos);
+                terrafirmacolonies$ejectEggsFromNest(eggpos);
             }
         }
         return AIWorkerState.DECIDE;
@@ -72,12 +75,12 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
     }
 
     @Unique
-    private void getNestPosList() {
+    private void terrafirmacolonies$getNestPosList() {
         terrafirmacolonies$nestPosList.clear();
         BlockPos startpos = this.building.getPosition();
         for (int x = startpos.getX() - 10; x < startpos.getX() + 10; ++x) {
-            for (int z = startpos.getZ() - 3; z < startpos.getZ() + 3; ++z) {
-                for (int y = startpos.getY() - 10; y < startpos.getY() + 10; ++y) {
+            for (int z = startpos.getZ() - 10; z < startpos.getZ() + 10; ++z) {
+                for (int y = startpos.getY() - 3; y < startpos.getY() + 3; ++y) {
                     if (world.getBlockState(new BlockPos(x, y, z)).is(TFCBlocks.NEST_BOX.get()) && terrafirmacolonies$nestPosList.size() < this.terrafirmacolonies$getMaxNests()) {
                         terrafirmacolonies$nestPosList.add(new BlockPos(x, y, z));
                     }
@@ -87,7 +90,7 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
     }
 
     @Unique
-    private boolean AreNestsBroken() {
+    private boolean terrafirmacolonies$AreNestsBroken() {
         for (BlockPos pos : terrafirmacolonies$nestPosList) {
             if (!(this.world.getBlockEntity(pos) instanceof NestBoxBlockEntity)) {
                 return true;
@@ -97,7 +100,7 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
     }
 
     @Unique
-    private @Nullable BlockPos getNestWithEggs() {
+    private @Nullable BlockPos terrafirmacolonies$getNestWithEggs() {
         for (BlockPos pos : terrafirmacolonies$nestPosList) {
             BlockEntity Nest = this.world.getBlockEntity(pos);
             assert Nest != null;
@@ -112,7 +115,7 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
     }
 
     @Unique
-    private void ejectEggsFromNest(BlockPos pos) {
+    private void terrafirmacolonies$ejectEggsFromNest(BlockPos pos) {
         BlockEntity Nest = this.world.getBlockEntity(pos);
         assert Nest != null;
         if (Nest instanceof NestBoxBlockEntity container) {

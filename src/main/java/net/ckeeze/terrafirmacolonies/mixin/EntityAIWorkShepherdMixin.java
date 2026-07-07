@@ -44,6 +44,7 @@ public abstract class EntityAIWorkShepherdMixin extends AbstractEntityAIHerder<J
     @Overwrite(remap = false)
     public IAIState decideWhatToDo() {
         IAIState result = super.decideWhatToDo();
+        //Changed from Sheep to WoolyAnimal
         WoolyAnimal shearingSheep = this.terrafirmacolonies$findShearableAnimal();
         if (this.building.getSetting(BuildingShepherd.SHEARING).getValue() && result.equals(AIWorkerState.START_WORKING) && shearingSheep != null) {
             return AIWorkerState.SHEPHERD_SHEAR;
@@ -69,6 +70,7 @@ public abstract class EntityAIWorkShepherdMixin extends AbstractEntityAIHerder<J
      */
     @Overwrite(remap = false)
     private IAIState shearSheep() {
+        //Changed from Sheep to WoolyAnimal
         WoolyAnimal sheep = this.terrafirmacolonies$findShearableAnimal();
         if (sheep == null) {
             return AIWorkerState.DECIDE;
@@ -79,11 +81,14 @@ public abstract class EntityAIWorkShepherdMixin extends AbstractEntityAIHerder<J
                 if (this.walkingToAnimal(sheep)) {
                     return this.getState();
                 }
+                //Removed enchantment related behavior
                 double skillmodifier = Math.min(1.0F, (double) this.getPrimarySkillLevel() / (double) 50.0F);
 
+                //Older code from Minecolonies 1.1.170 still works as intended
                 this.worker.swing(InteractionHand.MAIN_HAND);
                 List<ItemStack> items = new ArrayList<>();
                 if (!this.world.isClientSide) {
+                    //Added TFC behavior
                     sheep.addUses(1);
                     sheep.setProductsCooldown();
                     items.add(sheep.getWoolItem());

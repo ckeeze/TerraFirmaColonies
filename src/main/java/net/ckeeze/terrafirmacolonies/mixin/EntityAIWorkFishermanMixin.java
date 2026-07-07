@@ -55,6 +55,7 @@ public abstract class EntityAIWorkFishermanMixin extends AbstractEntityAISkill<J
         for (int x = posX - 3; x < posX + 3; ++x) {
             for (int z = posZ - 3; z < posZ + 3; ++z) {
                 for (int y = posY - 3; y < posY + 3; ++y) {
+                    //Changed from vanilla water block
                     if (world.getBlockState(new BlockPos(x, y, z)).getFluidState().is(TFCTags.Fluids.ANY_WATER)) {
                         return true;
                     }

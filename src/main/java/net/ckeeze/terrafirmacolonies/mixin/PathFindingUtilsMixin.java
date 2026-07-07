@@ -41,6 +41,7 @@ public class PathFindingUtilsMixin {
         if (fluidState == null) {
             fluidState = state.getFluidState();
         }
+        //Changed from Vanilla Water
         if (fluidState.is(TFCTags.Fluids.ANY_INFINITE_WATER)) {
             return true;
         }

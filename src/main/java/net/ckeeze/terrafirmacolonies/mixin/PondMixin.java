@@ -24,6 +24,7 @@ public class PondMixin {
         BlockState state = world.getBlockState(pos);
         if (!state.isAir() && !state.is(Blocks.LILY_PAD)) {
             FluidState fluidstate = state.getFluidState();
+            //Changed from Vanilla Water fluid
             if (fluidstate.is(TFCTags.Fluids.ANY_WATER)) {
                 if (fluidstate.isSource()) {
                     pondState = Pond.PondState.VALID;
