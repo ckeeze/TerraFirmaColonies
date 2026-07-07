@@ -132,9 +132,11 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
      */
     @Overwrite(remap = false)
     public IAIState decideWhatToDo() {
+        //Removed breedTimeOut, behavior is governed by the animal's current needs directly instead
         this.worker.getCitizenData().setVisibleStatus(VisibleCitizenStatus.WORKING);
         for (AnimalHerdingModule module : this.building.getModulesByType(AnimalHerdingModule.class)) {
             Objects.requireNonNull(module);
+            //Changed from List<? extends Animals>
             List<? extends TFCAnimal> animals = this.searchForAnimals(module::isCompatible);
             if (!animals.isEmpty()) {
                 this.current_module = module;
@@ -144,7 +146,7 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                         ++numOfFeedableAnimals;
                     }
                 }
-
+                //Changed boolean to our own boolean check
                 boolean hasBreedingItem = terrafirmacolonies$HasBreeditems();
                 if (ColonyConstants.rand.nextDouble() < 0.2 && !this.searchForItemsInArea().isEmpty()) {
                     return AIWorkerState.HERDER_PICKUP;
@@ -157,6 +159,7 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                 if (numOfFeedableAnimals >= 1 && hasBreedingItem && this.canBreedChildren()) {
                     return AIWorkerState.HERDER_FEED;
                 }
+                //Removed Herder_Breed as TFC feeding and breeding is the exact same action
             }
         }
 
@@ -176,8 +179,10 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                 }
             }
 
+            //Added unique method calls
             int BreedItemInbuilding = InventoryUtils.hasBuildingEnoughElseCount(this.building, this::terrafirmacolonies$isBreedItem, 8);
             int BreedItemInInventory = InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), this::terrafirmacolonies$isBreedItem);
+            //Older still working code from minecolonies 1.1.170
             if (this.building.getBuildingLevel() >= 1) {
                 if (BreedItemInbuilding + BreedItemInInventory <= 0) {
                     if (!(this.building).hasWorkerOpenRequestsOfType(this.worker.getCitizenData().getId(), TypeToken.of(StackList.class))) {
@@ -200,10 +205,12 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
      */
     @Overwrite(remap = false)
     public double chanceToButcher(List<? extends TFCAnimal> allAnimals) {
+        //Increased animals per level
         int maxAnimals = this.building.getBuildingLevel() * 4;
         if (!this.building.getSetting(AbstractBuilding.BREEDING).getValue() && allAnimals.size() <= maxAnimals) {
             return 0.0F;
         } else {
+            //Unique code checking for TFC characteristics
             int grownUp = 0;
             int males = 0;
             int females = 0;
@@ -254,14 +261,19 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
     protected IAIState feedAnimal() {
         if (this.current_module == null) {
             return AIWorkerState.DECIDE;
-        } else if (!this.equipItem(InteractionHand.MAIN_HAND, terrafirmacolonies$ConvertItemstoStacks(Objects.requireNonNull(terrafirmacolonies$getBreedingitemsInList())))) {
+        }
+        //inserting unique methods
+        else if (!this.equipItem(InteractionHand.MAIN_HAND, terrafirmacolonies$ConvertItemstoStacks(Objects.requireNonNull(terrafirmacolonies$getBreedingitemsInList())))) {
             return AIWorkerState.START_WORKING;
         } else {
             AnimalHerdingModule var10001 = this.current_module;
             Objects.requireNonNull(var10001);
+            //changed from List<? extends Animals>
             List<? extends TFCAnimal> animals = this.searchForAnimals(var10001::isCompatible);
+            //Changed from Animal
             TFCAnimal toFeed = null;
 
+            //Loop changed from internal timers to checking animal needs directly
             for (TFCAnimal animal : animals) {
                 if (animal.isHungry()) {
                     if (animal.getAgeType() == TFCAnimalProperties.Age.CHILD && animal.getFamiliarity() < 0.91F) {
@@ -283,12 +295,14 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
                 this.worker.getCitizenExperienceHandler().addExperience(0.5F);
                 this.worker.level().broadcastEntityEvent(toFeed, (byte) 18);
 
+                //Terrafirmacraft feeding results
                 toFeed.setFamiliarity(toFeed.getFamiliarity() + 0.06F);
                 if (toFeed.isBaby() && this.getSecondarySkillLevel() >= 10) {
                     toFeed.setFamiliarity(toFeed.getFamiliarity() + 0.02F);
                 }
                 toFeed.setLastFed(Calendars.get(toFeed.level()).getTotalDays());
                 toFeed.setLastFamiliarityDecay(Calendars.get(toFeed.level()).getTotalDays());
+
                 toFeed.playSound(SoundEvents.GENERIC_EAT, 1.0F, 1.0F);
                 CitizenItemUtils.removeHeldItem(this.worker);
                 return AIWorkerState.DECIDE;

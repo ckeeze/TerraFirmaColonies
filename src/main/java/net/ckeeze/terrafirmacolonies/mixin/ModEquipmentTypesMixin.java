@@ -10,10 +10,11 @@ public class ModEquipmentTypesMixin {
 
     /**
      * @author Ckeeze
-     * @reason Fix some TFC equipment recieving the wrong level. (Fishing rods, shields, shears)
+     * @reason Fix some TFC equipment receiving the wrong level. (Fishing rods, shields, shears)
      */
     @Overwrite(remap = false)
     public static int durabilityBasedLevel(ItemStack itemStack, int vanillaItemDurability) {
+        //Entirely changed from a durability based math check, to string based one, accounting for modded balance
         String itemID = itemStack.getDescriptionId();
         if (itemID.contains("bronze")) {
             return 2; //Bronze tools

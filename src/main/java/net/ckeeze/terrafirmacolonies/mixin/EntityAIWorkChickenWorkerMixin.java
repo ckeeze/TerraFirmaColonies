@@ -33,6 +33,7 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
 
     @Override
     public IAIState decideWhatToDo() {
+        //Breeder IAIState is repurposed for egg collection
         IAIState result = super.decideWhatToDo();
         if (((terrafirmacolonies$getNestWithEggs() != null) || terrafirmacolonies$AreNestsBroken()) && result.equals(AIWorkerState.START_WORKING)) {
             return AIWorkerState.HERDER_BREED;
@@ -47,12 +48,14 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
     @Override
     @Overwrite(remap = false)
     public IAIState breedAnimals() {
+        //Entirely new code
         if (terrafirmacolonies$AreNestsBroken()) {
             terrafirmacolonies$getNestPosList();
         }
         @Nullable
         BlockPos eggpos = terrafirmacolonies$getNestWithEggs();
         if (eggpos != null) {
+            //Tested behavior walkToPos needs to be negated
             if (!EntityNavigationUtils.walkToPos(this.worker, eggpos, 2, true)) {
             } else {
                 terrafirmacolonies$ejectEggsFromNest(eggpos);

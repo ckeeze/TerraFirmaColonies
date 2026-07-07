@@ -52,6 +52,7 @@ public abstract class EntityAIWorkCowboyMixin extends AbstractEntityAIHerder<Job
     @Overwrite
     public IAIState decideWhatToDo() {
         IAIState result = super.decideWhatToDo();
+        //Simplified the timer based branches
         if (this.building != null && this.building.getFirstModuleOccurance(BuildingCowboy.HerdingModule.class).canTryToMilk() && result.equals(AIWorkerState.START_WORKING) && terrafirmacolonies$AnimalsCanBeMilked()) {
             return AIWorkerState.COWBOY_MILK;
         }
@@ -67,8 +68,10 @@ public abstract class EntityAIWorkCowboyMixin extends AbstractEntityAIHerder<Job
     public @NotNull List<ItemStorage> getExtraItemsNeeded() {
         List<ItemStorage> list = super.getExtraItemsNeeded();
         if (this.building != null && this.building.getFirstModuleOccurance(BuildingCowboy.HerdingModule.class).canTryToMilk()) {
+            //changed from milkingItemOutput
             list.add(new ItemStorage(TFCItems.WOODEN_BUCKET.get(), 8));
         }
+        //Deleted mooshroom branch
         return list;
     }
 
@@ -79,14 +82,16 @@ public abstract class EntityAIWorkCowboyMixin extends AbstractEntityAIHerder<Job
     @Overwrite(remap = false)
     private IAIState milkCows() {
         this.worker.getCitizenData().setVisibleStatus(HERD_COW);
-
+        //Changed inventory check
         if (!this.worker.getCitizenInventoryHandler().hasItemInInventory(TFCItems.WOODEN_BUCKET.get())) {
             if (InventoryUtils.hasBuildingEnoughElseCount(this.building, new ItemStorage(new ItemStack(TFCItems.WOODEN_BUCKET.get(), 1)), 1) <= 0 || !this.walkToBuilding()) {
+                //Removed cooldown
                 return AIWorkerState.DECIDE;
             }
+            //Changed from getMilkInputItem()
             this.checkAndTransferFromHut(new ItemStack(TFCItems.WOODEN_BUCKET.get(), 1));
         }
-
+        //Changed from a check that returns a non baby vanilla Cow, Goat or Mooshroom
         Animal dairyAnimal = this.searchForAnimals((a) -> a instanceof DairyAnimal && !a.isBaby()).stream()
                 .filter(a -> ((DairyAnimal) a).hasProduct())
                 .filter(a -> ((DairyAnimal) a).getFamiliarity() >= 0.2F)
@@ -95,7 +100,11 @@ public abstract class EntityAIWorkCowboyMixin extends AbstractEntityAIHerder<Job
         if (dairyAnimal == null) {
             this.stewCoolDown = 10;
             return AIWorkerState.DECIDE;
-        } else if (this.equipItem(InteractionHand.MAIN_HAND, Collections.singletonList(new ItemStorage(TFCItems.WOODEN_BUCKET.get()))) && !this.walkingToAnimal(dairyAnimal)) {
+
+        }
+        //Changed arguements
+        //Older branch from minecolonies 1.1.170 utalizes FakePlayers, it is a preferable implementation for compatibility reasons
+        else if (this.equipItem(InteractionHand.MAIN_HAND, Collections.singletonList(new ItemStorage(TFCItems.WOODEN_BUCKET.get()))) && !this.walkingToAnimal(dairyAnimal)) {
             FakePlayer fakePlayer = FakePlayerFactory.getMinecraft((ServerLevel) this.worker.level());
             fakePlayer.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(TFCItems.WOODEN_BUCKET.get()));
             if (dairyAnimal.mobInteract(fakePlayer, InteractionHand.MAIN_HAND).equals(InteractionResult.SUCCESS)) {
@@ -111,7 +120,7 @@ public abstract class EntityAIWorkCowboyMixin extends AbstractEntityAIHerder<Job
             this.incrementActionsDone();
             this.worker.decreaseSaturationForContinuousAction();
             StatsUtil.trackStat(this.building, "milking_attempts", 1);
-            this.worker.getCitizenExperienceHandler().addExperience((double) 1.0F);
+            this.worker.getCitizenExperienceHandler().addExperience(1.0F);
             return AIWorkerState.INVENTORY_FULL;
         } else {
             return this.getState();

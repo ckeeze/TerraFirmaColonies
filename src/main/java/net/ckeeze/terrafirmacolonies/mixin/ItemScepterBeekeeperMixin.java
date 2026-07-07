@@ -50,7 +50,7 @@ public abstract class ItemScepterBeekeeperMixin extends AbstractItemMinecolonies
             IColony colony = IColonyManager.getInstance().getColonyByWorld(compound.getInt("id"), useContext.getLevel());
             BlockPos hutPos = BlockPosUtil.read(compound, "pos");
             assert colony != null;
-            IBuilding hut = colony.getBuildingManager().getBuilding(hutPos);
+            IBuilding hut = colony.getServerBuildingManager().getBuilding(hutPos);
             BuildingBeekeeper building = (BuildingBeekeeper) hut;
             if (useContext.getLevel().getBlockState(useContext.getClickedPos()).getBlock() instanceof FLBeehiveBlock) {
                 Collection<BlockPos> positions = building.getHives();
@@ -72,12 +72,12 @@ public abstract class ItemScepterBeekeeperMixin extends AbstractItemMinecolonies
                     if (positions.size() >= building.getMaximumHives()) {
                         MessageUtils.format("item.minecolonies.scepterbeekeeper.maxhives").sendTo(useContext.getPlayer());
                         assert player != null;
-                        player.getInventory().removeItemNoUpdate(player.getInventory().selected);
+                        player.getInventory().removeItem(scepter);
                     }
                 }
             } else {
                 assert player != null;
-                player.getInventory().removeItemNoUpdate(player.getInventory().selected);
+                player.getInventory().removeItem(scepter);
             }
 
             return super.useOn(useContext);

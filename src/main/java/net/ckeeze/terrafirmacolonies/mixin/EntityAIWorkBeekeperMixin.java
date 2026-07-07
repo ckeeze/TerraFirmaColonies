@@ -68,21 +68,22 @@ public abstract class EntityAIWorkBeekeperMixin extends AbstractEntityAIInteract
      */
     @Overwrite(remap = false)
     private IAIState decideWhatToDo() {
-
         this.setDelay(40 + (99 / this.getSecondarySkillLevel() - 1));
-
         Set<BlockPos> hives = this.building.getHives();
         if (hives.isEmpty()) {
             this.worker.getCitizenData().triggerInteraction(new StandardInteraction(Component.translatable("entity.beekeeper.messagenohives"), ChatPriority.BLOCKING));
             this.setDelay(100);
             return AIWorkerState.DECIDE;
         }
+
+        //Code from minecolonies 1.1.170 still works as intended
         BlockPos hive = this.getHiveToHarvest();
         if (hive != null) {
             return AIWorkerState.BEEKEEPER_HARVEST;
         } else {
             return AIWorkerState.DECIDE;
         }
+        //Removed Breeding behavior's branches
     }
 
     /**
@@ -100,6 +101,7 @@ public abstract class EntityAIWorkBeekeperMixin extends AbstractEntityAIInteract
         } else if (!this.equipItem(InteractionHand.MAIN_HAND, new ItemStack(TFCItems.EMPTY_JAR.get()))) {
             return AIWorkerState.PREPARING;
         }
+
         BlockPos hive = this.getHiveToHarvest();
         if (hive == null) {
             return AIWorkerState.DECIDE;
@@ -108,19 +110,18 @@ public abstract class EntityAIWorkBeekeperMixin extends AbstractEntityAIInteract
         } else {
             this.worker.swing(InteractionHand.MAIN_HAND);
             ItemStack itemStack = this.worker.getMainHandItem();
-            //Wax
+            //branch changed for firmalife Wax
             if (!this.building.getHarvestTypes().equals("com.minecolonies.core.apiary.setting.honey") && TFCEquipmentTypes.tfcknife.get().checkIsEquipment(itemStack)) {
                 CitizenItemUtils.damageItemInHand(this.worker, InteractionHand.MAIN_HAND, 1);
-
                 terrafirmacolonies$killBee(hive);
-
                 ItemStack waxStack = new ItemStack(FLItems.BEESWAX.get(), 1);
                 StatsUtil.trackStatByStack(this.building, "items_collected", waxStack, 1);
                 InventoryUtils.transferItemStackIntoNextBestSlotInItemHandler(waxStack, this.worker.getItemHandlerCitizen());
                 this.worker.getCitizenExperienceHandler().addExperience(5.0F);
             }
-            //Honey
+            //branch changed for firmalife Honey
             else if (!this.building.getHarvestTypes().equals("com.minecolonies.core.apiary.setting.honeycomb") && itemStack.getItem() == TFCItems.EMPTY_JAR.get()) {
+                //Simplified honey collection
                 int honeyamount = terrafirmacolonies$getHoneyLevel(hive);
                 terrafirmacolonies$takeHoneyFromHive(hive, honeyamount);
                 ItemStack honeyStack = new ItemStack(FLItems.RAW_HONEY.get(), honeyamount);
@@ -142,6 +143,7 @@ public abstract class EntityAIWorkBeekeperMixin extends AbstractEntityAIInteract
     private BlockPos getHiveToHarvest() {
         for (BlockPos pos : this.building.getHives()) {
             BlockEntity hive = this.world.getBlockEntity(pos);
+            //Checking for modded honey or if the blockentity is full of queens
             if (hive instanceof FLBeehiveBlockEntity) {
                 if (((FLBeehiveBlockEntity) hive).getHoney() > 0 && this.building.getHarvestTypes().equals("com.minecolonies.core.apiary.setting.honey")) {
                     return pos;

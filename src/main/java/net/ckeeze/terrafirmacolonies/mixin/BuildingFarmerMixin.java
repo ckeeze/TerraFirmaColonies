@@ -40,6 +40,7 @@ public abstract class BuildingFarmerMixin extends AbstractBuilding {
                 if (field instanceof FarmField farmField) {
                     if (!farmField.getSeed().isEmpty()) {
                         toKeep.put((Predicate) (stack) -> ItemStack.isSameItem(farmField.getSeed(), (ItemStack) stack), new Tuple<>(64, true));
+                        //New if branch
                         if (farmField.getSeed().is(TFCItems.CROP_SEEDS.get(Crop.GREEN_BEAN).get()) || farmField.getSeed().is(TFCItems.CROP_SEEDS.get(Crop.TOMATO).get())) {
                             toKeep.put((Predicate) (stack) -> ItemStack.isSameItem(Items.STICK.getDefaultInstance(), (ItemStack) stack), new Tuple<>(64, true));
                         }
