@@ -6,7 +6,7 @@
       "tag": "minecraft:logs"
     },
     "S": {
-      "tag": "forge:stone_slab"
+      "tag": "forge:smooth_stone_slab"
     },
     "X": {
       "item": "tfc:metal/ingot/wrought_iron"
