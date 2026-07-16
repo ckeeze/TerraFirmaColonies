@@ -39,8 +39,6 @@ RULES AND TIPS:
   
   If you have questions reach out to Ckeeze on discord: oplosz#3360
   
-  If you are working with us in exchange for monetary compensation and have finance related questions reach out to diptopted: diptopted#4510
-  
   Thank you all for your contributions! - from Ckeeze
   
   
