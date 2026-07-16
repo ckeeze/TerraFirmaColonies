@@ -12,6 +12,7 @@
     "BuildingLumberjackMixin",
     "BuildingMinerMixin",
     "CitizenItemUtilsMixin",
+    "EntityAIStructureMinerMixin",
     "EntityAIWorkBeekeperMixin",
     "EntityAIWorkChickenWorkerMixin",
     "EntityAIWorkCowboyMixin",
