@@ -6,7 +6,7 @@
       "item": "minecraft:bow"
     },
     "C": {
-      "item": "minecraft:iron_sword"
+      "tag": "tfc:swords"
     },
     "T": {
       "item": "structurize:sceptergold"

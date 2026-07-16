@@ -3,19 +3,18 @@
   "category": "misc",
   "key": {
     "B": {
-      "tag": "minecraft:wooden_doors"
+      "tag": "forge:hammers/stone"
     },
     "T": {
       "item": "structurize:sceptergold"
     },
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:logs"
     }
   },
   "pattern": [
-    "XTX",
-    "XBX",
-    "XXX"
+    "XT",
+    "XB"
   ],
   "result": {
     "item": "minecolonies:blockhutbuilder"

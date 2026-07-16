@@ -1,18 +1,2 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "B": {
-      "tag": "minecraft:boats"
-    }
-  },
-  "pattern": [
-    "   ",
-    "B B",
-    "BBB"
-  ],
-  "result": {
-    "item": "minecolonies:supplychestdeployer"
-  },
-  "show_notification": true
 }

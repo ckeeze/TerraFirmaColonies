@@ -6,7 +6,7 @@
       "item": "minecraft:stick"
     },
     "X": {
-      "item": "minecraft:emerald"
+      "item": "tfc:gem/emerald"
     }
   },
   "pattern": [

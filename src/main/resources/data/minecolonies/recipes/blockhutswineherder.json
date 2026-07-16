@@ -3,19 +3,18 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:porkchop"
+      "item": "tfc:food/pork"
     },
     "T": {
       "item": "structurize:sceptergold"
     },
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "tfc:mud_bricks"
     }
   },
   "pattern": [
-    "XTX",
-    "XBX",
-    "XXX"
+    "XT",
+    "XB"
   ],
   "result": {
     "item": "minecolonies:blockhutswineherder"

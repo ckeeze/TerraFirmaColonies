@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:wooden_pickaxe"
+      "tag": "items:tfc:pickaxes"
     },
     "T": {
       "item": "structurize:sceptergold"

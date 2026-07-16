@@ -3,19 +3,18 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:wooden_axe"
+      "tag": "tfc:axes"
     },
     "T": {
       "item": "structurize:sceptergold"
     },
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:logs"
     }
   },
   "pattern": [
-    "XTX",
-    "XBX",
-    "XXX"
+    "XT",
+    "XB"
   ],
   "result": {
     "item": "minecolonies:blockhutlumberjack"

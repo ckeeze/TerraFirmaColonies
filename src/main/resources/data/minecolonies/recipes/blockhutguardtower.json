@@ -6,16 +6,15 @@
       "item": "minecraft:bow"
     },
     "T": {
-      "item": "structurize:sceptergold"
+      "tag": "tfc:javelins"
     },
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:logs"
     }
   },
   "pattern": [
-    "XTX",
-    "XBX",
-    "XXX"
+    "XT",
+    "XB"
   ],
   "result": {
     "count": 2,

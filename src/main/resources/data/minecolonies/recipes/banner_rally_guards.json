@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "minecraft:iron_sword"
+      "tag": "tfc:swords"
     },
     "B": {
       "item": "minecolonies:blockhutguardtower"

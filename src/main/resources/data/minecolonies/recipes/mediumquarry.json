@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:barrel"
+      "tag": "tfc:barrels"
     },
     "D": {
-      "item": "minecraft:diamond_pickaxe"
+      "tag": "minecraft:pickaxes"
     },
     "T": {
       "item": "structurize:sceptergold"
@@ -17,7 +17,7 @@
   },
   "pattern": [
     "XTX",
-    "XDX",
+    "DXD",
     "XBX"
   ],
   "result": {

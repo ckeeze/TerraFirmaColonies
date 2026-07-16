@@ -3,19 +3,18 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:barrel"
+      "item": "tfc:ceramic/large_vessel"
     },
     "T": {
       "item": "structurize:sceptergold"
     },
     "X": {
-      "tag": "minecraft:planks"
+      "tag": "minecraft:logs"
     }
   },
   "pattern": [
-    "XTX",
-    "XBX",
-    "XXX"
+    "XT",
+    "XB"
   ],
   "result": {
     "item": "minecolonies:blockhuttavern"

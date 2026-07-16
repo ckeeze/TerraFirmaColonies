@@ -1,21 +1,2 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "category": "misc",
-  "key": {
-    "C": {
-      "item": "minecraft:chain"
-    },
-    "N": {
-      "item": "minecraft:iron_nugget"
-    }
-  },
-  "pattern": [
-    "C C",
-    "NNN",
-    "NNN"
-  ],
-  "result": {
-    "item": "minecraft:chainmail_chestplate"
-  },
-  "show_notification": true
 }
