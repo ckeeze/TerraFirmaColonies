@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "tag": "items:tfc:pickaxes"
+      "tag": "tfc:pickaxes"
     },
     "T": {
       "item": "structurize:sceptergold"
