@@ -2,9 +2,9 @@
   "branch": "minecolonies:technology",
   "costs": [
     {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:brick",
-      "quantity": 64
+      "type": "minecolonies:item_tag",
+      "tag": "tfc:mud_bricks",
+      "quantity": 32
     }
   ],
   "effects": [

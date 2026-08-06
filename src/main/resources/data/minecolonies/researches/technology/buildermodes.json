@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:diamond_axe",
+      "item": "tfc:metal/axe/steel",
       "quantity": 1
     }
   ],

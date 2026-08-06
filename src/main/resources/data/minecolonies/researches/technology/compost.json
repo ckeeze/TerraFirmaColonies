@@ -2,9 +2,9 @@
   "branch": "minecolonies:technology",
   "costs": [
     {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:wheat_seeds",
-      "quantity": 256
+      "type": "minecolonies:item_tag",
+      "quantity": 128,
+      "tag": "tfc:seeds"
     }
   ],
   "effects": [

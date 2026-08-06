@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:string",
+      "item": "tfc:wool_yarn",
       "quantity": 16
     }
   ],

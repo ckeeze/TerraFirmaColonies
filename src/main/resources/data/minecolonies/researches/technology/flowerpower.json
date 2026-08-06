@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecolonies:compost",
-      "quantity": 64
+      "item": "tfc:compost",
+      "quantity": 32
     }
   ],
   "effects": [

@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:lava_bucket",
-      "quantity": 4
+      "item": "minecraft:charcoal",
+      "quantity": 32
     }
   ],
   "effects": [

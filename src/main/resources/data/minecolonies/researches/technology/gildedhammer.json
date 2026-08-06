@@ -2,14 +2,14 @@
   "branch": "minecolonies:technology",
   "costs": [
     {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:gravel",
-      "quantity": 64
+      "type": "minecolonies:item_tag",
+      "quantity": 64,
+      "tag": "forge:gravel"
     },
     {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:sand",
-      "quantity": 64
+      "type": "minecolonies:item_tag",
+      "quantity": 64,
+      "tag": "forge:sand"
     },
     {
       "type": "minecolonies:item_simple",

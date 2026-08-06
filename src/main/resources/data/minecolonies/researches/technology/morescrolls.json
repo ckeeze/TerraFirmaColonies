@@ -13,8 +13,8 @@
     },
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:lapis_lazuli",
-      "quantity": 64
+      "item": "tfc:powder/lapis_lazuli",
+      "quantity": 32
     }
   ],
   "effects": [

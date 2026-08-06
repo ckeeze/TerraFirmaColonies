@@ -2,9 +2,9 @@
   "branch": "minecolonies:technology",
   "costs": [
     {
-      "type": "minecolonies:item_tag",
-      "quantity": 32,
-      "tag": "minecraft:iron_ores"
+      "type": "minecolonies:item_simple",
+      "quantity": 8,
+      "item": "tfc:ore/normal_native_copper"
     }
   ],
   "effects": [

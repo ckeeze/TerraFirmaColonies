@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:diamond",
-      "quantity": 8
+      "item": "tfc:gem/diamond",
+      "quantity": 4
     }
   ],
   "effects": [

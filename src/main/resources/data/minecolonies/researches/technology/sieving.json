@@ -4,7 +4,7 @@
     {
       "type": "minecolonies:item_simple",
       "item": "minecraft:string",
-      "quantity": 64
+      "quantity": 16
     }
   ],
   "effects": [

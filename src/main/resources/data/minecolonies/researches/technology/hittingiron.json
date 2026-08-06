@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:anvil",
+      "item": "tfc:metal/anvil/copper",
       "quantity": 1
     }
   ],
