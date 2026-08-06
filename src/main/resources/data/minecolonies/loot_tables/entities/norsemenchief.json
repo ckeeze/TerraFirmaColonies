@@ -15,7 +15,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond_axe",
+          "name": "tfc:metal/axe/steel",
           "quality": 1,
           "weight": 10
         },
