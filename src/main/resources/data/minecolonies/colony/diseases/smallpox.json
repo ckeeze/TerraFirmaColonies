@@ -1,0 +1,18 @@
+{
+  "name": "com.minecolonies.coremod.diseases.smallpox",
+  "rarity": 1,
+  "items": [
+    {
+      "tag": "terrafirmacolonies:wildherbs",
+      "count": 1
+    },
+    {
+      "tag": "terrafirmacolonies:cultivatedherbs",
+      "count": 1
+    },
+    {
+      "item": "firmalife:tirage_mixture",
+      "count": 1
+    }
+  ]
+}

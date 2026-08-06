@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "tfc:plant/hibiscus",
+    "tfc:plant/field_horsetail",
+    "tfc:plant/foxglove",
+    "tfc:plant/goldenrod"
+  ]
+}

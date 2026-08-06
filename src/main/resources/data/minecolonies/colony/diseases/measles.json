@@ -1,0 +1,14 @@
+{
+  "name": "com.minecolonies.coremod.diseases.measles",
+  "rarity": 10,
+  "items": [
+    {
+      "tag": "terrafirmacolonies:cultivatedherbs",
+      "count": 1
+    },
+    {
+      "item": "firmalife:raw_honey",
+      "count": 1
+    }
+  ]
+}

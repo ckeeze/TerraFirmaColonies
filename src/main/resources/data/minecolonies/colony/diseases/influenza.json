@@ -1,0 +1,14 @@
+{
+  "name": "com.minecolonies.coremod.diseases.influenza",
+  "rarity": 100,
+  "items": [
+    {
+      "tag": "terrafirmacolonies:wildherbs",
+      "count": 1
+    },
+    {
+      "item": "tfc:food/garlic",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "replace": false,
+  "values": [
+    "firmalife:plant/cumin",
+    "firmalife:plant/bay_laurel",
+    "firmalife:plant/pimento",
+    "firmalife:plant/cardamom"
+  ]
+}
