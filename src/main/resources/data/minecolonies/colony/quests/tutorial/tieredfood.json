@@ -83,14 +83,14 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecolonies:garlic",
+        "item": "tfc:seeds/onion",
         "qty": 8
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecolonies:onion",
+        "item": "tfc:seeds/garlic",
         "qty": 8
       }
     }

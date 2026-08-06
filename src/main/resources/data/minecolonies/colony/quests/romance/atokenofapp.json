@@ -72,9 +72,9 @@
     {
       "type": "minecolonies:delivery",
       "details": {
-        "item": "minecraft:dandelion",
+        "item": "tfc:plant/rose",
         "next-objective": 3,
-        "qty": 1,
+        "qty": 4,
         "target": 1
       }
     },
@@ -104,7 +104,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:emerald",
+        "item": "tfc:gem/emerald",
         "qty": 1
       }
     },

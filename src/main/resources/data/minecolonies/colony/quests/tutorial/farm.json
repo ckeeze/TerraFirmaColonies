@@ -233,7 +233,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:wheat_seeds",
+        "item": "tfc:seeds/wheat",
         "qty": 32
       }
     }

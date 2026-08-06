@@ -256,7 +256,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:cobblestone",
+        "item": "tfc:rock/cobble/rhyolite",
         "qty": 32
       }
     }

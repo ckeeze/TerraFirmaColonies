@@ -71,28 +71,28 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:chainmail_helmet",
+        "item": "tfc:metal/helmet/wrought_iron",
         "qty": 1
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:chainmail_chestplate",
+        "item": "tfc:metal/chestplate/wrought_iron",
         "qty": 1
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:chainmail_leggings",
+        "item": "tfc:metal/greaves/wrought_iron",
         "qty": 1
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:chainmail_boots",
+        "item": "tfc:metal/boots/wrought_iron",
         "qty": 1
       }
     }

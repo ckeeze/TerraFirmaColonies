@@ -64,8 +64,8 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:iron_ingot",
-        "qty": 2
+        "item": "tfc:raw_iron_bloom",
+        "qty": 4
       }
     },
     {

@@ -49,9 +49,9 @@
     {
       "type": "minecolonies:delivery",
       "details": {
-        "item": "minecraft:poppy",
+        "item": "tfc:plant/tulip_red",
         "next-objective": 2,
-        "qty": 1,
+        "qty": 3,
         "target": 1
       }
     },
@@ -89,7 +89,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:diamond",
+        "item": "tfc:gem/diamond",
         "qty": 1
       }
     },

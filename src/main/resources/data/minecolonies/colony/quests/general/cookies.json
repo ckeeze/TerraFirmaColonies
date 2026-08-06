@@ -48,7 +48,7 @@
     {
       "type": "minecolonies:delivery",
       "details": {
-        "item": "minecraft:wheat",
+        "item": "tfc:food/wheat_flour",
         "next-objective": 2,
         "qty": 2,
         "target": 0
@@ -57,7 +57,7 @@
     {
       "type": "minecolonies:delivery",
       "details": {
-        "item": "minecraft:cocoa_beans",
+        "item": "firmalife:food/cocoa_powder",
         "next-objective": 3,
         "qty": 1,
         "target": 0
@@ -127,7 +127,7 @@
     {
       "type": "minecolonies:delivery",
       "details": {
-        "item": "minecraft:cookie",
+        "item": "firmalife:food/chocolate_chip_cookie",
         "next-objective": 7,
         "qty": 8,
         "target": 1
@@ -199,15 +199,15 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:cookie",
+        "item": "tfc:ore/normal_native_silver",
         "qty": 8
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:emerald",
-        "qty": 1
+        "item": "tfc:ore/rich_native_gold",
+        "qty": 2
       }
     },
     {

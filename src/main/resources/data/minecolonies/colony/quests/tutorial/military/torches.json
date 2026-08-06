@@ -25,7 +25,7 @@
     {
       "type": "minecolonies:placeblock",
       "details": {
-        "block": "minecraft:torch",
+        "block": "tfc:torch",
         "next-objective": 2,
         "qty": 16,
         "target": 0
@@ -57,7 +57,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:iron_sword",
+        "item": "tfc:metal/sword/wrought_iron",
         "qty": 1
       }
     },

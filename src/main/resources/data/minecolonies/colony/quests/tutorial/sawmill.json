@@ -137,7 +137,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:diamond",
+        "item": "tfc:gem/diamond",
         "qty": 3
       }
     }

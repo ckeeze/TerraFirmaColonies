@@ -128,7 +128,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:iron_sword",
+        "item": "tfc:metal/sword/wrought_iron",
         "qty": 2
       }
     }

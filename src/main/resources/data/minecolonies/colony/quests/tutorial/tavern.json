@@ -159,7 +159,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:baked_potato",
+        "item": "tfc:food/baked_potato",
         "qty": 32
       }
     }

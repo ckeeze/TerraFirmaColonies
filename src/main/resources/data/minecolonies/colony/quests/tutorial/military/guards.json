@@ -159,8 +159,8 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:iron_block",
-        "qty": 1
+        "item": "tfc:metal/double_sheet/wrought_iron",
+        "qty": 2
       }
     }
   ],

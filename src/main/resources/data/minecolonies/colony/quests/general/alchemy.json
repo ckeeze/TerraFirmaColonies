@@ -252,7 +252,7 @@
       "type": "minecolonies:state",
       "state": {
         "match": {
-          "type": "minecolonies:alchemist",
+          "type": "minecolonies:enchanter",
           "level": 2
         },
         "path": "buildingManager/buildings"
@@ -263,7 +263,7 @@
       "state": {
         "match": {
           "job": {
-            "type": "minecolonies:alchemist"
+            "type": "minecolonies:enchanter"
           }
         }
       }

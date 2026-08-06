@@ -159,7 +159,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:torch",
+        "item": "tfc:torch",
         "qty": 32
       }
     }

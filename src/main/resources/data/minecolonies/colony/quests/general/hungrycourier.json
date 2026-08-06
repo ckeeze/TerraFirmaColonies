@@ -58,7 +58,7 @@
     {
       "type": "minecolonies:delivery",
       "details": {
-        "item": "minecraft:baked_potato",
+        "item": "tfc:food/baked_potato",
         "next-objective": 2,
         "qty": 1,
         "target": 0
@@ -88,7 +88,7 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:gold_ingot",
+        "item": "tfc:ore/rich_native_gold",
         "qty": 1
       }
     },

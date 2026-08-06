@@ -158,28 +158,28 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:stone_pickaxe",
+        "item": "tfc:ore/small_native_copper",
         "qty": 2
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:stone_axe",
+        "item": "tfc:ore/small_malachite",
         "qty": 2
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:stone_shovel",
+        "item": "tfc:ore/small_tetrahedrite",
         "qty": 2
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:stone_hoe",
+        "item": "tfc:ore/small_cassiterite",
         "qty": 2
       }
     }

@@ -66,8 +66,8 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:diamond",
-        "qty": 1
+        "item": "<item:tfc:raw_iron_bloom>",
+        "qty": 8
       }
     },
     {

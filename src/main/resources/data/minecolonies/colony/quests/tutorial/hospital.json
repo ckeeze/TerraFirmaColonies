@@ -128,14 +128,14 @@
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:carrot",
+        "item": "tfc:food/carrot",
         "qty": 8
       }
     },
     {
       "type": "minecolonies:item",
       "details": {
-        "item": "minecraft:potato",
+        "item": "tfc:food/potato",
         "qty": 8
       }
     }
