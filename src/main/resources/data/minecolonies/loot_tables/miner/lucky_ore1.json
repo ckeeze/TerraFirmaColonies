@@ -5,12 +5,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal_ore",
+          "name": "tfc:ore/lignite",
           "weight": 64
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:copper_ore",
+          "name": "tfc:ore/small_native_copper",
           "weight": 48
         }
       ],

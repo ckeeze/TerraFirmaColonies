@@ -5,42 +5,42 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal_ore",
+          "name": "tfc:ore/lignite",
           "weight": 64
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:copper_ore",
+          "name": "tfc:ore/small_native_copper",
           "weight": 48
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_ore",
+          "name": "tfc:ore/small_hematite",
           "weight": 32
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_ore",
+          "name": "tfc:ore/small_cassiterite",
           "weight": 16
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:redstone_ore",
+          "name": "tfc:ore/cinnabar",
           "weight": 8
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:lapis_ore",
+          "name": "tfc:ore/cryolite",
           "weight": 4
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:diamond_ore",
+          "name": "tfc:ore/sulfur",
           "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:emerald_ore"
+          "name": "tfc:ore/saltpeter"
         }
       ],
       "rolls": 1.0
