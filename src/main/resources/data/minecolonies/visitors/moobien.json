@@ -4,7 +4,7 @@
   "name": "Moobien",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.moobien",
-  "recruitcost": "minecraft:copper_block",
+  "recruitcost": "tfc:metal/block/copper",
   "recruitcostcount": 15,
   "gender": "male",
   "primaryskill": "Athletics",

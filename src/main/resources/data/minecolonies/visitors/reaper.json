@@ -4,8 +4,8 @@
   "name": "Reaper Iru",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.reaper",
-  "recruitcost": "minecraft:sculk_shrieker",
-  "recruitcostcount": 1,
+  "recruitcost": "firmalife:lit_pumpkin/creeper",
+  "recruitcostcount": 4,
   "gender": "male",
   "primaryskill": "Strength",
   "secondaryskill": "Mana"

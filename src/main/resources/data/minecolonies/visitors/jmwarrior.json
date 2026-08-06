@@ -4,7 +4,7 @@
   "name": "Luz Noceda",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.jmwarrior",
-  "recruitcost": "minecraft:ender_eye",
+  "recruitcost": "tfc:gem/ruby",
   "recruitcostcount": 1,
   "gender": "female"
 }

@@ -4,7 +4,7 @@
   "name": "Arston",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.arston",
-  "recruitcost": "minecraft:iron_axe",
-  "recruitcostcount": 3,
+  "recruitcost": "tfc:metal/axe/bronze",
+  "recruitcostcount": 1,
   "gender": "male"
 }

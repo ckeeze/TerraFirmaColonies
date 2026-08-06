@@ -4,7 +4,7 @@
   "name": "Ms Anilka",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.missanilka",
-  "recruitcost": "minecraft:netherite_upgrade_smithing_template",
+  "recruitcost": "tfc:metal/hammer/black_steel",
   "recruitcostcount": 1,
   "gender": "female",
   "primaryskill": "Agility",

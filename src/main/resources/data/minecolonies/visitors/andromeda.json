@@ -4,7 +4,7 @@
   "name": "Circinus Coranus",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.andromeda",
-  "recruitcost": "minecraft:amethyst_block",
+  "recruitcost": "tfc:gem/amethyst",
   "recruitcostcount": 13,
   "gender": "female",
   "primaryskill": "Mana",

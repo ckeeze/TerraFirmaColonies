@@ -4,7 +4,7 @@
   "name": "Zarlios",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.zarlios",
-  "recruitcost": "minecraft:baked_potato",
-  "recruitcostcount": 64,
+  "recruitcost": "tfc:food/baked_potato",
+  "recruitcostcount": 32,
   "gender": "female"
 }

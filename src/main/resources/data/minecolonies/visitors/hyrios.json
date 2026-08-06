@@ -4,7 +4,7 @@
   "name": "Asuna Yuuki",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.hyrios",
-  "recruitcost": "minecraft:diamond_sword",
+  "recruitcost": "tfc:metal/sword/steel",
   "recruitcostcount": 1,
   "gender": "female"
 }

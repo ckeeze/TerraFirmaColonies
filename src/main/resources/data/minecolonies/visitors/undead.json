@@ -4,7 +4,7 @@
   "name": "Undead",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.undead",
-  "recruitcost": "minecraft:jack_o_lantern",
+  "recruitcost": "tfc:jack_o_lantern",
   "recruitcostcount": 8,
   "gender": "male"
 }

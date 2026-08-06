@@ -4,7 +4,7 @@
   "name": "Dr R Cat",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.drcat",
-  "recruitcost": "minecraft:baked_potato",
-  "recruitcostcount": 64,
+  "recruitcost": "tfc:food/baked_potato",
+  "recruitcostcount": 32,
   "gender": "male"
 }

@@ -4,7 +4,7 @@
   "name": "Tobi Carnage Arruda",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.tobidoes",
-  "recruitcost": "minecraft:diamond_pickaxe",
+  "recruitcost": "tfc:metal/pickaxe/steel",
   "recruitcostcount": 1,
   "gender": "male"
 }

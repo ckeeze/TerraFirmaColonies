@@ -4,7 +4,7 @@
   "name": "Eldrin Moonshadow",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.cammy",
-  "recruitcost": "minecraft:nether_star",
+  "recruitcost": "born_in_chaos_v1:lifestealer_skull",
   "recruitcostcount": 1,
   "gender": "male"
 }

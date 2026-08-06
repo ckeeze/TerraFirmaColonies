@@ -4,7 +4,7 @@
   "name": "Cactus Jack",
   "chance": 0.001,
   "storylangkey": "com.minecolonies.coremod.gui.chat.potatogod",
-  "recruitcost": "minecraft:cactus",
+  "recruitcost": "tfc:plant/barrel_cactus",
   "recruitcostcount": 7,
   "gender": "male"
 }
