@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:emerald",
+      "item": "tfc:gem/emerald",
       "quantity": 8
     }
   ],

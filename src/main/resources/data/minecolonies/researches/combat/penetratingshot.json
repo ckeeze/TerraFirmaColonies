@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:flint",
-      "quantity": 32
+      "item": "tfc:gem/ruby",
+      "quantity": 8
     }
   ],
   "effects": [

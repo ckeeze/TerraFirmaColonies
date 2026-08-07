@@ -1,27 +1,2 @@
 {
-  "branch": "minecolonies:combat",
-  "costs": [
-    {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:emerald",
-      "quantity": 32
-    }
-  ],
-  "effects": [
-    {
-      "id": "minecolonies:effects/fleeingdamagemultiplier",
-      "level": 3
-    }
-  ],
-  "icon": "minecraft:golden_boots",
-  "parentResearch": "minecolonies:combat/fear",
-  "requirements": [
-    {
-      "type": "minecolonies:building",
-      "building": "minecolonies:guardtower",
-      "level": 12
-    }
-  ],
-  "researchLevel": 5,
-  "subtitle": "com.minecolonies.research.combat.retreat.subtitle"
 }

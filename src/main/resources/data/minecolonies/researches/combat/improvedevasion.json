@@ -1,27 +1,2 @@
 {
-  "branch": "minecolonies:combat",
-  "costs": [
-    {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:diamond",
-      "quantity": 16
-    }
-  ],
-  "effects": [
-    {
-      "id": "minecolonies:effects/archerarmormultiplier",
-      "level": 4
-    }
-  ],
-  "icon": "minecraft:golden_boots",
-  "parentResearch": "minecolonies:combat/evasion",
-  "requirements": [
-    {
-      "type": "minecolonies:building",
-      "building": "minecolonies:archery",
-      "level": 5
-    }
-  ],
-  "researchLevel": 5,
-  "subtitle": "com.minecolonies.research.combat.improvedevasion.subtitle"
 }

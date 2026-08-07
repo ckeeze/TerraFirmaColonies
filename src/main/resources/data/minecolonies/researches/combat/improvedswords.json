@@ -2,8 +2,8 @@
   "branch": "minecolonies:combat",
   "costs": [
     {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:iron_block",
+      "type": "minecolonies:item_tag",
+      "tag": "tfc:swords",
       "quantity": 6
     }
   ],

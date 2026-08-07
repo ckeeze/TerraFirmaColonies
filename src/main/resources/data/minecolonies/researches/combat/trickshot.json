@@ -4,7 +4,7 @@
     {
       "type": "minecolonies:item_simple",
       "item": "minecraft:bow",
-      "quantity": 5
+      "quantity": 8
     }
   ],
   "effects": [

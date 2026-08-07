@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:diamond",
-      "quantity": 64
+      "item": "tfc:metal/sheet/black_steel",
+      "quantity": 16
     }
   ],
   "effects": [

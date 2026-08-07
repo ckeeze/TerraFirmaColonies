@@ -8,13 +8,8 @@
     },
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:gold_ingot",
-      "quantity": 64
-    },
-    {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:lapis_lazuli",
-      "quantity": 128
+      "item": "tfc:metal/sword/steel",
+      "quantity": 18
     }
   ],
   "effects": [

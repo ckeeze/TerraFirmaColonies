@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:iron_block",
-      "quantity": 2
+      "item": "tfc:gem/sapphire",
+      "quantity": 4
     }
   ],
   "effects": [
