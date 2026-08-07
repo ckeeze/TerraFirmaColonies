@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:diamond",
+      "item": "tfc:metal/ingot/gold",
       "quantity": 1
     }
   ],

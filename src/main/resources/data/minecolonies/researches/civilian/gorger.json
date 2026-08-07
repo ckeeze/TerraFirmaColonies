@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:cookie",
+      "item": "firmalife:food/chocolate_chip_cookie",
       "quantity": 64
     }
   ],

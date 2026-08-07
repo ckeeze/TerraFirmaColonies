@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:rabbit_foot",
+      "item": "minecraft:leather_boots",
       "quantity": 8
     }
   ],

@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:cake",
-      "quantity": 1
+      "item": "tfc:cake",
+      "quantity": 3
     }
   ],
   "effects": [

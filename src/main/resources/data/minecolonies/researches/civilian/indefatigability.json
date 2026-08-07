@@ -2,8 +2,8 @@
   "branch": "minecolonies:civilian",
   "costs": [
     {
-      "type": "minecolonies:item_simple",
-      "item": "minecraft:golden_apple",
+      "type": "minecolonies:item_tag",
+      "tag": "terrafirmacolonies:wildherbs",
       "quantity": 64
     }
   ],

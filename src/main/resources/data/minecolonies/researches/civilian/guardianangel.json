@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:hay_block",
+      "item": "tfc:silk_cloth",
       "quantity": 128
     }
   ],

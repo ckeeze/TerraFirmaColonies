@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:cooked_chicken",
+      "item": "tfc:food/cooked_chicken",
       "quantity": 256
     }
   ],

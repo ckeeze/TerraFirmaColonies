@@ -3,7 +3,7 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:golden_carrot",
+      "item": "firmalife:food/dark_chocolate",
       "quantity": 75
     }
   ],

@@ -3,8 +3,8 @@
   "costs": [
     {
       "type": "minecolonies:item_simple",
-      "item": "minecraft:enchanted_golden_apple",
-      "quantity": 16
+      "item": "firmalife:food/banana_split",
+      "quantity": 32
     }
   ],
   "effects": [
