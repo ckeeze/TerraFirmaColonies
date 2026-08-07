@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:poppy"
+      "tag": "terrafirmacolonies:cultivatedherbs"
     },
     "T": {
       "item": "structurize:sceptergold"
