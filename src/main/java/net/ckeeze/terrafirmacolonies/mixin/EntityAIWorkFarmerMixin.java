@@ -85,7 +85,7 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
     private void terrafirmacolonies_prepareForFarming(CallbackInfoReturnable<IAIState> cir) {
         int FertilizerInBuilding = InventoryUtils.hasBuildingEnoughElseCount(this.building, this::isCompost, 1);
         int FertilizerInInventory = InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), this::isCompost);
-        if (this.building != null && this.building.getBuildingLevel() >= 1) {
+        if (this.building.getBuildingLevel() >= 1) {
             if (FertilizerInBuilding + FertilizerInInventory <= 0) {
                 if (this.building.requestFertilizer() && !this.building.hasWorkerOpenRequestsOfType(this.worker.getCitizenData().getId(), TypeToken.of(StackList.class))) {
                     List<ItemStack> compostAbleItems = new ArrayList<>();
@@ -464,26 +464,23 @@ public abstract class EntityAIWorkFarmerMixin extends AbstractEntityAICrafting<J
      */
     @Overwrite(remap = false)
     private IAIState canGoPlanting(@NotNull FarmField farmField) {
-        if (farmField.getSeed() == null) {
+        farmField.getSeed();
+        ItemStack seeds = farmField.getSeed();
+        int slot = this.worker.getCitizenInventoryHandler().findFirstSlotInInventoryWith(seeds.getItem());
+        if (slot != -1) {
+            return AIWorkerState.FARMER_PLANT;
+        } else if (!this.walkToBuilding()) {
+            //Changed from module based seed check
+            terrafirmacolonies$getSeedIfNeeded(seeds);
             return AIWorkerState.PREPARING;
         } else {
-            ItemStack seeds = farmField.getSeed();
-            int slot = this.worker.getCitizenInventoryHandler().findFirstSlotInInventoryWith(seeds.getItem());
-            if (slot != -1) {
-                return AIWorkerState.FARMER_PLANT;
-            } else if (!this.walkToBuilding()) {
-                //Changed from module based seed check
-                terrafirmacolonies$getSeedIfNeeded(seeds);
-                return AIWorkerState.PREPARING;
-            } else {
-                //Changed from module based seed check
-                terrafirmacolonies$getSeedIfNeeded(seeds);
-                seeds.setCount(seeds.getMaxStackSize());
-                if (!this.checkIfRequestForItemExistOrCreateAsync(seeds, seeds.getMaxStackSize(), 1)) {
-                    farmField.nextState();
-                }
-                return AIWorkerState.PREPARING;
+            //Changed from module based seed check
+            terrafirmacolonies$getSeedIfNeeded(seeds);
+            seeds.setCount(seeds.getMaxStackSize());
+            if (!this.checkIfRequestForItemExistOrCreateAsync(seeds, seeds.getMaxStackSize(), 1)) {
+                farmField.nextState();
             }
+            return AIWorkerState.PREPARING;
         }
     }
 

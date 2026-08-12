@@ -1,0 +1,29 @@
+{
+  "replace": true,
+  "values": [
+    "#tfc:plants",
+    "#tfc:foods/vegetables",
+    "#tfc:foods/fruits",
+    "tfc:groundcover/seaweed",
+    "#tfc:foods/grains",
+    "tfc:plant/hanging_vines",
+    "tfc:plant/spanish_moss",
+    "tfc:plant/liana",
+    "tfc:plant/tree_fern",
+    "tfc:plant/arundo",
+    "tfc:plant/dry_phragmite",
+    "tfc:plant/jungle_vines",
+    "#tfc:fallen_leaves",
+    "minecraft:hanging_roots",
+    "tfc:groundcover/humus",
+    "tfc:groundcover/dead_grass",
+    "tfc:groundcover/driftwood",
+    "tfc:groundcover/pinecone",
+    "minecraft:paper",
+    "tfc:melon",
+    "tfc:pumpkin",
+    "tfc:jute_fiber",
+    "tfc:powder/wood_ash",
+    "tfc:jute"
+  ]
+}

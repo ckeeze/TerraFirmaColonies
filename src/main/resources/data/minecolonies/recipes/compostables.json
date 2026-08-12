@@ -1,2 +1,9 @@
 {
+  "type": "minecolonies:composting",
+  "input": [
+    {
+      "tag": "minecolonies:compostables"
+    }
+  ],
+  "strength": 4
 }
