@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "tfc:sand/yellow"
+    },
+    {
+      "item": "tfc:sand/yellow"
+    },
+    {
+      "tag": "tfc:rock/bricks"
+    },
+    {
+      "tag": "tfc:rock/bricks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "domum_ornamentum:sand_stone_bricks"
+  }
+}

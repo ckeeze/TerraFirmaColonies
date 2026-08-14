@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "tfc:raw_sandstone/yellow"
+    },
+    {
+      "item": "tfc:raw_sandstone/yellow"
+    },
+    {
+      "tag": "tfc:rock/bricks"
+    },
+    {
+      "tag": "tfc:rock/bricks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "domum_ornamentum:cream_stone_bricks"
+  }
+}

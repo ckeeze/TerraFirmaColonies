@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:white_concrete_powder"
+    },
+    {
+      "item": "minecraft:white_concrete_powder"
+    },
+    {
+      "tag": "tfc:rock/bricks"
+    },
+    {
+      "tag": "tfc:rock/bricks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "domum_ornamentum:roan_stone_bricks"
+  }
+}
