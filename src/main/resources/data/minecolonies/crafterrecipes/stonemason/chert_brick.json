@@ -1,0 +1,13 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 1,
+      "item": "tfc:rock/loose/chert"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": ["tfc:brick/chert"],
+  "show-tooltip": true
+}

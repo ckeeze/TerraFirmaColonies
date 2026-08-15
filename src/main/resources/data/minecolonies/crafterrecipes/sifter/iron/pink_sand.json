@@ -1,0 +1,35 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    },
+    {
+      "item": "tfc:ore/small_hematite"
+    },
+    {
+      "item": "tfc:groundcover/mussel"
+    },
+    {
+      "item": "tfc:groundcover/clam"
+    },
+    {
+      "item": "tfc:groundcover/mollusk"
+    },
+    {
+      "item": "tfc:groundcover/sea_urchin"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:sand/pink"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/iron/red_sand",
+  "min-building-level": 3
+}

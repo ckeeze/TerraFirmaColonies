@@ -1,0 +1,44 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    },
+    {
+      "item": "tfc:rock/loose/basalt"
+    },
+    {
+      "item": "bsa:obsidian"
+    },
+    {
+      "item": "tfc:ore/small_hematite"
+    },
+    {
+      "item": "tfc:ore/small_native_copper"
+    },
+    {
+      "item": "tfc:ore/pyrite"
+    },
+    {
+      "item": "tfc:ore/small_sphalerite"
+    },
+    {
+      "item": "tfc:ore/small_native_gold"
+    },
+    {
+      "item": "tfc:ore/opal"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/basalt"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/iron/basalt",
+  "min-building-level": 3
+}

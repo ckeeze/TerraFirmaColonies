@@ -3,13 +3,12 @@
   "crafter": "farmer_crafting",
   "inputs": [
     {
-      "item": "tfc:compost"
+      "item": "tfc:mud/silt"
     },
     {
-      "tag": "tfc:seeds",
-      "count": 2
+      "item": "minecraft:clay_ball"
     }
   ],
   "intermediate": "minecraft:air",
-  "result": "firmalife:seed_ball"
+  "result": "tfc:daub"
 }

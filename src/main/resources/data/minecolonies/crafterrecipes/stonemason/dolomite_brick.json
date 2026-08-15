@@ -1,0 +1,13 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 1,
+      "item": "tfc:rock/loose/dolomite"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": ["tfc:brick/dolomite"],
+  "show-tooltip": true
+}

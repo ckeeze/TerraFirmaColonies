@@ -3,13 +3,10 @@
   "crafter": "farmer_crafting",
   "inputs": [
     {
-      "item": "tfc:compost"
-    },
-    {
-      "tag": "tfc:seeds",
-      "count": 2
+      "item": "tfc:straw",
+      "count": 4
     }
   ],
   "intermediate": "minecraft:air",
-  "result": "firmalife:seed_ball"
+  "result": "tfc:thatch"
 }

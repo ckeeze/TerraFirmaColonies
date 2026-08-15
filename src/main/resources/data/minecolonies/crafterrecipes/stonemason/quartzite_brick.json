@@ -1,0 +1,13 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 1,
+      "item": "tfc:rock/loose/quartzite"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": ["tfc:brick/quartzite"],
+  "show-tooltip": true
+}

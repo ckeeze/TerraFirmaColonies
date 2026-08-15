@@ -1,0 +1,15 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 1,
+      "item": "tfc:rock/loose/basalt"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": [
+    "tfc:brick/basalt"
+  ],
+  "show-tooltip": true
+}

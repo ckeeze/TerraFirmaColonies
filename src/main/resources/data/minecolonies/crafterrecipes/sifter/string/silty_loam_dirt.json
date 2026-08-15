@@ -1,0 +1,38 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    },
+    {
+      "item": "tfc:seeds/barley"
+    },
+    {
+      "item": "tfc:seeds/rye"
+    },
+    {
+      "item": "tfc:seeds/rice"
+    },
+    {
+      "item": "tfc:seeds/wheat"
+    },
+    {
+      "item": "tfc:seeds/oat"
+    },
+    {
+      "item": "tfc:seeds/maize"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:dirt/silty_loam"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/string/dirt",
+  "min-building-level": 1
+}

@@ -5,41 +5,36 @@
       "entries": [
         {
           "type": "minecraft:empty",
-          "weight": 70
+          "weight": 75
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:seeds/barley",
+          "name": "tfc:ore/small_magnetite",
           "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:seeds/rye",
+          "name": "tfc:groundcover/mussel",
           "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:seeds/rice",
+          "name": "tfc:groundcover/clam",
           "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:seeds/wheat",
+          "name": "tfc:groundcover/sea_urchin",
           "weight": 5
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:seeds/oat",
-          "weight": 5
-        },
-        {
-          "type": "minecraft:item",
-          "name": "tfc:seeds/maize",
+          "name": "tfc:groundcover/mollusk",
           "weight": 5
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "minecolonies:recipes/string/dirt"
+  "random_sequence": "minecolonies:recipes/string/sand"
 }

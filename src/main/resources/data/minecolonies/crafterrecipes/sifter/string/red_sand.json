@@ -1,0 +1,32 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    },
+    {
+      "item": "tfc:groundcover/mussel"
+    },
+    {
+      "item": "tfc:groundcover/clam"
+    },
+    {
+      "item": "tfc:groundcover/mollusk"
+    },
+    {
+      "item": "tfc:groundcover/sea_urchin"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:sand/red"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/string/red_sand",
+  "min-building-level": 1
+}

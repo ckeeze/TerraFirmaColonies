@@ -1,0 +1,13 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 1,
+      "item": "tfc:rock/loose/diorite"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": ["tfc:brick/diorite"],
+  "show-tooltip": true
+}

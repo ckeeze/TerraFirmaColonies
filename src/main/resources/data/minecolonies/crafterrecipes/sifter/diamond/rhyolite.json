@@ -1,0 +1,44 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_diamond"
+    },
+    {
+      "item": "tfc:rock/loose/rhyolite"
+    },
+    {
+      "item": "bsa:obsidian"
+    },
+    {
+      "item": "tfc:ore/small_hematite"
+    },
+    {
+      "item": "tfc:ore/small_native_copper"
+    },
+    {
+      "item": "tfc:ore/pyrite"
+    },
+    {
+      "item": "tfc:ore/small_sphalerite"
+    },
+    {
+      "item": "tfc:ore/small_native_gold"
+    },
+    {
+      "item": "tfc:ore/opal"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/rhyolite"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_diamond"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/diamond/rhyolite",
+  "min-building-level": 4
+}

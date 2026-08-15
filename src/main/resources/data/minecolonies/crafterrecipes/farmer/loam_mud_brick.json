@@ -3,13 +3,13 @@
   "crafter": "farmer_crafting",
   "inputs": [
     {
-      "item": "tfc:compost"
+      "item": "tfc:mud/loam"
     },
     {
-      "tag": "tfc:seeds",
-      "count": 2
+      "item": "tfc:straw"
     }
   ],
   "intermediate": "minecraft:air",
-  "result": "firmalife:seed_ball"
+  "count": 4,
+  "result": "tfc:drying_bricks/loam"
 }

@@ -1,0 +1,40 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 90
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_hematite",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:groundcover/mussel",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:groundcover/clam",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:groundcover/sea_urchin",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:groundcover/mollusk",
+          "weight": 2
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecolonies:recipes/string/sand"
+}
