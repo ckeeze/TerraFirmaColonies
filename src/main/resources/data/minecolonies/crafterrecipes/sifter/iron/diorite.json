@@ -1,0 +1,44 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    },
+    {
+      "item": "tfc:rock/loose/diorite"
+    },
+    {
+      "item": "tfc:ore/small_bismuthinite"
+    },
+    {
+      "item": "tfc:ore/small_magnetite"
+    },
+    {
+      "item": "tfc:ore/small_cassiterite"
+    },
+    {
+      "item": "tfc:ore/small_native_silver"
+    },
+    {
+      "item": "tfc:ore/small_native_gold"
+    },
+    {
+      "item": "tfc:ore/diamond"
+    },
+    {
+      "item": "tfc:ore/emerald"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/diorite"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/iron/diorite",
+  "min-building-level": 3
+}

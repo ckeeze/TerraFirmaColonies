@@ -1,0 +1,26 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfc:rock/loose/granite",
+          "weight": 98
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_bismuthinite",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_magnetite",
+          "weight": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecolonies:recipes/string/gravel"
+}

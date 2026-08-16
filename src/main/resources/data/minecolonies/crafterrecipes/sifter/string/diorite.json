@@ -1,0 +1,29 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    },
+    {
+      "item": "tfc:rock/loose/diorite"
+    },
+    {
+      "item": "tfc:ore/small_bismuthinite"
+    },
+    {
+      "item": "tfc:ore/small_magnetite"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/diorite"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/string/diorite",
+  "min-building-level": 1
+}

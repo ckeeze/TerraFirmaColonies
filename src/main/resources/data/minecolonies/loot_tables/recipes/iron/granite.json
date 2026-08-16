@@ -1,0 +1,51 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfc:rock/loose/granite",
+          "weight": 950
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_bismuthinite",
+          "weight": 25
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_magnetite",
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_cassiterite",
+          "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_native_silver",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_native_gold",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/diamond",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/emerald",
+          "weight": 2
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecolonies:recipes/iron/gravel"
+}
