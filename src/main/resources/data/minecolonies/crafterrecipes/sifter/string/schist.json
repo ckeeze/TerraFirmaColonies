@@ -1,0 +1,29 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    },
+    {
+      "item": "tfc:rock/loose/schist"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "tfc:ore/small_tetrahedrite"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/schist"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_string"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/string/schist",
+  "min-building-level": 1
+}

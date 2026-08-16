@@ -1,0 +1,26 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfc:rock/loose/schist",
+          "weight": 95
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flint",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_tetrahedrite",
+          "weight": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecolonies:recipes/string/gravel"
+}

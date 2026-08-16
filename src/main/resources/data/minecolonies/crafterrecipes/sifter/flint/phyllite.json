@@ -1,0 +1,44 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_flint"
+    },
+    {
+      "item": "tfc:rock/loose/phyllite"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "tfc:ore/small_tetrahedrite"
+    },
+    {
+      "item": "tfc:ore/sulfur"
+    },
+    {
+      "item": "tfc:ore/small_sphalerite"
+    },
+    {
+      "item": "tfc:ore/cinnabar"
+    },
+    {
+      "item": "tfc:ore/amethyst"
+    },
+    {
+      "item": "tfc:ore/lapis_lazuli"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/phyllite"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_flint"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/flint/phyllite",
+  "min-building-level": 2
+}

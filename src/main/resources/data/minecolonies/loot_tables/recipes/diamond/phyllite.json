@@ -1,0 +1,51 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfc:rock/loose/phyllite",
+          "weight": 700
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flint",
+          "weight": 200
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_tetrahedrite",
+          "weight": 40
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/sulfur",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_sphalerite",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/cinnabar",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/amethyst",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/lapis_lazuli",
+          "weight": 5
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecolonies:recipes/diamond/gravel"
+}
