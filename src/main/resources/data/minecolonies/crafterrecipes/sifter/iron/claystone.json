@@ -1,0 +1,44 @@
+{
+  "type": "recipe",
+  "additional-output": [
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    },
+    {
+      "item": "tfc:rock/loose/claystone"
+    },
+    {
+      "item": "minecraft:flint"
+    },
+    {
+      "item": "tfc:ore/small_limonite"
+    },
+    {
+      "item": "tfc:ore/small_bismuthinite"
+    },
+    {
+      "item": "tfc:ore/small_malachite"
+    },
+    {
+      "item": "tfc:ore/lignite"
+    },
+    {
+      "item": "tfc:ore/bituminous_coal"
+    },
+    {
+      "item": "tfc:ore/opal"
+    }
+  ],
+  "crafter": "sifter_custom",
+  "inputs": [
+    {
+      "item": "tfc:rock/gravel/claystone"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_iron"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "loot-table": "minecolonies:recipes/iron/claystone",
+  "min-building-level": 3
+}

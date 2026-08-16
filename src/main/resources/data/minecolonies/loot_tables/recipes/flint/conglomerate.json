@@ -1,0 +1,51 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "tfc:rock/loose/conglomerate",
+          "weight": 900
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flint",
+          "weight": 75
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_limonite",
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_bismuthinite",
+          "weight": 9
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/small_malachite",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/lignite",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/bituminous_coal",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:ore/opal",
+          "weight": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "minecolonies:recipes/flint/gravel"
+}
