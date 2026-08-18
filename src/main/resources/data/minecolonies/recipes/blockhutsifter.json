@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "tag": "forge:strings"
+      "tag": "forge:string"
     },
     "T": {
       "item": "structurize:sceptergold"

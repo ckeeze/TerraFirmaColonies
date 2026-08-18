@@ -19,6 +19,7 @@
     "EntityAIWorkChickenWorkerMixin",
     "EntityAIWorkComposterMixin",
     "EntityAIWorkCowboyMixin",
+    "EntityAIWorkCrusherMixin",
     "EntityAIWorkFarmerMixin",
     "EntityAIWorkFishermanMixin",
     "EntityAIWorkFloristMixin",
