@@ -5,11 +5,14 @@
     "B": {
       "item": "minecraft:iron_ingot"
     },
-    "C": {
-      "item": "minecraft:cobblestone"
+    "M": {
+      "item": "tfc:brass_mechanisms"
     },
-    "T": {
-      "item": "structurize:sceptergold"
+    "Q": {
+      "item": "tfc:quern"
+    },
+    "H": {
+      "item": "tfc:handstone"
     },
     "X": {
       "tag": "minecraft:planks"
@@ -17,8 +20,8 @@
   },
   "pattern": [
     "XTX",
-    "CBC",
-    "XXX"
+    "MHM",
+    "XQX"
   ],
   "result": {
     "item": "minecolonies:blockhutcrusher"
