@@ -1,0 +1,89 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Agriculture",
+  "category": "tfc:minecolonies",
+  "icon": "minecolonies:blockhutfield",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Food and agricultural products can be automatically produced by $(thing)the Farmer$(), $(thing)Fisher$(), $(thing)Beekeeper$(), $(thing)Florist$(), and the various animal handler workers"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Each worker requires their own hut, the hut-blocks can be crafted by hand, then using the $(thing)Build Tool$() you can choose and place a the hut within your colony, A builder then must construct the building."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutfisherman",
+      "text": "Fisherman can catch fish from lakes, rivers, and sea shores nearby. They need only fishing rods."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Fisherman is a very reliable source of early-game food, as their output is not dependent on livestock or crop growth or the climate. However colonists will demand more complex food later so you should diversify eventually."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutfarmer",
+      "recipe2": "minecolonies:crafting/blockhutfield"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "For each building level a farmer can work 1 extra field, each field can be assigned 1 type of seed, Farmers need seed, hoes, and optionally $(l:tfc:mechanics/fertilizers)fertilizers$() to produce crops. If the crop needs support the farmer will need sticks too."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutrabbithutch",
+      "recipe2": "minecolonies:crafting/blockhutswineherder"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Out of all the herders, $(thing)Swinherder$() and $(thing)Rabbitherders$() produce meat faster, but they only produce meat, leather and bones. And no extra products. You'll need both genders of the respective animal before the worker can start breeding them together"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutshepherd",
+      "recipe2": "minecolonies:crafting/blockhutcowhand"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutchickenherder",
+      "text": "The other herders, produce various animal products such as eggs, wool, and milk. They need additional tools to do so."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Each herder can herd the alternative animals belonging to it's production type: WoolyAnimals, OvipariousAnimals, DairyAnimals. For example the shepherd can handle alpacas too. It is advised to only give 1 species to a worker at a time"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "All herders handle 4 animals / Building level. Extra animals are slaughtered, The workers take care not to kill babies, or pregnant animals. They also always spare at least 2 adults of each gender. The Breeding setting within the huts turns dictates if animals are fed"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Breeding setting within the huts turns on and off feeding for the animals"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutbeekeeper",
+      "text": "The beekeper tends to $(l:tfc:firmalife/beekeeping)firmalife hives$(), He can take care of 4 hives / Building level."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "To add a specific hive use the hive tool, summoned from the apiary hut block itself. Beekeepers can collect either wax or Honey depending on the settings within the hut."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "There is a research option to allow beekeepers to collect both at once."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutflorist",
+      "text": "The Florist uses $(l:tfc:firmalife/herbs_and_spices)Seed Balls$() to create various firmalife herbs and collects them automatically."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The ratio of herbs / Seed Ball Improves with the florist's skill level and the building level."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 2
+}

@@ -86,7 +86,7 @@ public abstract class EntityAIWorkComposterMixin extends AbstractEntityAIInterac
                 //Find brown and green items
                 int brownSlot = InventoryUtils.findFirstSlotInItemHandlerWith(this.worker.getInventoryCitizen(), this::terrafirmacolonies$isGreenCompost);
                 int greenSlot = InventoryUtils.findFirstSlotInItemHandlerWith(this.worker.getInventoryCitizen(), this::terrafirmacolonies$isBrownCompost);
-                
+
                 if (brownSlot >= 0 && greenSlot >= 0) {
                     this.worker.setItemInHand(InteractionHand.MAIN_HAND, this.worker.getInventoryCitizen().getStackInSlot(brownSlot));
                 } else {
@@ -231,19 +231,6 @@ public abstract class EntityAIWorkComposterMixin extends AbstractEntityAIInterac
                     this.worker.queueSound(SoundEvents.ROOTED_DIRT_PLACE, currentTarget, 10, 0, 0.9F, this.worker.getRandom().nextFloat());
                     this.worker.setItemInHand(InteractionHand.MAIN_HAND, ItemStackUtils.EMPTY);
                 }
-
-                /* Old code:
-                CitizenItemUtils.hitBlockWithToolInHand(this.worker, this.currentTarget);
-                TileEntityBarrel barrel = (TileEntityBarrel) this.world.getBlockEntity(this.currentTarget);
-                CitizenItemUtils.hitBlockWithToolInHand(this.worker, this.currentTarget);
-                String compostingItem = this.worker.getItemInHand(InteractionHand.MAIN_HAND).getItem().getDescriptionId();
-                int countBefore = this.worker.getItemInHand(InteractionHand.MAIN_HAND).getCount();
-                barrel.addItem(this.worker.getItemInHand(InteractionHand.MAIN_HAND));
-                this.worker.getCitizenExperienceHandler().addExperience((double) 1.0F);
-                StatsUtil.trackStatByName(this.building, "items_composted", compostingItem, countBefore - this.worker.getItemInHand(InteractionHand.MAIN_HAND).getCount());
-                this.worker.decreaseSaturationForContinuousAction();
-                this.worker.setItemInHand(InteractionHand.MAIN_HAND, ItemStackUtils.EMPTY);
-                */
             }
 
             this.setDelay(5);
@@ -292,7 +279,7 @@ public abstract class EntityAIWorkComposterMixin extends AbstractEntityAIInterac
     }
 
     @Unique
-    private boolean terrafirmacolonies$isBrownCompost(ItemStack item) {
+    private boolean terrafirmacolonies$isBrownCompost(@NotNull ItemStack item) {
         return item.is(TFCTags.Items.COMPOST_BROWNS) || item.is(TFCTags.Items.COMPOST_BROWNS_LOW) || item.is(TFCTags.Items.COMPOST_BROWNS_HIGH);
     }
 

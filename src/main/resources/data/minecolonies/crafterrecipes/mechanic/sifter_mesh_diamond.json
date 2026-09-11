@@ -4,6 +4,9 @@
   "inputs": [
     {
       "item": "tfc:gem/diamond"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_string"
     }
   ],
   "intermediate": "minecraft:air",

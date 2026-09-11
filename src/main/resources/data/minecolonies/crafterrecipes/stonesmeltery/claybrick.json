@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "stonesmeltery_smelting",
+  "inputs": [
+    {
+      "item": "tfc:ceramic/unfired_brick"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "minecraft:brick",
+  "show-tooltip": true
+}

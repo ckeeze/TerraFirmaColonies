@@ -1,0 +1,40 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Raw Materials",
+  "category": "tfc:minecolonies",
+  "icon": "minecolonies:blockhutminer",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Raw resources can be automatically gathered by the Forester, Miner, and Quarrier workers. They are essential when scaling up the production lines of any non agricultural good"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutlumberjack",
+      "text": "The Forester collects wood in a large area around it's building, collecting and replanting saplings when available."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Even if the forester cannot cut the entire tree in one go, not to worry, they have infinite vertical range and eventually will cut down the tallest trees too."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "They can use scythes to speed up the collection of saplings, or shears to collect leaf blocks intact. You can also define a specific zone for them to cut wood at."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:crafting/blockhutminer",
+      "text": "The Miner collects stone, ores and minerals. They also place torches and cobblestone slabs to make the mineshaft safer."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "the torches they place are automatically re-lit when they are nearby, They also generate a small amount of bonus metals from mining normal stone blocks even when they can't find actual ores."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Quarrier can be hired from the same building, he mines entire pits instead of creating a mineshaft focusing on collecting wast amounts of stone. The Miners hut can only employ one kind of worker at a time"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 3
+}
