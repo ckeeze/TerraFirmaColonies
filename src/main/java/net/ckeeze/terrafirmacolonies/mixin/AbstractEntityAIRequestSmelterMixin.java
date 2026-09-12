@@ -20,12 +20,14 @@ import com.minecolonies.core.entity.ai.workers.crafting.AbstractEntityAICrafting
 import com.minecolonies.core.entity.ai.workers.crafting.AbstractEntityAIRequestSmelter;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.*;
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.blockentities.BellowsBlockEntity;
 import net.dries007.tfc.common.blockentities.CharcoalForgeBlockEntity;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -73,6 +75,12 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
      */
     @Overwrite(remap = false)
     private boolean accelerateFurnaces() {
+        if (this.building instanceof BuildingStoneSmeltery b && this.currentRecipeStorage.getIntermediate() == Blocks.FURNACE) {
+            BlockEntity entity = world.getBlockEntity(((StoneSmelterNewVariables) b).getBellowPos());
+            if (entity instanceof BellowsBlockEntity bellows) {
+                bellows.onRightClick();
+            }
+        }
         return false;
     }
 
@@ -356,7 +364,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
     private IAIState retrieveUnrelatedProductFromFurnace() {
         LOGGER.info("retrieveUnrelatedProductFromFurnace");
         if (this.furnacePos == null) {
-            LOGGER.info("furnacepos is null at retrieveUnrelatedProductFromFurnace");
             return AIWorkerState.START_WORKING;
         } else {
             BlockEntity entity = this.world.getBlockEntity(this.furnacePos);
@@ -366,7 +373,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             }
             AtomicInteger count = new AtomicInteger();
             if (entity instanceof OvenTopBlockEntity) {
-                LOGGER.info("is Oven");
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
 
@@ -673,7 +679,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
 
         if (this.currentRecipeStorage == null) {
             return AIWorkerState.START_WORKING;
-        } else if (this.currentRecipeStorage.getIntermediate() != Blocks.FURNACE && this.currentRecipeStorage.getIntermediate() != TFCBlocks.CHARCOAL_FORGE.get() && this.currentRecipeStorage.getIntermediate() != TFCBlocks.POT.get() && this.currentRecipeStorage.getIntermediate() != FLBlocks.VAT.get()) {
+        } else if (!(this.currentRecipeStorage.getIntermediate().defaultBlockState().is(BlockTags.SAND)) && this.currentRecipeStorage.getIntermediate() != Blocks.FURNACE && this.currentRecipeStorage.getIntermediate() != TFCBlocks.CHARCOAL_FORGE.get() && this.currentRecipeStorage.getIntermediate() != TFCBlocks.POT.get() && this.currentRecipeStorage.getIntermediate() != FLBlocks.VAT.get()) {
             return super.executeCraftingAction(toolSlot);
         } else if (!this.areFurnacesLoaded()) {
             return AIWorkerState.START_WORKING;

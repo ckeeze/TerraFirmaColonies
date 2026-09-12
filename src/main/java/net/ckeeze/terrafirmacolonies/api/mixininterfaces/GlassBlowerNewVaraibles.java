@@ -6,8 +6,6 @@ public interface GlassBlowerNewVaraibles {
 
     BlockPos getCharcoalPos();
 
-    void setCharcoalPos(BlockPos pos);
-
     BlockPos getBasinPos();
 
     BlockPos getTablePos();
