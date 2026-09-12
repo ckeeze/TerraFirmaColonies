@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/oat_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:food/oat_bread",
+  "show-tooltip": true
+}

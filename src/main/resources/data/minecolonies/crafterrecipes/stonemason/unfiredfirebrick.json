@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "item": "tfc:fire_clay"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:ceramic/unfired_fire_brick",
+  "show-tooltip": true
+}

@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/rice_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:food/rice_bread",
+  "show-tooltip": true
+}

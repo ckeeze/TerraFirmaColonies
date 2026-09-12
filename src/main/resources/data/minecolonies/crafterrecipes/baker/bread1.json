@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/wheat_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:food/wheat_bread",
+  "show-tooltip": true
+}

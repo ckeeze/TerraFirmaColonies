@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/maize_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:food/maize_bread",
+  "show-tooltip": true
+}

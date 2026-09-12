@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/hardtack_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "firmalife:food/hardtack",
+  "show-tooltip": true
+}

@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "stonesmeltery_smelting",
+  "inputs": [
+    {
+      "item": "rnr:unfired_terracotta_roof_tile"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "rnr:terracotta_roof_tile",
+  "show-tooltip": true
+}

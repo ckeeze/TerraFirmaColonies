@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/masa"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "firmalife:food/corn_tortilla",
+  "show-tooltip": true
+}
