@@ -3,6 +3,7 @@ package net.ckeeze.terrafirmacolonies.mixin;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.core.colony.buildings.AbstractBuilding;
 import com.minecolonies.core.colony.buildings.workerbuildings.BuildingStoneSmeltery;
+import net.ckeeze.terrafirmacolonies.api.MiscellaniousUtil;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.StoneSmelterNewVariables;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.soil.SoilBlockType;
@@ -10,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -45,7 +45,7 @@ public abstract class BuildingStoneSmelteryMixin extends AbstractBuilding implem
     @Override
     public void registerBlockPosition(@NotNull Block block, @NotNull BlockPos pos, @NotNull Level world) {
         super.registerBlockPosition(block, pos, world);
-        if (block.defaultBlockState().is(BlockTags.SAND) && world.getBlockState(pos.above()).is(Blocks.AIR) && !getDryingBlockList().contains(pos)) {
+        if (MiscellaniousUtil.isTFCSand(block) && world.getBlockState(pos.above()).is(Blocks.AIR) && !getDryingBlockList().contains(pos)) {
             terrafirmacolonies$dryingBlock.add(pos);
         }
         if (terrafirmacolonies$charcoalForge == null && block.defaultBlockState().is(TFCBlocks.CHARCOAL_FORGE.get())) {
@@ -98,11 +98,11 @@ public abstract class BuildingStoneSmelteryMixin extends AbstractBuilding implem
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag compound = super.serializeNBT();
-        ListTag ovenTagList = new ListTag();
+        ListTag dryingBlockTagList = new ListTag();
         for (BlockPos pos : this.terrafirmacolonies$dryingBlock) {
-            ovenTagList.add(NbtUtils.writeBlockPos(pos));
+            dryingBlockTagList.add(NbtUtils.writeBlockPos(pos));
         }
-        compound.put("DryingBlocks", ovenTagList);
+        compound.put("DryingBlocks", dryingBlockTagList);
         compound.put("forge", NbtUtils.writeBlockPos(terrafirmacolonies$charcoalForge));
         compound.put("bellow", NbtUtils.writeBlockPos(terrafirmacolonies$bellow));
         return compound;
@@ -111,9 +111,9 @@ public abstract class BuildingStoneSmelteryMixin extends AbstractBuilding implem
     @Override
     public void deserializeNBT(CompoundTag compound) {
         super.deserializeNBT(compound);
-        ListTag ovenTagList = compound.getList("DryingBlocks", 5);
-        for (int i = 0; i < ovenTagList.size(); ++i) {
-            CompoundTag ovenCompound = ovenTagList.getCompound(i);
+        ListTag dryingBlockTagList = compound.getList("DryingBlocks", 5);
+        for (int i = 0; i < dryingBlockTagList.size(); ++i) {
+            CompoundTag ovenCompound = dryingBlockTagList.getCompound(i);
             this.terrafirmacolonies$dryingBlock.add(NbtUtils.readBlockPos(ovenCompound));
         }
         this.terrafirmacolonies$charcoalForge = NbtUtils.readBlockPos(compound.getCompound("forge"));

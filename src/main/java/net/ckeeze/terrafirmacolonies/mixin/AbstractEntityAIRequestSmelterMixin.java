@@ -24,6 +24,7 @@ import net.dries007.tfc.common.blockentities.BellowsBlockEntity;
 import net.dries007.tfc.common.blockentities.CharcoalForgeBlockEntity;
 import net.dries007.tfc.common.blockentities.PotBlockEntity;
 import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.blocks.devices.CharcoalForgeBlock;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -75,7 +76,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
      */
     @Overwrite(remap = false)
     private boolean accelerateFurnaces() {
-        if (this.building instanceof BuildingStoneSmeltery b && this.currentRecipeStorage.getIntermediate() == Blocks.FURNACE) {
+        if (this.building instanceof BuildingStoneSmeltery b && this.currentRecipeStorage != null && this.currentRecipeStorage.getIntermediate() == Blocks.FURNACE) {
             BlockEntity entity = world.getBlockEntity(((StoneSmelterNewVariables) b).getBellowPos());
             if (entity instanceof BellowsBlockEntity bellows) {
                 bellows.onRightClick();
@@ -605,7 +606,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                                 if (!handler.getStackInSlot(0).isEmpty()) {
                                     hasFuel.set(true);
                                 }
-                                if (hasFuel.get() && !entity.getBlockState().getValue(BlockStateProperties.LIT)) {
+                                if (hasFuel.get() && entity.getBlockState().getValue(CharcoalForgeBlock.HEAT) == 0) {
                                     ((CharcoalForgeBlockEntity) entity).light(entity.getBlockState());
                                 }
                             });
@@ -637,6 +638,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             return ((GlassBlowerNewVaraibles) b).getTablePos() != null && ((GlassBlowerNewVaraibles) b).getCharcoalPos() != null && ((GlassBlowerNewVaraibles) b).getBasinPos() != null;
         }
         if (this.building instanceof BuildingStoneSmeltery b) {
+            LOGGER.info("drying block list: " + ((StoneSmelterNewVariables) b).getDryingBlockList());
             return !((StoneSmelterNewVariables) b).getDryingBlockList().isEmpty() && ((StoneSmelterNewVariables) b).getBellowPos() != null && ((StoneSmelterNewVariables) b).getCharcoalPos() != null;
         }
         return true;
@@ -652,6 +654,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
         LOGGER.info("executeCraftingAction!");
 
         if (!terrafirmacolonies$hasNecessaryBlocks()) {
+            LOGGER.info("can't find workblocks!");
             if (this.worker.getCitizenData() != null) {
                 if (this.building instanceof BuildingGlassblower) {
                     this.worker.getCitizenData().triggerInteraction(new StandardInteraction(Component.translatable("net.ckeeze.terrafirmacolonies.glassblowerBuildingComplain"), ChatPriority.BLOCKING));
@@ -678,12 +681,16 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
         }
 
         if (this.currentRecipeStorage == null) {
+            LOGGER.info("no recipe found!");
             return AIWorkerState.START_WORKING;
         } else if (!(this.currentRecipeStorage.getIntermediate().defaultBlockState().is(BlockTags.SAND)) && this.currentRecipeStorage.getIntermediate() != Blocks.FURNACE && this.currentRecipeStorage.getIntermediate() != TFCBlocks.CHARCOAL_FORGE.get() && this.currentRecipeStorage.getIntermediate() != TFCBlocks.POT.get() && this.currentRecipeStorage.getIntermediate() != FLBlocks.VAT.get()) {
+            LOGGER.info("no intermedieta found!");
             return super.executeCraftingAction(toolSlot);
         } else if (!this.areFurnacesLoaded()) {
+            LOGGER.info("furnaces not loaded!");
             return AIWorkerState.START_WORKING;
         } else {
+            LOGGER.info("getting fuel list!");
             List<ItemStack> possibleFuels = this.getAllowedFuel();
             if (possibleFuels.isEmpty()) {
                 if (this.worker.getCitizenData() != null) {
