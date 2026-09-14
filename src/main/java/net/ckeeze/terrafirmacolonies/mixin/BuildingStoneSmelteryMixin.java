@@ -111,7 +111,7 @@ public abstract class BuildingStoneSmelteryMixin extends AbstractBuilding implem
     @Override
     public void deserializeNBT(CompoundTag compound) {
         super.deserializeNBT(compound);
-        ListTag dryingBlockTagList = compound.getList("DryingBlocks", 5);
+        ListTag dryingBlockTagList = compound.getList("DryingBlocks", 10);
         for (int i = 0; i < dryingBlockTagList.size(); ++i) {
             CompoundTag ovenCompound = dryingBlockTagList.getCompound(i);
             this.terrafirmacolonies$dryingBlock.add(NbtUtils.readBlockPos(ovenCompound));
