@@ -426,9 +426,11 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(8, 1, false));
                         count.getAndIncrement();
                     }
-                    ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
-                    requestStack.setCount(count.get());
-                    this.currentRequest.addDelivery(requestStack);
+                    if (this.currentRequest != null) {
+                        ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
+                        requestStack.setCount(count.get());
+                        this.currentRequest.addDelivery(requestStack);
+                    }
                 });
             }
 
@@ -457,9 +459,11 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(9, 1, false));
                         count.getAndIncrement();
                     }
-                    ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
-                    requestStack.setCount(count.get());
-                    this.currentRequest.addDelivery(requestStack);
+                    if (this.currentRequest != null) {
+                        ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
+                        requestStack.setCount(count.get());
+                        this.currentRequest.addDelivery(requestStack);
+                    }
                 });
             }
             //TODO: make him collect ash
