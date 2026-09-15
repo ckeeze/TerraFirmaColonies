@@ -21,9 +21,7 @@ import com.minecolonies.core.entity.ai.workers.crafting.AbstractEntityAICrafting
 import com.minecolonies.core.entity.ai.workers.crafting.AbstractEntityAIRequestSmelter;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.*;
 import net.dries007.tfc.common.TFCTags;
-import net.dries007.tfc.common.blockentities.BellowsBlockEntity;
-import net.dries007.tfc.common.blockentities.CharcoalForgeBlockEntity;
-import net.dries007.tfc.common.blockentities.PotBlockEntity;
+import net.dries007.tfc.common.blockentities.*;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.devices.CharcoalForgeBlock;
 import net.dries007.tfc.common.blocks.devices.DryingBricksBlock;
@@ -241,6 +239,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 }
                 //mudbrick drying
                 if (state.getBlock() instanceof DryingBricksBlock && state.getValue(DryingBricksBlock.DRIED)) {
+                    this.recordSmeltingBuildingStats(this.currentRecipeStorage.getPrimaryOutput().getHoverName(), state.getValue(DryingBricksBlock.COUNT));
                     this.job.setCraftCounter(this.job.getCraftCounter() + state.getValue(DryingBricksBlock.COUNT));
                     this.mineBlock(this.furnacePos.above());
                 }
@@ -386,18 +385,22 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
                     if (!handler.getStackInSlot(0).isEmpty() && (this.currentRecipeStorage == null || !this.currentRecipeStorage.getCleanedInput().get(0).getItemStack().is(handler.getStackInSlot(0).getItem()))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(0).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(0, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(1).isEmpty() && (this.currentRecipeStorage == null || !this.currentRecipeStorage.getCleanedInput().get(0).getItemStack().is(handler.getStackInSlot(1).getItem()))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(1).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(1, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(2).isEmpty() && (this.currentRecipeStorage == null || !this.currentRecipeStorage.getCleanedInput().get(0).getItemStack().is(handler.getStackInSlot(2).getItem()))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(2).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(2, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(3).isEmpty() && (this.currentRecipeStorage == null || !this.currentRecipeStorage.getCleanedInput().get(0).getItemStack().is(handler.getStackInSlot(3).getItem()))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(3).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(3, 1, false));
                         count.getAndIncrement();
                     }
@@ -410,31 +413,34 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 });
                 BlockEntity ashTray = world.getBlockEntity(this.furnacePos.below(2));
                 if (ashTray instanceof AshTrayBlockEntity) {
-                    ashTray.getCapability(Capabilities.ITEM).ifPresent((inv) -> {
-                        InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), inv.extractItem(0, 1, false));
-                    });
+                    ashTray.getCapability(Capabilities.ITEM).ifPresent((inv) -> InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), inv.extractItem(0, 1, false)));
                 }
             }
             if (entity instanceof PotBlockEntity) {
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
                     if (!handler.getStackInSlot(4).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(4)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(4).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(4, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(5).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(5)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(5).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(5, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(6).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(6)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(6).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(6, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(7).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(7)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(7).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(7, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(8).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(8)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(8).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(8, 1, false));
                         count.getAndIncrement();
                     }
@@ -455,22 +461,27 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
                     if (!handler.getStackInSlot(5).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(5)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(5).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(5, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(6).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(6)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(6).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(6, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(7).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(7)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(7).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(7, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(8).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(8)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(8).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(8, 1, false));
                         count.getAndIncrement();
                     }
                     if (!handler.getStackInSlot(9).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(9)))) {
+                        this.recordSmeltingBuildingStats(handler.getStackInSlot(9).getHoverName(), 1);
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(9, 1, false));
                         count.getAndIncrement();
                     }
@@ -535,7 +546,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                                         this.worker.setItemInHand(InteractionHand.MAIN_HAND, inputStack.copy());
                                     }
                                     BlockState newBrickBlock = world.getBlockState(this.furnacePos.above());
-                                    int count = 0;
+                                    int count;
                                     if (inputStack.is(TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SILT).get().asItem())) {
                                         newBrickBlock = TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SILT).get().defaultBlockState();
                                     }
@@ -556,15 +567,16 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                                         InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
                                     }
                                     world.setBlockAndUpdate(this.furnacePos.above(), newBrickBlock.setValue(DryingBricksBlock.COUNT, count));
+                                    TickCounterBlockEntity.reset(world, this.furnacePos.above());
                                 }
+                                return AIWorkerState.CRAFT;
                             }
                         }
-
                         BlockEntity entity = this.world.getBlockEntity(this.furnacePos);
                         BlockEntity bottomentity = this.world.getBlockEntity(this.furnacePos.below());
                         this.furnacePos = null;
                         //insert here
-                        if (entity instanceof OvenTopBlockEntity) {
+                        if (entity instanceof OvenTopBlockEntity && this.currentRecipeStorage.getIntermediate() == Blocks.FURNACE) {
                             if (this.worker.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
                                 this.worker.setItemInHand(InteractionHand.MAIN_HAND, inputStack.copy());
                             }
@@ -629,7 +641,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                             });
                         }
 
-                        if (entity instanceof CharcoalForgeBlockEntity) {
+                        if (entity instanceof CharcoalForgeBlockEntity && this.currentRecipeStorage.getIntermediate() == Blocks.FURNACE) {
                             if (this.worker.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
                                 this.worker.setItemInHand(InteractionHand.MAIN_HAND, inputStack.copy());
                             }
@@ -668,26 +680,55 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
         }
     }
 
-    //TODO: rework to check current blocks and tileentities
     @Unique
     private boolean terrafirmacolonies$hasNecessaryBlocks() {
         if (this.building instanceof BuildingDyer b) {
-            return ((DyerNewVariables) b).getQuernPos() != null && ((DyerNewVariables) b).getPotPos() != null;
+            if (((DyerNewVariables) b).getQuernPos() != null && ((DyerNewVariables) b).getPotPos() != null) {
+                return world.getBlockEntity(((DyerNewVariables) b).getPotPos()) instanceof PotBlockEntity && world.getBlockEntity(((DyerNewVariables) b).getQuernPos()) instanceof QuernBlockEntity;
+            }
+            return false;
         }
         if (this.building instanceof BuildingBaker b) {
-            return !((BakerNewVariables) b).getOvenList().isEmpty();
+            if (!((BakerNewVariables) b).getOvenList().isEmpty()) {
+                for (BlockPos ovenPos : ((BakerNewVariables) b).getOvenList()) {
+                    if (!(world.getBlockEntity(ovenPos) instanceof OvenTopBlockEntity)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            return false;
         }
         if (this.building instanceof BuildingKitchen b) {
-            if (this.building.getBuildingLevel() > 3) {
-                return !((ChefNewVaraibles) b).getOvenList().isEmpty() && ((ChefNewVaraibles) b).getPotPos() != null && ((ChefNewVaraibles) b).getVatPos() != null;
+            if (!((ChefNewVaraibles) b).getOvenList().isEmpty() && ((ChefNewVaraibles) b).getPotPos() != null) {
+                for (BlockPos ovenPos : ((BakerNewVariables) b).getOvenList()) {
+                    if (!(world.getBlockEntity(ovenPos) instanceof OvenTopBlockEntity)) {
+                        return false;
+                    }
+                }
+                if (!(world.getBlockEntity(((ChefNewVaraibles) b).getPotPos()) instanceof PotBlockEntity)) {
+                    return false;
+                }
+                if (this.building.getBuildingLevel() > 3) {
+                    if (((ChefNewVaraibles) b).getVatPos() != null) {
+                        return world.getBlockEntity(((ChefNewVaraibles) b).getVatPos()) instanceof VatBlockEntity;
+                    }
+                    return false;
+                }
+                return true;
             }
-            return !((ChefNewVaraibles) b).getOvenList().isEmpty() && ((ChefNewVaraibles) b).getPotPos() != null;
         }
         if (this.building instanceof BuildingGlassblower b) {
             return ((GlassBlowerNewVaraibles) b).getTablePos() != null && ((GlassBlowerNewVaraibles) b).getCharcoalPos() != null && ((GlassBlowerNewVaraibles) b).getBasinPos() != null;
         }
         if (this.building instanceof BuildingStoneSmeltery b) {
-            return !((StoneSmelterNewVariables) b).getDryingBlockList().isEmpty() && ((StoneSmelterNewVariables) b).getBellowPos() != null && ((StoneSmelterNewVariables) b).getCharcoalPos() != null;
+            if (((StoneSmelterNewVariables) b).getDryingBlockList().isEmpty()) {
+                return false;
+            }
+            if (((StoneSmelterNewVariables) b).getBellowPos() != null && ((StoneSmelterNewVariables) b).getCharcoalPos() != null) {
+                return world.getBlockEntity(((StoneSmelterNewVariables) b).getBellowPos()) instanceof BellowsBlockEntity && world.getBlockEntity(((StoneSmelterNewVariables) b).getCharcoalPos()) instanceof CharcoalForgeBlockEntity;
+            }
+            return false;
         }
         return true;
     }
@@ -807,6 +848,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         return dryPos;
                     }
                 }
+                return null;
             }
             if (((StoneSmelterNewVariables) b).getCharcoalPos() != null) {
                 BlockPos forgePos = ((StoneSmelterNewVariables) b).getCharcoalPos();

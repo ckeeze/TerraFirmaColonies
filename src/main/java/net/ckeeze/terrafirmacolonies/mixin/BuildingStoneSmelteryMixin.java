@@ -3,6 +3,7 @@ package net.ckeeze.terrafirmacolonies.mixin;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.core.colony.buildings.AbstractBuilding;
 import com.minecolonies.core.colony.buildings.workerbuildings.BuildingStoneSmeltery;
+import net.ckeeze.terrafirmacolonies.api.MiscellaniousUtil;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.StoneSmelterNewVariables;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.soil.SoilBlockType;
@@ -10,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -45,8 +45,7 @@ public abstract class BuildingStoneSmelteryMixin extends AbstractBuilding implem
     @Override
     public void registerBlockPosition(@NotNull Block block, @NotNull BlockPos pos, @NotNull Level world) {
         super.registerBlockPosition(block, pos, world);
-        //MiscellaniousUtil.isTFCSand(block)
-        if (block.defaultBlockState().is(BlockTags.SAND) && world.getBlockState(pos.above()).is(Blocks.AIR) && !getDryingBlockList().contains(pos)) {
+        if (MiscellaniousUtil.isTFCSand(block) && world.getBlockState(pos.above()).is(Blocks.AIR) && !getDryingBlockList().contains(pos)) {
             terrafirmacolonies$dryingBlock.add(pos);
         }
         if (terrafirmacolonies$charcoalForge == null && block.defaultBlockState().is(TFCBlocks.CHARCOAL_FORGE.get())) {

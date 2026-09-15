@@ -2,6 +2,8 @@ package net.ckeeze.terrafirmacolonies.api;
 
 import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.eerussianguy.firmalife.common.blocks.OvenType;
+import net.dries007.tfc.common.blocks.TFCBlocks;
+import net.dries007.tfc.common.blocks.soil.SandBlockType;
 import net.minecraft.world.level.block.Block;
 
 public class MiscellaniousUtil {
@@ -22,5 +24,16 @@ public class MiscellaniousUtil {
                 || block == FLBlocks.INSULATED_OVEN_BOTTOM.get(OvenType.RUSTIC).get()
                 || block == FLBlocks.INSULATED_OVEN_BOTTOM.get(OvenType.STONE).get()
                 || block == FLBlocks.INSULATED_OVEN_BOTTOM.get(OvenType.TILE).get();
+    }
+
+    //For some reason checking for Blocktag sand doesn't work during building registration
+    public static boolean isTFCSand(Block block) {
+        return block == TFCBlocks.SAND.get(SandBlockType.BLACK).get()
+                || block == TFCBlocks.SAND.get(SandBlockType.PINK).get()
+                || block == TFCBlocks.SAND.get(SandBlockType.RED).get()
+                || block == TFCBlocks.SAND.get(SandBlockType.GREEN).get()
+                || block == TFCBlocks.SAND.get(SandBlockType.YELLOW).get()
+                || block == TFCBlocks.SAND.get(SandBlockType.WHITE).get()
+                || block == TFCBlocks.SAND.get(SandBlockType.BROWN).get();
     }
 }
