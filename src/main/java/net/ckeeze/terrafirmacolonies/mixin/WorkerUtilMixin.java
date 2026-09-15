@@ -40,8 +40,8 @@ public class WorkerUtilMixin {
     public static boolean isThereCompostedLand(BuildingFlorist buildingFlorist, Level world) {
         for (BlockPos pos : buildingFlorist.getPlantGround()) {
             if (WorldUtil.isBlockLoaded(world, pos)) {
-                BlockState butterflyblock = world.getBlockState(pos.above());
-                return butterflyblock.is(FLBlocks.BUTTERFLY_GRASS.get());
+                BlockState butterflyBlock = world.getBlockState(pos.above());
+                return butterflyBlock.is(FLBlocks.BUTTERFLY_GRASS.get());
             }
         }
         return false;

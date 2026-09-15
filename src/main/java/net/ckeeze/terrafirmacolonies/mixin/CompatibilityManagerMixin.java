@@ -17,7 +17,7 @@ import java.util.Set;
 public abstract class CompatibilityManagerMixin {
     @Final
     @Shadow
-    private Set<ItemStorage> fuel = new HashSet();
+    private Set<ItemStorage> fuel = new HashSet<>();
 
     /**
      * @author Ckeeze

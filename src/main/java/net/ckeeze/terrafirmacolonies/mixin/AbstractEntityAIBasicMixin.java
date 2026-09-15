@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Mixin(value = AbstractEntityAIBasic.class, remap = false)
@@ -53,7 +54,7 @@ public abstract class AbstractEntityAIBasicMixin<J extends AbstractJob<?, J>, B 
         int bestSlot = TOOL_NOT_FOUND;
         int bestLevel = Integer.MAX_VALUE;
         @NotNull final InventoryCitizen inventory = worker.getInventoryCitizen();
-        final int maxToolLevel = worker.getCitizenColonyHandler().getWorkBuilding().getMaxEquipmentLevel();
+        final int maxToolLevel = Objects.requireNonNull(worker.getCitizenColonyHandler().getWorkBuilding()).getMaxEquipmentLevel();
 
         for (int i = 0; i < worker.getInventoryCitizen().getSlots(); i++) {
             final ItemStack item = inventory.getStackInSlot(i);

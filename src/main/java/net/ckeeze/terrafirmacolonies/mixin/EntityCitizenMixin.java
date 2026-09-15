@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(EntityCitizen.class)
 public abstract class EntityCitizenMixin extends AbstractEntityCitizen {
 
+    @Override
     @Shadow
     public abstract ICitizenJobHandler getCitizenJobHandler();
 
@@ -27,21 +28,21 @@ public abstract class EntityCitizenMixin extends AbstractEntityCitizen {
     }
 
     @Unique
-    private int litCooldown = 0;
+    private int terrafirmacolonies$litCooldown = 0;
     @Unique
-    private BlockPos lastLit;
+    private BlockPos terrafirmacolonies$lastLit;
 
     @Inject(method = "aiStep", at = @At("RETURN"))
     public void addTorchLitLogic(CallbackInfo ci) {
         IJob<?> job = getCitizenJobHandler().getColonyJob();
         if (job != null && TorchLitUtils.litJobs.contains(job.getJobRegistryEntry().getKey())) {
-            litCooldown++;
-            if (litCooldown > 20) {
-                litCooldown = 0;
+            terrafirmacolonies$litCooldown++;
+            if (terrafirmacolonies$litCooldown > 20) {
+                terrafirmacolonies$litCooldown = 0;
                 BlockPos current = blockPosition();
-                if (lastLit == null || current.distSqr(lastLit) > 16 * 16) {
+                if (terrafirmacolonies$lastLit == null || current.distSqr(terrafirmacolonies$lastLit) > 16 * 16) {
                     TorchLitUtils.litAround(this, this.level(), current);
-                    lastLit = current;
+                    terrafirmacolonies$lastLit = current;
                 }
             }
         }
