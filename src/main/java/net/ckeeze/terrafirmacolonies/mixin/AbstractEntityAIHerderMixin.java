@@ -243,13 +243,14 @@ public abstract class AbstractEntityAIHerderMixin<J extends AbstractJob<?, J>, B
     @Inject(
             method = {"butcherAnimal"},
             at = {@At("HEAD")},
+            cancellable = true,
             remap = false
     )
     protected void butcherAnimal(Animal animal, CallbackInfo ci) {
         TFCAnimal animalToSave = (TFCAnimal) animal;
         assert animalToSave != null;
         if (animalToSave.isFertilized()) {
-            return;
+            ci.cancel();
         }
     }
 
