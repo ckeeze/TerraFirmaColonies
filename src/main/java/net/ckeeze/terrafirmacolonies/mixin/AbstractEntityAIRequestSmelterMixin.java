@@ -1,6 +1,7 @@
 package net.ckeeze.terrafirmacolonies.mixin;
 
 import com.eerussianguy.firmalife.common.FLTags;
+import com.eerussianguy.firmalife.common.blockentities.AshTrayBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.OvenBottomBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.OvenTopBlockEntity;
 import com.eerussianguy.firmalife.common.blockentities.VatBlockEntity;
@@ -28,6 +29,8 @@ import net.dries007.tfc.common.blocks.devices.CharcoalForgeBlock;
 import net.dries007.tfc.common.blocks.devices.DryingBricksBlock;
 import net.dries007.tfc.common.blocks.soil.SoilBlockType;
 import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.items.Powder;
+import net.dries007.tfc.common.items.TFCItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.BlockTags;
@@ -75,7 +78,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
 
     /**
      * @author Ckeeze
-     * @reason Remove unused functionality - DONE
+     * @reason Use it for bellows, only stoneSmelter needs it.
      */
     @Overwrite(remap = false)
     private boolean accelerateFurnaces() {
@@ -90,13 +93,12 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
 
     /**
      * @author Ckeeze
-     * @reason Counting input slots of all available devices - DONE can be improved
+     * @reason Counting input slots of all available devices - DONE
      */
     @Override
     @Overwrite(remap = false)
     protected int getExtendedCount(ItemStack stack) {
         int count = 0;
-
         if (this.building instanceof BuildingBaker b) {
             count = ((BakerNewVariables) b).getOvenList().size() * 4;
         }
@@ -139,11 +141,9 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             return this.getState();
         } else {
             if (WorldUtil.isBlockLoaded(this.world, this.furnacePos)) {
-
                 //Checking for ovens (Chef, Baker)
                 BlockEntity entity = this.world.getBlockEntity(this.furnacePos.below());
                 if (entity instanceof OvenBottomBlockEntity ovenB) {
-
                     if (InventoryUtils.hasItemInItemHandler(this.worker.getInventoryCitizen(), isCorrectFuel(possibleFuels))) {
                         LazyOptional<IItemHandler> capabilityOpt = ovenB.getCapability(Capabilities.ITEM, null);
                         capabilityOpt.ifPresent(handler -> {
@@ -153,7 +153,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         });
                     }
                 }
-
                 //Checking for pot (Chef)
                 entity = this.world.getBlockEntity(this.furnacePos);
                 if (entity instanceof PotBlockEntity pot) {
@@ -166,10 +165,8 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         });
                     }
                 }
-
                 //Checking for charcoal forge (Stonesmelter, glassblower)
                 if (entity instanceof CharcoalForgeBlockEntity cforge) {
-
                     if (InventoryUtils.hasItemInItemHandler(this.worker.getInventoryCitizen(), isCorrectFuel(possibleFuels))) {
                         LazyOptional<IItemHandler> capabilityOpt = cforge.getCapability(Capabilities.ITEM, null);
                         capabilityOpt.ifPresent(handler -> {
@@ -182,12 +179,9 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         });
                     }
                 }
-
             }
-
             this.furnacePos = null;
         }
-
         return AIWorkerState.IDLE;
     }
 
@@ -245,16 +239,16 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 if (!this.walkToWorkPos(this.furnacePos)) {
                     return this.getState();
                 }
+                //mudbrick drying
                 if (state.getBlock() instanceof DryingBricksBlock && state.getValue(DryingBricksBlock.DRIED)) {
+                    this.job.setCraftCounter(this.job.getCraftCounter() + state.getValue(DryingBricksBlock.COUNT));
                     this.mineBlock(this.furnacePos.above());
                 }
                 //oven
                 if (entity instanceof OvenTopBlockEntity) {
                     LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                     capabilityOpt.ifPresent(handler -> {
-
                         int count = 0;
-
                         if (!handler.getStackInSlot(0).isEmpty() && this.currentRecipeStorage.getPrimaryOutput().is(handler.getStackInSlot(0).getItem())) {
                             this.recordSmeltingBuildingStats(handler.getStackInSlot(0).getHoverName(), 1);
                             InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(0, 1, false));
@@ -278,15 +272,14 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
                         requestStack.setCount(count);
                         this.currentRequest.addDelivery(requestStack);
+                        this.job.setCraftCounter(this.job.getCraftCounter() + count);
                     });
                 }
                 //Pot
                 if (entity instanceof PotBlockEntity) {
                     LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                     capabilityOpt.ifPresent(handler -> {
-
                         int count = 0;
-
                         if (!handler.getStackInSlot(4).isEmpty() && this.currentRecipeStorage.getPrimaryOutput().is(handler.getStackInSlot(4).getItem())) {
                             this.recordSmeltingBuildingStats(handler.getStackInSlot(4).getHoverName(), 1);
                             InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(4, 1, false));
@@ -312,20 +305,16 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                             InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(8, 1, false));
                             count++;
                         }
-
                         ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
                         requestStack.setCount(count);
                         this.currentRequest.addDelivery(requestStack);
-
+                        this.job.setCraftCounter(this.job.getCraftCounter() + count);
                     });
                 }
-
                 if (entity instanceof CharcoalForgeBlockEntity) {
                     LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                     capabilityOpt.ifPresent(handler -> {
-
                         int count = 0;
-
                         if (!handler.getStackInSlot(5).isEmpty() && this.currentRecipeStorage.getPrimaryOutput().is(handler.getStackInSlot(5).getItem())) {
                             this.recordSmeltingBuildingStats(handler.getStackInSlot(5).getHoverName(), 1);
                             InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(5, 1, false));
@@ -351,20 +340,15 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                             InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(9, 1, false));
                             count++;
                         }
-
                         ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
                         requestStack.setCount(count);
                         this.currentRequest.addDelivery(requestStack);
                         this.job.setCraftCounter(this.job.getCraftCounter() + count);
-
                     });
                 }
-
                 return AIWorkerState.START_WORKING;
             }
-
             //Removed vanilla segment
-
             this.furnacePos = null;
             return AIWorkerState.START_WORKING;
         } else {
@@ -387,14 +371,20 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             if (!this.walkToWorkPos(this.furnacePos)) {
                 return this.getState();
             }
-            if (state.getBlock() instanceof DryingBricksBlock && state.getValue(DryingBricksBlock.DRIED)) {
-                this.mineBlock(this.furnacePos.above());
-            }
             AtomicInteger count = new AtomicInteger();
+            if (state.getBlock() instanceof DryingBricksBlock && state.getValue(DryingBricksBlock.DRIED)) {
+                count.set(state.getValue(DryingBricksBlock.COUNT));
+                this.mineBlock(this.furnacePos.above());
+                if (this.currentRequest != null) {
+                    ItemStack requestStack = this.currentRequest.getRequest().getStack().copy();
+                    requestStack.setCount(count.get());
+                    this.currentRequest.addDelivery(requestStack);
+                }
+                this.job.setCraftCounter(this.job.getCraftCounter() + count.get());
+            }
             if (entity instanceof OvenTopBlockEntity) {
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
-
                     if (!handler.getStackInSlot(0).isEmpty() && (this.currentRecipeStorage == null || !this.currentRecipeStorage.getCleanedInput().get(0).getItemStack().is(handler.getStackInSlot(0).getItem()))) {
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(0, 1, false));
                         count.getAndIncrement();
@@ -416,14 +406,18 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         requestStack.setCount(count.get());
                         this.currentRequest.addDelivery(requestStack);
                     }
+                    this.job.setCraftCounter(this.job.getCraftCounter() + count.get());
                 });
+                BlockEntity ashTray = world.getBlockEntity(this.furnacePos.below(2));
+                if (ashTray instanceof AshTrayBlockEntity) {
+                    ashTray.getCapability(Capabilities.ITEM).ifPresent((inv) -> {
+                        InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), inv.extractItem(0, 1, false));
+                    });
+                }
             }
-
             if (entity instanceof PotBlockEntity) {
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
-
-
                     if (!handler.getStackInSlot(4).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(4)))) {
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(4, 1, false));
                         count.getAndIncrement();
@@ -449,14 +443,17 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         requestStack.setCount(count.get());
                         this.currentRequest.addDelivery(requestStack);
                     }
+                    this.job.setCraftCounter(this.job.getCraftCounter() + count.get());
                 });
+                int ashCount = ((PotBlockEntity) entity).getAsh();
+                if (ashCount > 0) {
+                    InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get(), ashCount));
+                    ((PotBlockEntity) entity).setAsh(0);
+                }
             }
-
             if (entity instanceof CharcoalForgeBlockEntity) {
                 LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                 capabilityOpt.ifPresent(handler -> {
-
-
                     if (!handler.getStackInSlot(5).isEmpty() && (this.currentRecipeStorage == null || !ItemStackUtils.compareItemStacksIgnoreStackSize(this.currentRecipeStorage.getCleanedInput().get(0).getItemStack(), handler.getStackInSlot(5)))) {
                         InventoryUtils.addItemStackToItemHandler(this.worker.getInventoryCitizen(), handler.extractItem(5, 1, false));
                         count.getAndIncrement();
@@ -482,14 +479,12 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         requestStack.setCount(count.get());
                         this.currentRequest.addDelivery(requestStack);
                     }
+                    this.job.setCraftCounter(this.job.getCraftCounter() + count.get());
                 });
             }
-            //TODO: make him collect ash
             if (count.get() > 0) {
                 return AIWorkerState.INVENTORY_FULL;
             }
-
-
             this.furnacePos = null;
             return AIWorkerState.START_WORKING;
         }
@@ -536,41 +531,28 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         if (this.building instanceof BuildingStoneSmeltery) {
                             if (this.currentRecipeStorage.getIntermediate().defaultBlockState().is(BlockTags.SAND)) {
                                 if (world.getBlockState(this.furnacePos.above()).is(Blocks.AIR)) {
-
                                     if (this.worker.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
                                         this.worker.setItemInHand(InteractionHand.MAIN_HAND, inputStack.copy());
                                     }
-
                                     BlockState newBrickBlock = world.getBlockState(this.furnacePos.above());
-
                                     int count = 0;
                                     if (inputStack.is(TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SILT).get().asItem())) {
-                                        InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
                                         newBrickBlock = TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SILT).get().defaultBlockState();
                                     }
                                     if (inputStack.is(TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SILTY_LOAM).get().asItem())) {
-                                        InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
                                         newBrickBlock = TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SILTY_LOAM).get().defaultBlockState();
                                     }
                                     if (inputStack.is(TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.LOAM).get().asItem())) {
-                                        InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
                                         newBrickBlock = TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.LOAM).get().defaultBlockState();
                                     }
                                     if (inputStack.is(TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SANDY_LOAM).get().asItem())) {
-                                        InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
                                         newBrickBlock = TFCBlocks.SOIL.get(SoilBlockType.DRYING_BRICKS).get(SoilBlockType.Variant.SANDY_LOAM).get().defaultBlockState();
                                     }
-
-                                    if (InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate) != 0) {
-                                        count = 2;
-                                        InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
-                                    }
-                                    if (InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate) != 0) {
-                                        count = 3;
-                                        InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
-                                    }
-                                    if (InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate) != 0) {
+                                    count = InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
+                                    if (count > 4) {
                                         count = 4;
+                                    }
+                                    for (int i = 0; i < count; i++) {
                                         InventoryUtils.shrinkItemCountInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate);
                                     }
                                     world.setBlockAndUpdate(this.furnacePos.above(), newBrickBlock.setValue(DryingBricksBlock.COUNT, count));
@@ -581,7 +563,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                         BlockEntity entity = this.world.getBlockEntity(this.furnacePos);
                         BlockEntity bottomentity = this.world.getBlockEntity(this.furnacePos.below());
                         this.furnacePos = null;
-
                         //insert here
                         if (entity instanceof OvenTopBlockEntity) {
                             if (this.worker.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
@@ -655,7 +636,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                             AtomicBoolean hasFuel = new AtomicBoolean(false);
                             LazyOptional<IItemHandler> capabilityOpt = entity.getCapability(Capabilities.ITEM, null);
                             capabilityOpt.ifPresent(handler -> {
-
                                 if (handler.getStackInSlot(5).isEmpty()) {
                                     InventoryUtils.transferXOfFirstSlotInItemHandlerWithIntoInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate, 1, handler, 5);
                                 }
@@ -671,7 +651,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                                 if (handler.getStackInSlot(9).isEmpty()) {
                                     InventoryUtils.transferXOfFirstSlotInItemHandlerWithIntoInItemHandler(this.worker.getInventoryCitizen(), smeltablePredicate, 1, handler, 9);
                                 }
-
                                 if (!handler.getStackInSlot(0).isEmpty()) {
                                     hasFuel.set(true);
                                 }
@@ -802,13 +781,11 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
     private BlockPos getEmptyFurnaceWithFuel() {
         AtomicBoolean topempty = new AtomicBoolean(true);
         AtomicBoolean botempty = new AtomicBoolean(false);
-
         //if (this.building instanceof BuildingDyer) {}
         if (this.building instanceof BuildingBaker b) {
             for (BlockPos ovenPos : ((BakerNewVariables) b).getOvenList()) {
                 BlockEntity oven = this.world.getBlockEntity(ovenPos);
                 BlockEntity bottomOven = this.world.getBlockEntity(ovenPos.below());
-
                 if (oven instanceof OvenTopBlockEntity) {
                     if (bottomOven instanceof OvenBottomBlockEntity) {
                         LazyOptional<IItemHandler> capabilityOpt = oven.getCapability(Capabilities.ITEM, null);
@@ -918,19 +895,13 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
     @Overwrite(remap = false)
     private BlockPos getFurnaceWithoutFuel() {
         AtomicBoolean botempty = new AtomicBoolean(false);
-
         //if (this.building instanceof BuildingDyer b) {}
         if (this.building instanceof BuildingBaker b) {
-            LOGGER.info("Baker get furnace without fuel!");
-            LOGGER.info("Oveposlist: " + ((BakerNewVariables) b).getOvenList());
             for (BlockPos ovenPos : ((BakerNewVariables) b).getOvenList()) {
                 BlockEntity oven = this.world.getBlockEntity(ovenPos);
                 BlockEntity bottomOven = this.world.getBlockEntity(ovenPos.below());
-
                 if (oven instanceof OvenTopBlockEntity) {
-                    LOGGER.info("pos instance of oventopblockentity");
                     if (bottomOven instanceof OvenBottomBlockEntity) {
-                        LOGGER.info("pos.below instance of ovenbottomblockentity");
                         LazyOptional<IItemHandler> capabilityOpt2 = bottomOven.getCapability(Capabilities.ITEM, null);
                         capabilityOpt2.ifPresent(handler -> botempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty()));
                         if (botempty.get()) {
@@ -970,7 +941,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             for (BlockPos ovenPos : ((ChefNewVaraibles) b).getOvenList()) {
                 BlockEntity oven = this.world.getBlockEntity(ovenPos);
                 BlockEntity bottomOven = this.world.getBlockEntity(ovenPos.below());
-
                 if (oven instanceof OvenTopBlockEntity) {
                     if (bottomOven instanceof OvenBottomBlockEntity) {
                         LazyOptional<IItemHandler> capabilityOpt2 = bottomOven.getCapability(Capabilities.ITEM, null);
@@ -1037,7 +1007,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
         if (this.building instanceof BuildingGlassblower b) {
             forgePos = ((StoneSmelterNewVariables) b).getCharcoalPos();
         }
-
         if (forgePos != null && this.world.getBlockEntity(forgePos) instanceof CharcoalForgeBlockEntity cForge) {
             LazyOptional<IItemHandler> capabilityOpt = cForge.getCapability(Capabilities.ITEM, null);
 
@@ -1072,7 +1041,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 return forgePos;
             }
         }
-
         if (potPos != null && this.world.getBlockEntity(potPos) instanceof PotBlockEntity pot) {
             LazyOptional<IItemHandler> capabilityOpt = pot.getCapability(Capabilities.ITEM, null);
 
@@ -1106,9 +1074,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             if (shouldReturn.get()) {
                 return potPos;
             }
-
         }
-
         if (!ovenPosList.isEmpty()) {
             for (BlockPos ovenPos : ovenPosList) {
                 if (this.world.getBlockEntity(ovenPos) instanceof OvenTopBlockEntity oven) {
@@ -1143,7 +1109,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 }
             }
         }
-
         if (!dryPosList.isEmpty()) {
             for (BlockPos dryPos : dryPosList) {
                 if (this.world.getBlockState(dryPos.above()).getBlock() instanceof DryingBricksBlock) {
@@ -1219,7 +1184,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 return forgePos;
             }
         }
-
         if (potPos != null && this.world.getBlockEntity(potPos) instanceof PotBlockEntity pot) {
             LazyOptional<IItemHandler> capabilityOpt = pot.getCapability(Capabilities.ITEM, null);
 
@@ -1253,9 +1217,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             if (shouldReturn.get()) {
                 return potPos;
             }
-
         }
-
         if (!ovenPosList.isEmpty()) {
             for (BlockPos ovenPos : ovenPosList) {
                 if (this.world.getBlockEntity(ovenPos) instanceof OvenTopBlockEntity oven) {
@@ -1283,7 +1245,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                             }
                         }
                     });
-
                     if (shouldReturn.get()) {
                         return ovenPos;
                     }
@@ -1329,7 +1290,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
         if (this.building instanceof BuildingGlassblower b) {
             forgePos = ((StoneSmelterNewVariables) b).getCharcoalPos();
         }
-
         if (potPos != null) {
             if (!WorldUtil.isBlockLoaded(this.world, potPos)) {
                 return false;
