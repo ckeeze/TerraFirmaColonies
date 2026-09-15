@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "stonesmeltery_smelting",
+  "inputs": [
+    {
+      "item": "tfc:ceramic/unfired_fire_ingot_mold"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:ceramic/fire_ingot_mold",
+  "show-tooltip": true
+}
