@@ -6,48 +6,44 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Food and agricultural products can be automatically produced by $(thing)the Farmer$(), $(thing)Fisher$(), $(thing)Beekeeper$(), $(thing)Florist$(), and the various animal handler workers"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "Each worker requires their own hut, the hut-blocks can be crafted by hand, then using the $(thing)Build Tool$() you can choose and place a the hut within your colony, A builder then must construct the building."
+      "text": "Food and agricultural products can be automatically produced by $(thing)the Farmer$(), $(thing)Fisher$(), $(thing)Beekeeper$(), $(thing)Florist$(), and the various animal handler workers.$(br)Each worker requires their own hut.$(br)The hut-blocks can be crafted by hand, then using the $(thing)Build Tool$() you can choose and place a the hut within your colony, A builder then must construct the building."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutfisherman",
+      "recipe": "minecolonies:blockhutfisherman",
       "text": "Fisherman can catch fish from lakes, rivers, and sea shores nearby. They need only fishing rods."
     },
     {
       "type": "patchouli:text",
-      "text": "The Fisherman is a very reliable source of early-game food, as their output is not dependent on livestock or crop growth or the climate. However colonists will demand more complex food later so you should diversify eventually."
+      "text": "The Fisherman is a very reliable source of early-game food, as their output is not dependent on livestock or crop growth or the climate.$(br)However colonists will demand more complex food later, so you should diversify your food production eventually."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutfarmer",
-      "recipe2": "minecolonies:crafting/blockhutfield"
+      "recipe": "minecoloniesblockhutfarmer",
+      "recipe2": "minecoloniesblockhutfield"
     },
     {
       "type": "patchouli:text",
-      "text": "For each building level a farmer can work 1 extra field, each field can be assigned 1 type of seed, Farmers need seed, hoes, and optionally $(l:tfc:mechanics/fertilizers)fertilizers$() to produce crops. If the crop needs support the farmer will need sticks too."
+      "text": "For each building level a farmer can work 1 extra field, each field can be assigned 1 type of seed, Farmers need seed, hoes, and optionally $(l:tfc:mechanics/fertilizers)fertilizers$() to produce crops. If the crop is a tall crop it will need support, and the farmer will need sticks too create them."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutrabbithutch",
-      "recipe2": "minecolonies:crafting/blockhutswineherder"
+      "recipe": "minecolonies:blockhutrabbithutch",
+      "recipe2": "minecolonies:blockhutswineherder"
     },
     {
       "type": "patchouli:text",
-      "text": "Out of all the herders, $(thing)Swinherder$() and $(thing)Rabbitherders$() produce meat faster, but they only produce meat, leather and bones. And no extra products. You'll need both genders of the respective animal before the worker can start breeding them together"
+      "text": "Out of all the herders, $(thing)Swinherder$() and $(thing)Rabbitherders$() produce meat faster, but they only produce meat, leather and bones. And no extra products. You'll need both genders of the respective animal before the worker can start breeding them together."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutshepherd",
-      "recipe2": "minecolonies:crafting/blockhutcowhand"
+      "recipe": "minecolonies:blockhutshepherd",
+      "recipe2": "minecolonies:blockhutcowhand"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutchickenherder",
-      "text": "The other herders, produce various animal products such as eggs, wool, and milk. They need additional tools to do so."
+      "recipe": "minecolonies:blockhutchickenherder",
+      "text": "The other herders, produce various animal products such as eggs, wool, and milk in addition to the normal drops. They need additional tools to do so."
     },
     {
       "type": "patchouli:text",
@@ -63,7 +59,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutbeekeeper",
+      "recipe": "minecolonies:blockhutbeekeeper",
       "text": "The beekeper tends to $(l:tfc:firmalife/beekeeping)firmalife hives$(), He can take care of 4 hives / Building level."
     },
     {
@@ -76,7 +72,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutflorist",
+      "recipe": "minecolonies:blockhutflorist",
       "text": "The Florist uses $(l:tfc:firmalife/herbs_and_spices)Seed Balls$() to create various firmalife herbs and collects them automatically."
     },
     {

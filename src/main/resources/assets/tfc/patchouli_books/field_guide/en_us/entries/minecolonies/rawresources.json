@@ -10,7 +10,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutlumberjack",
+      "recipe": "minecolonies:blockhutlumberjack",
       "text": "The Forester collects wood in a large area around it's building, collecting and replanting saplings when available."
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecolonies:crafting/blockhutminer",
+      "recipe": "minecolonies:blockhutminer",
       "text": "The Miner collects stone, ores and minerals. They also place torches and cobblestone slabs to make the mineshaft safer."
     },
     {

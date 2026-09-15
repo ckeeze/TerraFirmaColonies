@@ -512,7 +512,6 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             if (this.job.getMaxCraftingCount() == 0) {
                 this.job.setMaxCraftingCount(this.currentRequest.getRequest().getCount());
             }
-
             ItemStack inputStack = this.currentRecipeStorage.getCleanedInput().get(0).getItemStack();
             Predicate<ItemStack> smeltablePredicate = (stack) -> ItemStackUtils.compareItemStacksIgnoreStackSize(inputStack, stack);
             int smeltableInInventory = InventoryUtils.getItemCountInItemHandler(this.worker.getInventoryCitizen(), (stack) -> ItemStackUtils.compareItemStacksIgnoreStackSize(stack, inputStack));
@@ -640,8 +639,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                                 }
                             });
                         }
-
-                        if (entity instanceof CharcoalForgeBlockEntity && this.currentRecipeStorage.getIntermediate() == Blocks.FURNACE) {
+                        if (entity instanceof CharcoalForgeBlockEntity && this.currentRecipeStorage.getIntermediate() != Blocks.SAND) {
                             if (this.worker.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
                                 this.worker.setItemInHand(InteractionHand.MAIN_HAND, inputStack.copy());
                             }
@@ -841,7 +839,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             }
         }
         if (this.building instanceof BuildingStoneSmeltery b) {
-            if (this.currentRecipeStorage.getIntermediate().defaultBlockState().is(BlockTags.SAND)) {
+            if (this.currentRecipeStorage.getIntermediate().defaultBlockState().is(Blocks.SAND)) {
                 for (BlockPos dryPos : ((StoneSmelterNewVariables) b).getDryingBlockList()) {
                     BlockState state = this.world.getBlockState(dryPos.above());
                     if (state.is(Blocks.AIR)) {
@@ -849,17 +847,16 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                     }
                 }
                 return null;
-            }
-            if (((StoneSmelterNewVariables) b).getCharcoalPos() != null) {
+            } else if (((StoneSmelterNewVariables) b).getCharcoalPos() != null) {
                 BlockPos forgePos = ((StoneSmelterNewVariables) b).getCharcoalPos();
                 BlockEntity forge = this.world.getBlockEntity(forgePos);
                 if (forge instanceof CharcoalForgeBlockEntity) {
                     LazyOptional<IItemHandler> capabilityOpt = forge.getCapability(Capabilities.ITEM, null);
                     capabilityOpt.ifPresent(handler -> {
                         topempty.set(handler.getStackInSlot(5).isEmpty() && handler.getStackInSlot(6).isEmpty() && handler.getStackInSlot(7).isEmpty() && handler.getStackInSlot(8).isEmpty() && handler.getStackInSlot(9).isEmpty());
-                        botempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty() && handler.getStackInSlot(4).isEmpty());
+                        botempty.set(handler.getStackInSlot(0).isEmpty());
                     });
-                    if (topempty.get() && !botempty.get()) {
+                    if (topempty.get()) {
                         return forgePos;
                     }
                 }
@@ -898,12 +895,12 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                     }
                 }
             }
-            if (((ChefNewVaraibles) b).getVatPos() != null) {
+            if (((ChefNewVaraibles) b).getVatPos() != null && this.currentRecipeStorage.getIntermediate() == FLBlocks.VAT.get()) {
                 BlockPos vatPos = ((ChefNewVaraibles) b).getVatPos();
                 if (this.world.getBlockEntity(vatPos) instanceof VatBlockEntity vat) {
                     if (this.world.getBlockEntity(vatPos.below()) instanceof OvenBottomBlockEntity bottomOven) {
                         LazyOptional<IItemHandler> capabilityOpt = vat.getCapability(Capabilities.ITEM, null);
-                        capabilityOpt.ifPresent(handler -> topempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty()));
+                        capabilityOpt.ifPresent(handler -> topempty.set(handler.getStackInSlot(0).isEmpty()));
                         LazyOptional<IItemHandler> capabilityOpt2 = bottomOven.getCapability(Capabilities.ITEM, null);
                         capabilityOpt2.ifPresent(handler -> botempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty()));
                         if (topempty.get() && !botempty.get()) {
@@ -912,17 +909,14 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                     }
                 }
             }
-            if (((ChefNewVaraibles) b).getPotPos() != null) {
+            if (((ChefNewVaraibles) b).getPotPos() != null && this.currentRecipeStorage.getIntermediate() == TFCBlocks.POT.get()) {
                 BlockPos potPos = ((ChefNewVaraibles) b).getPotPos();
-                if (this.world.getBlockEntity(potPos) instanceof VatBlockEntity vat) {
-                    if (this.world.getBlockEntity(potPos.below()) instanceof OvenBottomBlockEntity bottomOven) {
-                        LazyOptional<IItemHandler> capabilityOpt = vat.getCapability(Capabilities.ITEM, null);
-                        capabilityOpt.ifPresent(handler -> topempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty()));
-                        LazyOptional<IItemHandler> capabilityOpt2 = bottomOven.getCapability(Capabilities.ITEM, null);
-                        capabilityOpt2.ifPresent(handler -> botempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty()));
-                        if (topempty.get() && !botempty.get()) {
-                            return potPos;
-                        }
+                if (this.world.getBlockEntity(potPos) instanceof PotBlockEntity pot) {
+                    LazyOptional<IItemHandler> capabilityOpt = pot.getCapability(Capabilities.ITEM, null);
+                    capabilityOpt.ifPresent(handler -> topempty.set(handler.getStackInSlot(4).isEmpty() && handler.getStackInSlot(5).isEmpty() && handler.getStackInSlot(6).isEmpty() && handler.getStackInSlot(7).isEmpty() && handler.getStackInSlot(8).isEmpty()));
+                    capabilityOpt.ifPresent(handler -> botempty.set(handler.getStackInSlot(0).isEmpty() && handler.getStackInSlot(1).isEmpty() && handler.getStackInSlot(2).isEmpty() && handler.getStackInSlot(3).isEmpty()));
+                    if (topempty.get() && !botempty.get()) {
+                        return potPos;
                     }
                 }
             }
@@ -954,6 +948,9 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
             }
         }
         if (this.building instanceof BuildingStoneSmeltery b) {
+            if (this.currentRecipeStorage.getIntermediate() == Blocks.SAND) {
+                return null;
+            }
             if (((StoneSmelterNewVariables) b).getCharcoalPos() != null) {
                 BlockPos forgePos = ((StoneSmelterNewVariables) b).getCharcoalPos();
                 BlockEntity forge = this.world.getBlockEntity(forgePos);
@@ -966,9 +963,9 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
                 }
             }
         }
-        if (this.building instanceof BuildingStoneSmeltery b) {
-            if (((StoneSmelterNewVariables) b).getCharcoalPos() != null) {
-                BlockPos forgePos = ((StoneSmelterNewVariables) b).getCharcoalPos();
+        if (this.building instanceof BuildingGlassblower b) {
+            if (((GlassBlowerNewVaraibles) b).getCharcoalPos() != null) {
+                BlockPos forgePos = ((GlassBlowerNewVaraibles) b).getCharcoalPos();
                 BlockEntity forge = this.world.getBlockEntity(forgePos);
                 if (forge instanceof CharcoalForgeBlockEntity) {
                     LazyOptional<IItemHandler> capabilityOpt = forge.getCapability(Capabilities.ITEM, null);
