@@ -21,6 +21,22 @@ public class TFCFoodUtils {
         final @Nullable IFood food = FoodCapability.get(stack);
         if (food == null) return 0;
         final FoodData data = food.getData();
-        return ((data.dairy() * 1.5) + (data.fruit() * 1.1) + data.grain() + (data.protein() * 0.8) + data.vegetables());
+        double nutritionbonus = 1.0;
+        if (data.vegetables() > 0.0) {
+            nutritionbonus = +0.1;
+        }
+        if (data.protein() > 0.0) {
+            nutritionbonus = +0.05;
+        }
+        if (data.grain() > 0.0) {
+            nutritionbonus = +0.1;
+        }
+        if (data.fruit() > 0.0) {
+            nutritionbonus = +0.15;
+        }
+        if (data.dairy() > 0.0) {
+            nutritionbonus = +0.25;
+        }
+        return ((data.dairy() + data.fruit() + data.grain() + data.protein() + data.vegetables()) * nutritionbonus);
     }
 }

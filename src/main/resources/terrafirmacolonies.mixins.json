@@ -35,6 +35,7 @@
     "EntityAIWorkShepherdMixin",
     "EntityAIWorkSwineHerderMixin",
     "EntityCitizenMixin",
+    "FoodUtilsMixin",
     "ItemScepterBeekeeperMixin",
     "ModEquipmentTypesMixin",
     "PathFindingUtilsMixin",
