@@ -2,9 +2,13 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Production",
   "category": "tfc:minecolonies",
-  "icon": "minecolonies:clipboard",
+  "icon": "minecolonies:blockhutsmeltery",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Production workers are WIP in this compatibility mod, for now Baker, Stonesmelter, Sifter, Composter, Fletcher, Carpenter are compatible. More of the workers will be made compatible in future updates"
+    }
   ],
   "read_by_default": true,
-  "sortnum": 1
+  "sortnum": 4
 }

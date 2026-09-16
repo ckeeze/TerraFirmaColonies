@@ -15,24 +15,32 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Even if the forester cannot cut the entire tree in one go, not to worry, they have infinite vertical range and eventually will cut down the tallest trees too."
+      "text": "Even if the forester cannot cut the entire tree in one go, not to worry, they have infinite vertical range and eventually will cut down the tallest trees.$(br)They can use scythes to speed up the collection of saplings, or shears to collect leaf blocks intact. The higher quality of their tools speeds up their work."
     },
     {
-      "type": "patchouli:text",
-      "text": "They can use scythes to speed up the collection of saplings, or shears to collect leaf blocks intact. You can also define a specific zone for them to cut wood at."
+      "type": "patchouli:spotlight",
+      "item": {
+        "item": "minecolonies:scepterlumberjack"
+      },
+      "text": "Using the Forest Tool you can define custom areas where the Forester will work, making sure no other trees get cut down. $(br)To get a Forester tool click the Selection Tool button while opening the Foresterhut's GUI."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "minecolonies:blockhutminer",
-      "text": "The Miner collects stone, ores and minerals. They also place torches and cobblestone slabs to make the mineshaft safer."
+      "text": "The Miner collects stone, ores and minerals. They also place torches and cobblestone slabs to make the mineshaft safer. $(br)Don't worry about cave collapses, the miners do not cause them because they are professionals!"
     },
     {
       "type": "patchouli:text",
       "text": "the torches they place are automatically re-lit when they are nearby, They also generate a small amount of bonus metals from mining normal stone blocks even when they can't find actual ores."
     },
     {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:simplequarry",
+      "recipe2": "minecolonies:mediumquarry"
+    },
+    {
       "type": "patchouli:text",
-      "text": "The Quarrier can be hired from the same building, he mines entire pits instead of creating a mineshaft focusing on collecting wast amounts of stone. The Miners hut can only employ one kind of worker at a time"
+      "text": "The Quarrier can be hired from the same building, he mines entire pits instead of creating a mineshaft focusing on collecting wast amounts of stone. $(br)Use the small and medium quarries to designate an area where they shall mine stone. $(br)The Miners hut can only employ one kind of worker at a time"
     }
   ],
   "read_by_default": true,

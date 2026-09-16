@@ -4,6 +4,38 @@
   "category": "tfc:minecolonies",
   "icon": "minecolonies:clipboard",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Colonies can be started by placing down a townhall, it is advised to place down every building using the Build Tool, instead of by hand. $(br)You also need to choose a Stylepack compatible with TFC otherwise the blocks within the buildings would be unobtainable."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "structurize:sceptergold",
+      "recipe2": "minecolonies:blockhuttownhall"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "First steps",
+      "text": "The first building you need to construct is the builder's hut. Provide him with the materials he asks for. DON'T directly help them build as that might confuse their AI. Your second building should be the Tavern, as it provides 4 beds for your initial residents, and spawns Visitors that can be hired to join your colony."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Needs and happiness",
+      "text": "Colonists work faster when they are happy.$(br)To increase happiness you should try your best to satisfy their various needs. Food, Safety, Housing are the basics. But colonists eventually will demand more complex needs such as education and healthcare, and higher quality foods."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Do not neglect any building's level as all of them increase capabilities of the worker, including the Residents which determine happiness from homes, and the maximum skill level of a worker.$(br)You can view a summary of colony happiness in the townhall's GUI."
+    },
+    {
+      "type": "patchouli:text",
+      "title": "Multi Player",
+      "text": "By Default minecolonies protects your colony from all other players.$(br)They can't place or break blocks, nor harm any entities while inside your colony. $(br)You can set other players as officers in the Townhall's GUI to allow them to help you build and expand your colony."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "It is now up to you to determine the colony's next steps, we recommend you to read about Agriculture within this guide and use your initial workers to secure food supplies."
+    }
   ],
   "read_by_default": true,
   "sortnum": 1

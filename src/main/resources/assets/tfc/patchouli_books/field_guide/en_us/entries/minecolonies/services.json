@@ -2,9 +2,13 @@
   "__comment__": "This file was automatically created by mcresources",
   "name": "Services",
   "category": "tfc:minecolonies",
-  "icon": "minecolonies:clipboard",
+  "icon": "minecolonies:blockhutschool",
   "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The colonists can provide work beyond production. Couriers carry resources automatically within the colony to their desired destinations, Waiters distribute food, Teachers increase skill levels of children, and Doctors cure illnesses in hospitals"
+    }
   ],
   "read_by_default": true,
-  "sortnum": 1
+  "sortnum": 5
 }

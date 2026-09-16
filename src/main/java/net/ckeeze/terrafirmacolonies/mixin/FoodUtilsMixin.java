@@ -20,7 +20,7 @@ public class FoodUtilsMixin {
      * @author Ckeeze
      * @reason using TFC values
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static boolean canEat(ItemStack stack, IBuilding homeBuilding, IBuilding workBuilding) {
         if (TFCFoodUtils.isTFCEdibleFood(stack)) {
             return false;
@@ -34,7 +34,7 @@ public class FoodUtilsMixin {
      * @author Ckeeze
      * @reason using TFC values
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static boolean canEatLevel(ItemStack stack, int buildingLevel) {
         if (stack.getItem() instanceof ItemCrop) {
             return false;
@@ -50,7 +50,7 @@ public class FoodUtilsMixin {
      * @author Ckeeze
      * @reason Using TFC values
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static int getBuildingLevelForFood(ItemStack resource) {
         return (int) Math.max(2, Math.min(TFCFoodUtils.getTFCEffectiveNutrition(resource) - 1, 5));
     }
@@ -59,7 +59,7 @@ public class FoodUtilsMixin {
      * @author Ckeeze
      * @reason getting better values for TFC foods depending on nutrient values
      */
-    @Overwrite
+    @Overwrite(remap = false)
     public static double getFoodValue(ItemStack foodStack, @Nullable FoodProperties itemFood, double researchBonus) {
         if (itemFood == null) {
             return 0.0F;

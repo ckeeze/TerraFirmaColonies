@@ -11,16 +11,12 @@
     {
       "type": "patchouli:crafting",
       "recipe": "minecolonies:blockhutfisherman",
-      "text": "Fisherman can catch fish from lakes, rivers, and sea shores nearby. They need only fishing rods."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The Fisherman is a very reliable source of early-game food, as their output is not dependent on livestock or crop growth or the climate.$(br)However colonists will demand more complex food later, so you should diversify your food production eventually."
+      "text": "Fisherman can catch fish from lakes, rivers, and sea shores nearby. They need only fishing rods.$(br)The Fisherman is a very reliable source of early-game food, as their output is not dependent on livestock or crop growth or the climate"
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "minecoloniesblockhutfarmer",
-      "recipe2": "minecoloniesblockhutfield"
+      "recipe": "minecolonies:blockhutfarmer",
+      "recipe2": "minecolonies:blockhutfield"
     },
     {
       "type": "patchouli:text",
@@ -38,7 +34,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "minecolonies:blockhutshepherd",
-      "recipe2": "minecolonies:blockhutcowhand"
+      "recipe2": "minecolonies:blockhutcowboy"
     },
     {
       "type": "patchouli:crafting",
@@ -47,37 +43,25 @@
     },
     {
       "type": "patchouli:text",
-      "text": "Each herder can herd the alternative animals belonging to it's production type: WoolyAnimals, OvipariousAnimals, DairyAnimals. For example the shepherd can handle alpacas too. It is advised to only give 1 species to a worker at a time"
+      "text": "Each herder can herd the alternative animals belonging to it's production type: $(thing)WoolyAnimals$(), $(thing)OvipariousAnimals$(), $(thing)DairyAnimals$(). For example the shepherd can handle Alpacas and Musk Oxen too. It is advised to only give 1 species to a worker at a time"
     },
     {
       "type": "patchouli:text",
-      "text": "All herders handle 4 animals / Building level. Extra animals are slaughtered, The workers take care not to kill babies, or pregnant animals. They also always spare at least 2 adults of each gender. The Breeding setting within the huts turns dictates if animals are fed"
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The Breeding setting within the huts turns on and off feeding for the animals"
+      "text": "All herders handle 4 animals / Building level. Extra animals are slaughtered, The workers take care not to kill babies, or pregnant animals.$(br)They also always spare at least 2 adults of each gender. The Breeding setting within the huts turns dictates if animals are fed.$(br)The Breeding setting within the huts turns on and off feeding for the animals."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "minecolonies:blockhutbeekeeper",
-      "text": "The beekeper tends to $(l:tfc:firmalife/beekeeping)firmalife hives$(), He can take care of 4 hives / Building level."
+      "text": "The Beekeper tends to $(l:tfc:firmalife/beekeeping)firmalife hives$(), He can take care of 4 hives / Building level."
     },
     {
       "type": "patchouli:text",
-      "text": "To add a specific hive use the hive tool, summoned from the apiary hut block itself. Beekeepers can collect either wax or Honey depending on the settings within the hut."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "There is a research option to allow beekeepers to collect both at once."
+      "text": "To add a specific hive use the hive tool, summoned from the apiary hut block itself. Beekeepers can collect either wax or Honey depending on the settings within the hut. $(br)There is a research option to allow beekeepers to collect both at once."
     },
     {
       "type": "patchouli:crafting",
       "recipe": "minecolonies:blockhutflorist",
-      "text": "The Florist uses $(l:tfc:firmalife/herbs_and_spices)Seed Balls$() to create various firmalife herbs and collects them automatically."
-    },
-    {
-      "type": "patchouli:text",
-      "text": "The ratio of herbs / Seed Ball Improves with the florist's skill level and the building level."
+      "text": "The Florist uses $(l:tfc:firmalife/herbs_and_spices)Seed Balls$() to create various firmalife herbs and collects them automatically. $(br)The ratio of herbs / Seed Ball Improves with the florist's skill level and the building level."
     }
   ],
   "read_by_default": true,

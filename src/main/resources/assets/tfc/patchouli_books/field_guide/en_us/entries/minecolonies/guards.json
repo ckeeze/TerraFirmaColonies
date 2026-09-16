@@ -1,0 +1,23 @@
+{
+  "__comment__": "This file was automatically created by mcresources",
+  "name": "Guards",
+  "category": "tfc:minecolonies",
+  "icon": "tfc:metal/sword/steel",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "Guards provide protection from raiders, increase hapiness by making the citizens safe, and the Guard towers can also claim wider areas for your colony's expansion."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutguardtower",
+      "recipe2": "minecolonies:banner_rally_guards"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Rallying banner can be used to call up your guards, they cannot leave the colony and will stop following you when you leave it."
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 6
+}
