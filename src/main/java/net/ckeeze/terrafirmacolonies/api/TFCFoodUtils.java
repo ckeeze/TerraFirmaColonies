@@ -23,19 +23,19 @@ public class TFCFoodUtils {
         final FoodData data = food.getData();
         double nutritionbonus = 1.0;
         if (data.vegetables() > 0.0) {
-            nutritionbonus = +0.1;
+            nutritionbonus += 0.1;
         }
         if (data.protein() > 0.0) {
-            nutritionbonus = +0.05;
+            nutritionbonus += 0.05;
         }
         if (data.grain() > 0.0) {
-            nutritionbonus = +0.1;
+            nutritionbonus += 0.1;
         }
         if (data.fruit() > 0.0) {
-            nutritionbonus = +0.15;
+            nutritionbonus += 0.15;
         }
         if (data.dairy() > 0.0) {
-            nutritionbonus = +0.25;
+            nutritionbonus += 0.25;
         }
         return ((data.dairy() + data.fruit() + data.grain() + data.protein() + data.vegetables()) * nutritionbonus);
     }
