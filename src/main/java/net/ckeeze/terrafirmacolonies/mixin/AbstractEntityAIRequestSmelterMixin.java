@@ -59,15 +59,15 @@ import static com.mojang.text2speech.Narrator.LOGGER;
 
 @Mixin(value = AbstractEntityAIRequestSmelter.class)
 public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobCrafter<?, J>, B extends AbstractBuilding> extends AbstractEntityAICrafting<J, B> {
-    @Shadow
+    @Shadow(remap = false)
     protected abstract List<ItemStack> getActivePossibleFuels();
 
-    @Shadow
+    @Shadow(remap = false)
     private static Predicate<ItemStack> isCorrectFuel(List<ItemStack> possibleFuels) {
         return null;
     }
 
-    @Shadow
+    @Shadow(remap = false)
     private BlockPos furnacePos;
 
     public AbstractEntityAIRequestSmelterMixin(@NotNull J job) {
@@ -1366,7 +1366,7 @@ public abstract class AbstractEntityAIRequestSmelterMixin<J extends AbstractJobC
         return 0;
     }
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract void recordSmeltingBuildingStats(Component hoverName, int count);
 
     /**

@@ -57,12 +57,12 @@ public abstract class EntityAIWorkFloristMixin extends AbstractEntityAIInteract<
         }
     }
 
-    @Shadow
+    @Shadow(remap = false)
     private static final VisibleCitizenStatus GARDENING = null;
-    @Shadow
+    @Shadow(remap = false)
     private BlockPos harvestPosition;
 
-    @Shadow
+    @Shadow(remap = false)
     private BlockPos compostPosition;
 
     public EntityAIWorkFloristMixin(@NotNull JobFlorist job) {

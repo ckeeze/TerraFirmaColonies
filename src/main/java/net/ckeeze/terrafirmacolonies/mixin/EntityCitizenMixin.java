@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class EntityCitizenMixin extends AbstractEntityCitizen {
 
     @Override
-    @Shadow
+    @Shadow(remap = false)
     public abstract ICitizenJobHandler getCitizenJobHandler();
 
     public EntityCitizenMixin(EntityType<? extends PathfinderMob> type, Level world) {

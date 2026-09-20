@@ -22,7 +22,7 @@ public class FoodUtilsMixin {
      */
     @Overwrite(remap = false)
     public static boolean canEat(ItemStack stack, IBuilding homeBuilding, IBuilding workBuilding) {
-        if (TFCFoodUtils.isTFCEdibleFood(stack)) {
+        if (!TFCFoodUtils.isTFCEdibleFood(stack)) {
             return false;
         } else {
             int homeBuildingLevel = homeBuilding == null ? 0 : homeBuilding.getBuildingLevelEquivalent();

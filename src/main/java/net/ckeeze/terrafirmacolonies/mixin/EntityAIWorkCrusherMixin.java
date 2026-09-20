@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.*;
 @Mixin(value = EntityAIWorkCrusher.class)
 public abstract class EntityAIWorkCrusherMixin extends AbstractEntityAICrafting<JobCrusher, BuildingCrusher> {
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     private static VisibleCitizenStatus CRUSHING;
     @Unique

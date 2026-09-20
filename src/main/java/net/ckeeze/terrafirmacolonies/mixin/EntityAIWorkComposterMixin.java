@@ -35,14 +35,14 @@ import java.util.List;
 @Mixin(value = EntityAIWorkComposter.class)
 public abstract class EntityAIWorkComposterMixin extends AbstractEntityAIInteract<JobComposter, BuildingComposter> {
 
-    @Shadow
+    @Shadow(remap = false)
     private BlockPos currentTarget;
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     private static VisibleCitizenStatus COMPOST;
 
-    @Shadow
+    @Shadow(remap = false)
     protected abstract void complain();
 
     public EntityAIWorkComposterMixin(@NotNull JobComposter job) {

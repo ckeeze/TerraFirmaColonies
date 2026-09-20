@@ -18,7 +18,7 @@ import java.util.List;
 @Mixin(value = BuildingComposter.class)
 public abstract class BuildingComposterMixin extends AbstractBuilding {
 
-    @Shadow
+    @Shadow(remap = false)
     @Final
     private List<BlockPos> barrels;
 
