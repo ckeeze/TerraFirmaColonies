@@ -6,6 +6,7 @@ import com.ldtteam.structurize.placement.handlers.placement.PlacementHandlers;
 import net.dries007.tfc.common.blocks.StainedWattleBlock;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.blocks.ThatchBedBlock;
+import net.dries007.tfc.common.blocks.WattleBlock;
 import net.dries007.tfc.common.blocks.devices.CharcoalForgeBlock;
 import net.dries007.tfc.common.blocks.devices.FirepitBlock;
 import net.dries007.tfc.common.blocks.devices.GrillBlock;
@@ -18,6 +19,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Tuple;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -77,7 +80,7 @@ public class TFCPlacementHandlers {
         ) {
             List<ItemStack> itemList = new ArrayList<>();
             if (blockState.getValue(BedBlock.PART) == BedPart.HEAD) {
-                itemList.add(new ItemStack(TFCItems.HIDES.get(HideItemType.RAW).get(HideItemType.Size.LARGE).get().asItem()));
+                itemList.add(new ItemStack(TFCItems.HIDES.get(HideItemType.RAW).get(HideItemType.Size.LARGE).get()));
                 itemList.add(new ItemStack(TFCBlocks.THATCH.get().asItem(), 2));
             }
             return itemList;
@@ -200,7 +203,8 @@ public class TFCPlacementHandlers {
                 @NotNull IPlacementContext placementContext
         ) {
             List<ItemStack> list = new ArrayList<>(List.of(
-                    new ItemStack(Items.STICK, 3)
+                    new ItemStack(Items.STICK, 3),
+                    new ItemStack(TFCItems.STRAW.get(), 1)
             ));
             if (blockState.getBlock() instanceof PotBlock) {
                 list.add(new ItemStack(TFCItems.POT.get()));
@@ -217,8 +221,26 @@ public class TFCPlacementHandlers {
         }
     }
 
-    //Wattle
-    static class WattlePlacementHandler implements IPlacementHandler {
+    //Stained Wattle
+    static class StainedWattlePlacementHandler implements IPlacementHandler {
+
+        private final Map<Block, Item> stainedWattleToDye = Map.ofEntries(
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.WHITE).get(), Items.WHITE_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.LIGHT_GRAY).get(), Items.LIGHT_GRAY_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.GRAY).get(), Items.GRAY_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.BLACK).get(), Items.BLACK_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.YELLOW).get(), Items.YELLOW_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.BLUE).get(), Items.BLUE_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.BROWN).get(), Items.BROWN_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.LIGHT_BLUE).get(), Items.LIGHT_BLUE_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.GREEN).get(), Items.GREEN_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.LIME).get(), Items.LIME_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.MAGENTA).get(), Items.MAGENTA_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.PINK).get(), Items.PINK_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.PURPLE).get(), Items.PURPLE_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.RED).get(), Items.RED_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.CYAN).get(), Items.CYAN_DYE),
+                Map.entry(TFCBlocks.STAINED_WATTLE.get(DyeColor.ORANGE).get(), Items.ORANGE_DYE));
 
         @Override
         public boolean canHandle(final Level world, final BlockPos pos, final BlockState blockState) {
@@ -246,7 +268,10 @@ public class TFCPlacementHandlers {
                 @NotNull IPlacementContext placementContext
         ) {
             List<ItemStack> list = new ArrayList<>(List.of(
-                    new ItemStack(blockState.getBlock().asItem(), 1)
+                    new ItemStack(TFCBlocks.WATTLE.get().asItem(), 1),
+                    new ItemStack(TFCItems.DAUB.get(), 1),
+                    new ItemStack(Items.STICK, 4),
+                    new ItemStack(stainedWattleToDye.get(blockState.getBlock()), 1)
             ));
             if (blockState.getValue(StainedWattleBlock.TOP)) {
                 list.add(new ItemStack(Items.STICK));
@@ -261,6 +286,155 @@ public class TFCPlacementHandlers {
                 list.add(new ItemStack(Items.STICK));
             }
             return list;
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
+        }
+    }
+
+
+    //Unstained Wattle
+    static class UnstainedWattlePlacementHandler implements IPlacementHandler {
+
+        @Override
+        public boolean canHandle(final Level world, final BlockPos pos, final BlockState blockState) {
+            return blockState.is(TFCBlocks.UNSTAINED_WATTLE.get());
+        }
+
+        @Override
+        public ActionProcessingResult handle(
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
+        ) {
+            world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
+            return ActionProcessingResult.SUCCESS;
+        }
+
+        @Override
+        public List<ItemStack> getRequiredItems(
+                Level world,
+                BlockPos pos,
+                BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
+        ) {
+            List<ItemStack> list = new ArrayList<>(List.of(
+                    new ItemStack(TFCBlocks.WATTLE.get().asItem(), 1),
+                    new ItemStack(TFCItems.DAUB.get(), 1),
+                    new ItemStack(Items.STICK, 4)
+            ));
+            if (blockState.getValue(StainedWattleBlock.TOP)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            if (blockState.getValue(StainedWattleBlock.BOTTOM)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            if (blockState.getValue(StainedWattleBlock.LEFT)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            if (blockState.getValue(StainedWattleBlock.RIGHT)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            return list;
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
+        }
+    }
+
+    //Undaubed Wattle
+    static class UndaubedWattlePlacementHandler implements IPlacementHandler {
+
+        @Override
+        public boolean canHandle(final Level world, final BlockPos pos, final BlockState blockState) {
+            return blockState.is(TFCBlocks.WATTLE.get());
+        }
+
+        @Override
+        public ActionProcessingResult handle(
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
+        ) {
+            world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
+            return ActionProcessingResult.SUCCESS;
+        }
+
+        @Override
+        public List<ItemStack> getRequiredItems(
+                Level world,
+                BlockPos pos,
+                BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
+        ) {
+            List<ItemStack> list = new ArrayList<>(List.of(
+                    new ItemStack(TFCBlocks.WATTLE.get().asItem(), 1)
+            ));
+            if (blockState.getValue(WattleBlock.WOVEN)) {
+                list.add(new ItemStack(Items.STICK, 4));
+            }
+            if (blockState.getValue(StainedWattleBlock.TOP)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            if (blockState.getValue(StainedWattleBlock.BOTTOM)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            if (blockState.getValue(StainedWattleBlock.LEFT)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            if (blockState.getValue(StainedWattleBlock.RIGHT)) {
+                list.add(new ItemStack(Items.STICK));
+            }
+            return list;
+        }
+
+        @Override
+        public boolean doesWorldStateMatchBlueprintState(BlockState worldState, BlockState blueprintState, Tuple<BlockEntity, CompoundTag> blockEntityData, @NotNull IPlacementContext structureHandler) {
+            return worldState.equals(blueprintState);
+        }
+    }
+
+    //TFCTorcj
+    static class TFCTorchPlacementHandler implements IPlacementHandler {
+
+        @Override
+        public boolean canHandle(final Level world, final BlockPos pos, final BlockState blockState) {
+            return blockState.is(TFCBlocks.DEAD_TORCH.get());
+        }
+
+        @Override
+        public ActionProcessingResult handle(
+                @NotNull Level world,
+                @NotNull BlockPos pos,
+                @NotNull BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
+        ) {
+            world.setBlock(pos, blockState.getBlock().defaultBlockState(), UPDATE_FLAG);
+            return ActionProcessingResult.SUCCESS;
+        }
+
+        @Override
+        public List<ItemStack> getRequiredItems(
+                Level world,
+                BlockPos pos,
+                BlockState blockState,
+                @Nullable CompoundTag tileEntityData,
+                @NotNull IPlacementContext placementContext
+        ) {
+            return new ArrayList<>(List.of(
+                    new ItemStack(TFCItems.TORCH.get(), 1)
+            ));
         }
 
         @Override

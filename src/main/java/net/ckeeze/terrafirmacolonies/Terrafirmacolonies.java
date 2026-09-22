@@ -10,6 +10,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import static com.mojang.text2speech.Narrator.LOGGER;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Terrafirmacolonies.MODID)
 public class Terrafirmacolonies {
@@ -24,14 +26,15 @@ public class Terrafirmacolonies {
 
         IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::commonSetup);
-
+        modEventBus.addListener(this::onLoadComplete);
         MinecraftForge.EVENT_BUS.register(this);
 
     }
 
     //Initializing Custom PlacementHandlers
     @SubscribeEvent
-    public static void onLoadComplete(final FMLLoadCompleteEvent event) {
+    public void onLoadComplete(final FMLLoadCompleteEvent event) {
+        LOGGER.info("TFCColonies onLoadComplete");
         PlacementHandlerInitializer.initHandlers();
     }
 
