@@ -61,14 +61,18 @@ public class FoodUtilsMixin {
      */
     @Overwrite(remap = false)
     public static double getFoodValue(ItemStack foodStack, @Nullable FoodProperties itemFood, double researchBonus) {
-        if (itemFood == null) {
-            return 0.0F;
-        }
-        if (!foodStack.is(TFCTags.Items.FOODS)) {
-            double saturationNerf = foodStack.getItem() instanceof IMinecoloniesFoodItem ? (double) 1.0F : (double) 0.25F;
-            return (double) itemFood.getNutrition() * saturationNerf / 1.2 * ((double) 1.0F + researchBonus);
+        double value = TFCFoodUtils.getTFCEffectiveNutrition(foodStack);
+        if (value != 0) {
+            return value;
         } else {
-            return TFCFoodUtils.getTFCEffectiveNutrition(foodStack);
+            if (!foodStack.is(TFCTags.Items.FOODS)) {
+                if (itemFood == null) {
+                    return 0.0F;
+                }
+                double saturationNerf = foodStack.getItem() instanceof IMinecoloniesFoodItem ? (double) 1.0F : (double) 0.25F;
+                return (double) itemFood.getNutrition() * saturationNerf / 1.2 * ((double) 1.0F + researchBonus);
+            }
         }
+        return value;
     }
 }

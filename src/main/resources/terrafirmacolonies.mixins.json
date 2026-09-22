@@ -37,6 +37,7 @@
     "EntityCitizenMixin",
     "FoodUtilsMixin",
     "ItemScepterBeekeeperMixin",
+    "ItemStackUtilsMixin",
     "ModEquipmentTypesMixin",
     "PathFindingUtilsMixin",
     "PondMixin",
