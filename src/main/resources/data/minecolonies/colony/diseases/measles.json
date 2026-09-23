@@ -3,11 +3,11 @@
   "rarity": 10,
   "items": [
     {
-      "tag": "terrafirmacolonies:cultivatedherbs",
+      "tag": "tfc:powder/salt",
       "count": 1
     },
     {
-      "item": "firmalife:raw_honey",
+      "item": "tfc:food/dried_kelp",
       "count": 1
     }
   ]

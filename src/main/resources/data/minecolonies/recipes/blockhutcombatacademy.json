@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "tag": "items:tfc:swords"
+      "tag": "tfc:swords"
     },
     "T": {
       "item": "structurize:sceptergold"
