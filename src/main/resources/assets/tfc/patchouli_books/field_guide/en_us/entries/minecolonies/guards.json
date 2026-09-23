@@ -6,7 +6,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "Guards provide protection from raiders, increase hapiness by making the citizens safe, and the Guard towers can also claim wider areas for your colony's expansion."
+      "text": "Guards provide protection from raiders, increase hapiness by making the citizens safe, and the Guard towers can also claim wider areas than any other building to facilitate your colony's expansion."
     },
     {
       "type": "patchouli:crafting",
@@ -15,7 +15,11 @@
     },
     {
       "type": "patchouli:text",
-      "text": "The Rallying banner can be used to call up your guards, they cannot leave the colony and will stop following you when you leave it."
+      "text": "The Rallying banner can be used to call up your guards, they cannot leave the colony and will stop following you when you leave it. Guards can be equipped with any melee weapon and armour, as long as their building level matches the equipment's level."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Alternatively you can hire archers at the guard tower instead of knights. There is also the Barracks, a building that can help you recruit multiple guards at once."
     }
   ],
   "read_by_default": true,

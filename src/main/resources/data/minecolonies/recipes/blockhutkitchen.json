@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:smoker"
+      "item": "firmalife:plate"
     },
     "T": {
       "item": "structurize:sceptergold"
@@ -14,7 +14,7 @@
   },
   "pattern": [
     "XTX",
-    "XBX",
+    "BBB",
     "XXX"
   ],
   "result": {

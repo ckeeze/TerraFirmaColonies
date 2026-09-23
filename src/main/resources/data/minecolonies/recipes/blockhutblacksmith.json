@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:iron_ingot"
+      "tag": "tfc:hammers"
     },
     "T": {
       "item": "structurize:sceptergold"

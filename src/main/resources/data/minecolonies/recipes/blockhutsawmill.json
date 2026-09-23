@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:wooden_axe"
+      "item": "items:tfc:saws"
     },
     "T": {
       "item": "structurize:sceptergold"

@@ -2,11 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "A": {
-      "item": "minecraft:stone_bricks"
-    },
     "F": {
-      "item": "minecraft:furnace"
+      "item": "minecraft:charcoal"
+    },
+    "A": {
+      "item": "minecraft:brick"
     },
     "T": {
       "item": "structurize:sceptergold"

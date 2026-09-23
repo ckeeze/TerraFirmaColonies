@@ -9,7 +9,7 @@
       "item": "structurize:sceptergold"
     },
     "X": {
-      "item": "minecraft:stone"
+      "tag": "tfc:rock/raw"
     }
   },
   "pattern": [

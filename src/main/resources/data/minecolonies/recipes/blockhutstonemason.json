@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:stone_bricks"
+      "tag": "tfc:chisels"
     },
     "T": {
       "item": "structurize:sceptergold"
@@ -14,7 +14,7 @@
   },
   "pattern": [
     "XTX",
-    "BBB",
+    "XBX",
     "XXX"
   ],
   "result": {
