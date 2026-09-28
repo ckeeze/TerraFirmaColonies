@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:diamond"
+      "tag": "tfc:gem_powders"
     },
     "T": {
       "item": "structurize:sceptergold"

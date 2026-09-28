@@ -3,11 +3,11 @@
   "rarity": 1,
   "items": [
     {
-      "tag": "tfc:powder/salt",
+      "item": "tfc:powder/salt",
       "count": 1
     },
     {
-      "tag": "tfc:food/dried_kelp",
+      "item": "tfc:food/dried_kelp",
       "count": 1
     },
     {

@@ -3,7 +3,7 @@
   "rarity": 10,
   "items": [
     {
-      "tag": "tfc:powder/salt",
+      "item": "tfc:powder/salt",
       "count": 1
     },
     {

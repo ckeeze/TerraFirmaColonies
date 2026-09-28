@@ -7,6 +7,16 @@
     {
       "type": "patchouli:text",
       "text": "Production workers are WIP in this compatibility mod, for now Baker, Stonesmelter, Sifter, Composter, Fletcher, Carpenter are compatible. More of the workers will be made compatible in future updates"
+    },
+    {
+      "type": "patchouli:text",
+      "title": "The Request system",
+      "text": "Each crafter makes processed goods on demand via the Request system.$(br)Requests are automatically created by other citizens when they need items for their own jobs (such as the builder requesting blocks). $(br)You can also create requests manually using the $(thing)Postbox$(). $(br)Once the requested good is produced a currier will pick it up and deliver it to it's destination.$(br)Ongoing requests can be viewed using the clipboard."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockpostbox",
+      "recipe2": "minecolonies:clipboard"
     }
   ],
   "read_by_default": true,

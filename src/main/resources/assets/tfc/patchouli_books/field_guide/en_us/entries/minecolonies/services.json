@@ -7,6 +7,55 @@
     {
       "type": "patchouli:text",
       "text": "The colonists can provide work beyond production. Couriers carry resources automatically within the colony to their desired destinations, Waiters distribute food, Teachers increase skill levels of children, and Doctors cure illnesses in hospitals"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutdeliveryman",
+      "recipe2": "minecolonies:blockhutwarehouse"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The Warehous and the Currier should be one of your first buildings, Curriers can organise your stockpile of resources automatically in the warehouse and deliver goods on demand to your other citizens.$(br)When the colony is expanding you should employ multiple couriers to avoid production holdups."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockstash",
+      "text": "You can also tell the currier to sort items into the Warehouse you collected by putting them into the Stash, placing a few stashes around your colony can keep your inventory clean."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockpostbox",
+      "text": "You can also request items to be brought to you using the postbox. If the item isn't found in the warehouse the colony will try to produce it automatically for you (if it's craftable)."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutcook",
+      "text": "The Dining hall not only automatically distributes food around your colony, they also give happiness bonus to their customers. Colonists like to share a meal at a table!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhuthospital",
+      "text": "Doctors at the hospital can cure disease quicker and for cheaper than you can manually!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutuniversity",
+      "text": "You can research colony improvements at the university. Some unlock new building types or crafting recipes, and others give various stat bonuses to your citizens!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutschool",
+      "text": "At the School the children can improve their skills before they become adults and enter the workforce. Your colonists will also complain if children can't receive education!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutlibrary",
+      "text": "At the Library Adult colonists can further improve their skills during their free time."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "minecolonies:blockhutmysticalsite",
+      "text": "The Mystical site improves the happiness of your colony with no costs other than the construction bill. Only 1 Mystical site per colony can be built"
     }
   ],
   "read_by_default": true,

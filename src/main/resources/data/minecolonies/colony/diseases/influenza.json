@@ -3,7 +3,7 @@
   "rarity": 100,
   "items": [
     {
-      "tag": "firmalife:raw_honey",
+      "item": "firmalife:raw_honey",
       "count": 1
     },
     {
