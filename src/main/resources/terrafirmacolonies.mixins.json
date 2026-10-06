@@ -7,6 +7,7 @@
   "mixins": [
     "AbstractEntityAIBasicMixin",
     "AbstractEntityAIHerderMixin",
+    "BlueprintUtilMixin",
     "AbstractEntityAIRequestSmelterMixin",
     "BuildingBakerMixin",
     "BuildingBeekeeperMixin",

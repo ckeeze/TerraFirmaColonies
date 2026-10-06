@@ -6,6 +6,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -26,6 +27,8 @@ public class Terrafirmacolonies {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::onLoadComplete);
         MinecraftForge.EVENT_BUS.register(this);
+
+        context.registerConfig(Type.COMMON, Config.instance.getRight());
 
     }
 
