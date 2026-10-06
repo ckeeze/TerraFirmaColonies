@@ -3,11 +3,11 @@
   "rarity": 1,
   "items": [
     {
-      "tag": "terrafirmacolonies:wildherbs",
+      "item": "tfc:powder/salt",
       "count": 1
     },
     {
-      "tag": "terrafirmacolonies:cultivatedherbs",
+      "item": "tfc:food/dried_kelp",
       "count": 1
     },
     {

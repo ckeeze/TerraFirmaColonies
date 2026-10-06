@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/rye_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:food/rye_bread",
+  "show-tooltip": true
+}

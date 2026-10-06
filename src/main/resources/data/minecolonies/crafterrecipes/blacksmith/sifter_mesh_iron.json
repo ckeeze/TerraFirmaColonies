@@ -4,6 +4,9 @@
   "inputs": [
     {
       "item": "tfc:metal/ingot/wrought_iron"
+    },
+    {
+      "item": "minecolonies:sifter_mesh_string"
     }
   ],
   "intermediate": "minecraft:air",

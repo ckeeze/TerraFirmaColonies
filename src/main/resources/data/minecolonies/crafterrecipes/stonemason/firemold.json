@@ -1,0 +1,13 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 4,
+      "item": "tfc:ceramic/unfired_fire_ingot_mold"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": "tfc:ceramic/unfired_fire_ingot_mold",
+  "show-tooltip": true
+}

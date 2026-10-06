@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:fishing_rod"
+      "tag": "forge:fishing_rods"
     },
     "T": {
       "item": "structurize:sceptergold"

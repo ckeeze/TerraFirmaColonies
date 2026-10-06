@@ -1,0 +1,13 @@
+{
+  "type": "recipe",
+  "crafter": "stonemason_crafting",
+  "inputs": [
+    {
+      "count": 4,
+      "item": "tfc:ceramic/unfired_pot"
+    }
+  ],
+  "intermediate": "minecraft:air",
+  "result": "tfc:ceramic/unfired_pot",
+  "show-tooltip": true
+}

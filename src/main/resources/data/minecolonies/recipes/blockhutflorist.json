@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "tag": "terrafirmacolonies:cultivatedherbs"
+      "tag": "minecraft:flower_pot"
     },
     "T": {
       "item": "structurize:sceptergold"
@@ -14,7 +14,7 @@
   },
   "pattern": [
     "XTX",
-    "XBX",
+    "BBB",
     "XXX"
   ],
   "result": {

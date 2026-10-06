@@ -25,7 +25,7 @@ public class Terrafirmacolonies {
 
         IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::commonSetup);
-
+        modEventBus.addListener(this::onLoadComplete);
         MinecraftForge.EVENT_BUS.register(this);
 
         context.registerConfig(Type.COMMON, Config.instance.getRight());
@@ -34,7 +34,7 @@ public class Terrafirmacolonies {
 
     //Initializing Custom PlacementHandlers
     @SubscribeEvent
-    public static void onLoadComplete(final FMLLoadCompleteEvent event) {
+    public void onLoadComplete(final FMLLoadCompleteEvent event) {
         PlacementHandlerInitializer.initHandlers();
     }
 

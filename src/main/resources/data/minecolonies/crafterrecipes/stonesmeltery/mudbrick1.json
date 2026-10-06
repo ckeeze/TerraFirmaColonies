@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "stonesmeltery_smelting",
+  "inputs": [
+    {
+      "item": "tfc:drying_bricks/sandy_loam"
+    }
+  ],
+  "intermediate": "minecraft:sand",
+  "result": "tfc:mud_brick/sandy_loam",
+  "show-tooltip": true
+}

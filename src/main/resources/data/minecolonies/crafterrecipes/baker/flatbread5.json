@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "tfc:food/rice_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "firmalife:food/rice_flatbread",
+  "show-tooltip": true
+}

@@ -57,6 +57,7 @@ public abstract class EntityAIWorkChickenWorkerMixin extends AbstractEntityAIHer
         if (eggpos != null) {
             //Tested behavior walkToPos needs to be negated
             if (!EntityNavigationUtils.walkToPos(this.worker, eggpos, 2, true)) {
+                return this.getState();
             } else {
                 terrafirmacolonies$ejectEggsFromNest(eggpos);
             }

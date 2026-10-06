@@ -8,6 +8,5 @@
     }
   ],
   "intermediate": "minecraft:air",
-  "research-id": "minecolonies:effects/crushing11unlock",
   "result": "tfc:powder/saltpeter"
 }

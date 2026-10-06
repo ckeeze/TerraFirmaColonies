@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "baker_smelting",
+  "inputs": [
+    {
+      "item": "firmalife:food/chocolate_chip_cookie_dough"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "firmalife:food/chocolate_chip_cookie",
+  "show-tooltip": true
+}

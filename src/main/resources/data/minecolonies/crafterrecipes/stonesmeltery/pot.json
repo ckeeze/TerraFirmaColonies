@@ -1,0 +1,12 @@
+{
+  "type": "recipe",
+  "crafter": "stonesmeltery_smelting",
+  "inputs": [
+    {
+      "item": "tfc:ceramic/unfired_pot"
+    }
+  ],
+  "intermediate": "minecraft:furnace",
+  "result": "tfc:ceramic/pot",
+  "show-tooltip": true
+}

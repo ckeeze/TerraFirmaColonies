@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "B": {
-      "item": "minecraft:string"
+      "item": "tfc:wool_yarn"
     },
     "T": {
       "item": "structurize:sceptergold"
@@ -14,7 +14,7 @@
   },
   "pattern": [
     "XTX",
-    "XBX",
+    "BBB",
     "XXX"
   ],
   "result": {

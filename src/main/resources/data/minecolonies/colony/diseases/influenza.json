@@ -3,7 +3,7 @@
   "rarity": 100,
   "items": [
     {
-      "tag": "terrafirmacolonies:wildherbs",
+      "item": "firmalife:raw_honey",
       "count": 1
     },
     {
