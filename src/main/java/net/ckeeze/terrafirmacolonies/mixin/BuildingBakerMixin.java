@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
@@ -50,7 +51,8 @@ public abstract class BuildingBakerMixin extends AbstractBuilding implements Bak
     @Override
     public void deserializeNBT(CompoundTag compound) {
         super.deserializeNBT(compound);
-        ListTag ovenTagList = compound.getList("Ovens", 10);
+        this.terrafirmacolonies$ovenPosList.clear();
+        ListTag ovenTagList = compound.getList("Ovens", Tag.TAG_COMPOUND);
         for (int i = 0; i < ovenTagList.size(); ++i) {
             CompoundTag ovenCompound = ovenTagList.getCompound(i);
             this.terrafirmacolonies$ovenPosList.add(NbtUtils.readBlockPos(ovenCompound));

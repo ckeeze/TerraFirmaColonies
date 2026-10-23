@@ -3,6 +3,7 @@ package net.ckeeze.terrafirmacolonies.mixin;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.core.colony.buildings.AbstractBuilding;
 import com.minecolonies.core.colony.buildings.workerbuildings.BuildingStoneSmeltery;
+import net.ckeeze.terrafirmacolonies.api.BuildingEquipmentNbt;
 import net.ckeeze.terrafirmacolonies.api.MiscellaniousUtil;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.StoneSmelterNewVariables;
 import net.dries007.tfc.common.blocks.TFCBlocks;
@@ -11,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -103,21 +105,22 @@ public abstract class BuildingStoneSmelteryMixin extends AbstractBuilding implem
             dryingBlockTagList.add(NbtUtils.writeBlockPos(pos));
         }
         compound.put("DryingBlocks", dryingBlockTagList);
-        compound.put("forge", NbtUtils.writeBlockPos(terrafirmacolonies$charcoalForge));
-        compound.put("bellow", NbtUtils.writeBlockPos(terrafirmacolonies$bellow));
+        BuildingEquipmentNbt.writeOptionalPosition(compound, "forge", terrafirmacolonies$charcoalForge);
+        BuildingEquipmentNbt.writeOptionalPosition(compound, "bellow", terrafirmacolonies$bellow);
         return compound;
     }
 
     @Override
     public void deserializeNBT(CompoundTag compound) {
         super.deserializeNBT(compound);
-        ListTag dryingBlockTagList = compound.getList("DryingBlocks", 10);
+        this.terrafirmacolonies$dryingBlock.clear();
+        ListTag dryingBlockTagList = compound.getList("DryingBlocks", Tag.TAG_COMPOUND);
         for (int i = 0; i < dryingBlockTagList.size(); ++i) {
             CompoundTag ovenCompound = dryingBlockTagList.getCompound(i);
             this.terrafirmacolonies$dryingBlock.add(NbtUtils.readBlockPos(ovenCompound));
         }
-        this.terrafirmacolonies$charcoalForge = NbtUtils.readBlockPos(compound.getCompound("forge"));
-        this.terrafirmacolonies$bellow = NbtUtils.readBlockPos(compound.getCompound("bellow"));
+        this.terrafirmacolonies$charcoalForge = BuildingEquipmentNbt.readOptionalPosition(compound, "forge");
+        this.terrafirmacolonies$bellow = BuildingEquipmentNbt.readOptionalPosition(compound, "bellow");
     }
 
 }

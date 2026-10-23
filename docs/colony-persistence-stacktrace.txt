@@ -1,0 +1,17 @@
+[20:26:02] [Server thread/WARN] [minecolonies/]: Something went wrong persisting colony: 1
+java.lang.NullPointerException: Cannot invoke "net.minecraft.core.BlockPos.m_123341_()" because "p_129225_" is null
+	at net.minecraft.nbt.NbtUtils.m_129224_(NbtUtils.java:207) ~[server-1.20.1-20230612.114412-srg.jar%23121!/:?] {re:mixin,re:classloading}
+	at com.minecolonies.core.colony.buildings.workerbuildings.BuildingKitchen.serializeNBT(BuildingKitchen.java:579) ~[minecolonies-1.20.1-1.1.1237-snapshot.jar%23114!/:1.20.1-1.1.1237-snapshot] {re:mixin,re:classloading,pl:mixin:APP:terrafirmacolonies.mixins.json:BuildingKitchenMixin,pl:mixin:A}
+	at com.minecolonies.core.colony.managers.RegisteredStructureManager.write(RegisteredStructureManager.java:255) ~[minecolonies-1.20.1-1.1.1237-snapshot.jar%23114!/:1.20.1-1.1.1237-snapshot] {re:classloading}
+	at com.minecolonies.core.colony.Colony.write(Colony.java:923) ~[minecolonies-1.20.1-1.1.1237-snapshot.jar%23114!/:1.20.1-1.1.1237-snapshot] {re:classloading}
+	at com.minecolonies.core.colony.Colony.getColonyTag(Colony.java:1675) ~[minecolonies-1.20.1-1.1.1237-snapshot.jar%23114!/:1.20.1-1.1.1237-snapshot] {re:classloading}
+	at lab.PersistenceProbe.started(PersistenceProbe.java:114) ~[persistence-probe.jar%23116!/:?] {re:classloading}
+	at net.minecraftforge.eventbus.EventBus.doCastFilter(EventBus.java:267) ~[eventbus-6.2.33.jar%2352!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.lambda$addListener$4(EventBus.java:258) ~[eventbus-6.2.33.jar%2352!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:312) ~[eventbus-6.2.33.jar%2352!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:298) ~[eventbus-6.2.33.jar%2352!/:?] {}
+	at net.minecraftforge.server.ServerLifecycleHooks.handleServerStarted(ServerLifecycleHooks.java:115) ~[forge-1.20.1-47.4.18-universal.jar%23126!/:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.m_130011_(MinecraftServer.java:638) ~[server-1.20.1-20230612.114412-srg.jar%23121!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.m_206580_(MinecraftServer.java:251) ~[server-1.20.1-20230612.114412-srg.jar%23121!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:840) ~[?:?] {}
+PERSISTENCE_PROBE PASS failed serialization returns SAME previous cached colony tag

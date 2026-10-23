@@ -4,6 +4,7 @@ import com.eerussianguy.firmalife.common.blocks.FLBlocks;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.core.colony.buildings.AbstractBuilding;
 import com.minecolonies.core.colony.buildings.workerbuildings.BuildingKitchen;
+import net.ckeeze.terrafirmacolonies.api.BuildingEquipmentNbt;
 import net.ckeeze.terrafirmacolonies.api.MiscellaniousUtil;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.ChefNewVaraibles;
 import net.dries007.tfc.common.blocks.TFCBlocks;
@@ -11,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
@@ -65,7 +67,7 @@ public abstract class BuildingKitchenMixin extends AbstractBuilding implements C
 
     @Override
     public BlockPos getVatPos() {
-        return this.terrafirmacolonies$pot;
+        return this.terrafirmacolonies$VAT;
     }
 
     @Override
@@ -76,20 +78,21 @@ public abstract class BuildingKitchenMixin extends AbstractBuilding implements C
             ovenTagList.add(NbtUtils.writeBlockPos(pos));
         }
         compound.put("Ovens", ovenTagList);
-        compound.put("Pot", NbtUtils.writeBlockPos(terrafirmacolonies$pot));
-        compound.put("VAT", NbtUtils.writeBlockPos(terrafirmacolonies$VAT));
+        BuildingEquipmentNbt.writeOptionalPosition(compound, "Pot", terrafirmacolonies$pot);
+        BuildingEquipmentNbt.writeOptionalPosition(compound, "VAT", terrafirmacolonies$VAT);
         return compound;
     }
 
     @Override
     public void deserializeNBT(CompoundTag compound) {
         super.deserializeNBT(compound);
-        ListTag ovenTagList = compound.getList("Ovens", 5);
+        this.terrafirmacolonies$ovenPosList.clear();
+        ListTag ovenTagList = compound.getList("Ovens", Tag.TAG_COMPOUND);
         for (int i = 0; i < ovenTagList.size(); ++i) {
             CompoundTag ovenCompound = ovenTagList.getCompound(i);
             this.terrafirmacolonies$ovenPosList.add(NbtUtils.readBlockPos(ovenCompound));
         }
-        this.terrafirmacolonies$pot = NbtUtils.readBlockPos(compound.getCompound("Pot"));
-        this.terrafirmacolonies$VAT = NbtUtils.readBlockPos(compound.getCompound("VAT"));
+        this.terrafirmacolonies$pot = BuildingEquipmentNbt.readOptionalPosition(compound, "Pot");
+        this.terrafirmacolonies$VAT = BuildingEquipmentNbt.readOptionalPosition(compound, "VAT");
     }
 }

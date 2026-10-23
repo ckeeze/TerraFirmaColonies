@@ -3,12 +3,12 @@ package net.ckeeze.terrafirmacolonies.mixin;
 import com.minecolonies.api.colony.IColony;
 import com.minecolonies.core.colony.buildings.AbstractBuilding;
 import com.minecolonies.core.colony.buildings.workerbuildings.BuildingGlassblower;
+import net.ckeeze.terrafirmacolonies.api.BuildingEquipmentNbt;
 import net.ckeeze.terrafirmacolonies.api.mixininterfaces.GlassBlowerNewVaraibles;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.util.Metal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
@@ -47,13 +47,13 @@ public abstract class BuildingGlassBlowerMixin extends AbstractBuilding implemen
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag compound = super.serializeNBT();
-        compound.put("forge", NbtUtils.writeBlockPos(terrafirmacolonies$charcoalForge));
+        BuildingEquipmentNbt.writeOptionalPosition(compound, "forge", terrafirmacolonies$charcoalForge);
         return compound;
     }
 
     @Override
     public void deserializeNBT(CompoundTag compound) {
         super.deserializeNBT(compound);
-        this.terrafirmacolonies$charcoalForge = NbtUtils.readBlockPos(compound.getCompound("forge"));
+        this.terrafirmacolonies$charcoalForge = BuildingEquipmentNbt.readOptionalPosition(compound, "forge");
     }
 }
