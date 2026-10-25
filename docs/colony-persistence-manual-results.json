@@ -1,0 +1,559 @@
+{
+  "runtime": "Minecraft 1.20.1 / Forge 47.4.18 / MineColonies 1.1.1237 / fixed TerraFirmaColonies 0.1.3.4",
+  "method": "Player Build Tool registration; main-tab screenshots before/after normal restart and forced process termination after completed flush; saved NBT independently inspected",
+  "results": [
+    {
+      "phase": "P0",
+      "result": "passed",
+      "coverage": "Player-created unfinished town hall survives normal save/stop/restart and is accessible in game",
+      "colony_id": 1,
+      "colony_name": "Persistence Test",
+      "mayor": "Atfaster",
+      "townhall_position": {
+        "x": 867,
+        "y": 77,
+        "z": 3523
+      },
+      "townhall_level": 0,
+      "structure_pack": "Medieval Oak",
+      "previous_citizen_spawn_event_retained": "Yehuda E. Gardiner",
+      "additional_spawn_event_observed": "Florence L. Ayde",
+      "limits": [
+        "No kitchen/glassblower/stone smeltery placed yet",
+        "No university or production AI coverage",
+        "Live observation copy; not a new flushed NBT snapshot"
+      ],
+      "file_sha256": {
+        "server-log-observation.log": "cbec6a0f80c6d05bbe809117f29c85ebcc652f57d696aac577e8475cbe13fb67",
+        "screenshots\\2026-10-23_23.16.29.png": "f73cd5e728068a3521473d6f81def544f4bb8f0e1e21d35b55237d5d4cffb223",
+        "screenshots\\2026-10-23_23.16.34.png": "6d859568565c12d97beb1e80355fe30ffa2f39e9c8f636bbc5233d9b5adc56be"
+      }
+    },
+    {
+      "phase": "P1-kitchen",
+      "result": "passed",
+      "scenario": "Player registers an unfinished kitchen through Build Tool, server flushes/stops/restarts, player reopens its main GUI",
+      "colony_id": 1,
+      "building_type": "minecolonies:kitchen",
+      "level_before": 0,
+      "level_after": 0,
+      "position": {
+        "x": 880,
+        "y": 75,
+        "z": 3516
+      },
+      "assigned_workers_before": [],
+      "assigned_workers_after": [],
+      "equipment_tags_before_restart": {
+        "Pot_present": false,
+        "VAT_present": false
+      },
+      "screenshot": "2026-10-23_23.27.41.png",
+      "screenshot_sha256": "72e585c786711500209a6d19a9842ee99e87321a3c556440528dcf0e9d40adc6",
+      "limits": [
+        "Kitchen only; glassblower and stone smeltery manual tests pending",
+        "No built-building, research or production AI coverage",
+        "Observation copy while server is running, not a new flushed NBT snapshot"
+      ]
+    },
+    {
+      "phase": "P1-glassblower",
+      "result": "passed",
+      "building": "minecolonies:glassblower",
+      "level_before": 0,
+      "level_after": 0,
+      "position": {
+        "x": 903,
+        "y": 74,
+        "z": 3508
+      },
+      "tab": "Main",
+      "assigned_workers_before": [],
+      "assigned_workers_after": [],
+      "screenshot": "2026-10-23_23.42.26.png",
+      "screenshot_sha256": "1451baf1dda3072ac1e83777ac94fb4c7cecfb3c8e2ca85f3aa6dab04b115bd3",
+      "limits": [
+        "Normal restart of unfinished building only",
+        "No production AI coverage",
+        "Stone smeltery manual test pending"
+      ]
+    },
+    {
+      "phase": "P1-stonesmeltery",
+      "result": "passed",
+      "building": "minecolonies:stonesmeltery",
+      "level_before": 0,
+      "level_after": 0,
+      "position": {
+        "x": 933,
+        "y": 72,
+        "z": 3511
+      },
+      "tab": "Main",
+      "assigned_workers_before": [],
+      "assigned_workers_after": [],
+      "screenshot": "2026-10-23_23.47.00.png",
+      "screenshot_sha256": "1298263b45ab0168bf8ad656ae20fb64ae00690b6e381f0b4fa7748b1e08fa6c",
+      "limits": [
+        "Normal restart of unfinished building only",
+        "No research or production AI coverage"
+      ]
+    },
+    {
+      "phase": "P2-forced-termination",
+      "result": "passed",
+      "scenario": "Player-registered unfinished buildings survive completed save-all flush, forced Java process termination, and a new server JVM",
+      "termination_evidence": "P2-after-crash-20261023-234857/termination-result.json",
+      "normal_stop_used": false,
+      "colony_id": 1,
+      "colony_name": "Persistence Test",
+      "mayor": "Atfaster",
+      "townhall_position": {
+        "x": 867,
+        "y": 77,
+        "z": 3523
+      },
+      "reopened_buildings": [
+        {
+          "type": "minecolonies:stonesmeltery",
+          "level": 0,
+          "assigned_workers": []
+        },
+        {
+          "type": "minecolonies:glassblower",
+          "level": 0,
+          "assigned_workers": []
+        },
+        {
+          "type": "minecolonies:kitchen",
+          "level": 0,
+          "assigned_workers": []
+        },
+        {
+          "type": "minecolonies:townhall",
+          "level": 0
+        }
+      ],
+      "citizens_reported": "4/1",
+      "limits": [
+        "Forced termination after completed flush, not during a write or power loss",
+        "No completed construction, university work cycle or citizen production/navigation coverage",
+        "Live observation log and screenshots; not a new flushed NBT snapshot"
+      ],
+      "file_sha256": {
+        "screenshots\\2026-10-23_23.51.47.png": "89d3497542b0dfae5034eebf6336c5081ec8840008a6eae42ede2702b93934b1",
+        "screenshots\\2026-10-23_23.51.54.png": "27f8e2e60cda8538b0d74319e9ae2ed07226361504b327f1c76cd7d44d407adf",
+        "screenshots\\2026-10-23_23.52.02.png": "0798df38e2ccd8c845f033d26160cf921517231e6c73823d18695a2c372e8cc1",
+        "screenshots\\2026-10-23_23.52.08.png": "788333e6d72217fc0d191f800fc8428a39d07257b1cda80b393020a47eea381e",
+        "screenshots\\2026-10-23_23.52.13.png": "b6add594505a99370415aeb8fb58ffb6a56ff59523c1082b644ba9c7b92757d4",
+        "screenshots\\2026-10-23_23.52.20.png": "d3d693122d198190cb657fe7e9abf7f8e7ebb48ad8b017895975b343557f26e1",
+        "server-log-observation.log": "6c3ab097cbfa9c70c92b54e9ad10ef591eff5e0bf8cd170667c2c478820ab2d8"
+      }
+    },
+    {
+      "phase": "full-pack-interior-kitchen-construction",
+      "result": "passed: builder construction, save, new JVM reload and player GUI check",
+      "colony_id": 1,
+      "colony_name": "Persistence Full Pack",
+      "runtime": "Minecraft 1.20.1 / Forge 47.4.20 / MineColonies 1.1.1237 / fixed TerraFirmaColonies 0.1.3.4 / WarNTaxes 5.0.9",
+      "pack": "TFC Interrior Only Universal",
+      "blueprint": "craftsmanship\\luxury\\kitchen 1.blueprint",
+      "building_position": {
+        "z": 2863,
+        "x": 606,
+        "y": 70
+      },
+      "level": 1,
+      "is_built": true,
+      "registered_pot": {
+        "Y": 70,
+        "Z": 2863,
+        "X": 611
+      },
+      "registered_ovens": [
+        {
+          "Y": 71,
+          "Z": 2856,
+          "X": 607
+        }
+      ],
+      "VAT_tag_present": false,
+      "builder": "Ishaan X. Annesley",
+      "builder_completed_actions": 1,
+      "builder_statistics": [
+        {
+          "id": "build_built",
+          "stat": [
+            {
+              "time": 1,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "id": "blocks_placed",
+          "stat": [
+            {
+              "time": 1,
+              "quantity": 33
+            }
+          ]
+        }
+      ],
+      "chef_residents_at_save": [
+        2
+      ],
+      "work_orders_at_save": [],
+      "material_and_tool_supply": "Player fulfilled requests in Creative; builder performed construction",
+      "save_completed_at": "2026-10-24 01:05:21 Asia/Qyzylorda",
+      "limits": [
+        "Chef assignment is not proof of production",
+        "No university work cycle tested",
+        "This restart attempt is not an unassisted clean JVM exit; a non-daemon scheduler thread kept the process alive"
+      ],
+      "file_sha256": {
+        "2026-10-24_01.04.56.png": "2b285619cb3988c14861ed02730b2d014eacd48e0308c7c442ca3a23f7ccc49c",
+        "capabilities.dat": "ac779cefe7e9aa18b239f8de806b499d06eaf1ddad689e10aeb8810abd95024b",
+        "server-observation.log": "9b77dbdfd2d57a1cd164de83c5abe650e991a11ef8737d9e8dda2bf734e5d8ec"
+      },
+      "shutdown_method": "Normal stop saved and closed world; lingering JVM then forcibly cleaned up after thread dump; no Server thread remained",
+      "shutdown_thread_owner": "not established",
+      "saved_capabilities_unchanged_after_cleanup": true,
+      "server_reload_nbt_check": "passed: colony name, three building records and levels, pot and single oven preserved; VAT remains absent",
+      "post_reload_player_gui_check": {
+        "result": "passed",
+        "level": 1,
+        "chef": "Dylan Z. Miller",
+        "screenshot": "2026-10-24_01.11.30.png",
+        "sha256": "352c726e11507643d9b5b85794db1407e429ce98b49e6590dd54bf1b76bd26e7"
+      }
+    },
+    {
+      "phase": "full-pack-first-aid-completion",
+      "result": "passed: GUI-started accelerated research completion, save, new JVM reload and player GUI check",
+      "colony_id": 1,
+      "colony_name": "Persistence Full Pack",
+      "research": {
+        "state": 2,
+        "branch": "minecolonies:civilian",
+        "progress": 7,
+        "depth": 1,
+        "id": "minecolonies:civilian/firstaid"
+      },
+      "researcher": "Darwin A. Asger",
+      "method": "Player starts First Aid through GUI; normal researcher work advances progress; no complete command or progress/state NBT edits",
+      "duration_override": {
+        "scope": "Civilian branch in this disposable test world",
+        "base_time_before": 1.0,
+        "base_time_after": 0.1,
+        "work_steps_before": 72,
+        "work_steps_after": 7
+      },
+      "observed_saved_progress": [
+        {
+          "progress": 4,
+          "state": 1,
+          "before_acceleration": true
+        },
+        {
+          "progress": 6,
+          "state": 1,
+          "after_reload": true
+        },
+        {
+          "progress": 7,
+          "state": 2,
+          "completed": true
+        }
+      ],
+      "research_creative_completion": false,
+      "screenshot_observation": "Green checkmark on First Aid",
+      "buildings": [
+        {
+          "type": "minecolonies:townhall",
+          "level": 1,
+          "position": {
+            "z": 2871,
+            "x": 588,
+            "y": 75
+          }
+        },
+        {
+          "type": "minecolonies:builder",
+          "level": 1,
+          "position": {
+            "z": 2843,
+            "x": 585,
+            "y": 69
+          }
+        },
+        {
+          "type": "minecolonies:kitchen",
+          "level": 1,
+          "position": {
+            "z": 2863,
+            "x": 606,
+            "y": 70
+          }
+        },
+        {
+          "type": "minecolonies:university",
+          "level": 1,
+          "position": {
+            "z": 2824,
+            "x": 591,
+            "y": 69
+          }
+        }
+      ],
+      "kitchen_equipment": {
+        "pot": {
+          "Y": 70,
+          "Z": 2863,
+          "X": 611
+        },
+        "ovens": [
+          {
+            "Y": 71,
+            "Z": 2856,
+            "X": 607
+          }
+        ],
+        "VAT_tag_present": false
+      },
+      "limits": [
+        "Accelerated duration does not validate default 30-minute timing",
+        "Citizen production is not established by this research test"
+      ],
+      "file_sha256": {
+        "2026-10-24_01.22.03.png": "4bcb26086cb5bac2a8ada58b3f2d27f3a8e65017b12074598d5da5737cf8beb1",
+        "capabilities.dat": "55e323bb803d8e46edf3bbbd28543e731c777f0aaa8b6a8d40e94101d2ed4a7b",
+        "server-observation.log": "ed033ae42c4ca33abb3619a3181d733c676e4c28f1fa40d989e8da8f64dd6695"
+      },
+      "server_reload_nbt_check": "passed: finished First Aid, four building records and levels, all four citizens and job assignments, kitchen pot and oven retained",
+      "post_reload_player_gui_check": {
+        "phase": "full-pack-first-aid-post-restart-gui",
+        "result": "passed",
+        "colony_id": 1,
+        "research_id": "minecolonies:civilian/firstaid",
+        "research_gui": "Green completion checkmark retained",
+        "university_level": 1,
+        "researcher": "Darwin A. Asger",
+        "server_nbt_evidence": "first-aid-after-reload-nbt/result.json",
+        "duration_override": "Civilian base-time=0.1; Creative auto-completion disabled",
+        "shutdown_method": "Normal stop saved and closed world; lingering JVM then forcibly cleaned up",
+        "limits": [
+          "No claim of default 30-minute timing",
+          "No citizen production coverage",
+          "Not an unassisted clean JVM exit"
+        ],
+        "file_sha256": {
+          "2026-10-24_01.29.17.png": "972e3fb90f08217bdd890d3d95629a3a2ae5c970c8cf853c304f4d7f77a1f689",
+          "2026-10-24_01.29.26.png": "ce31d0976f4328222ab8481c58209d5e90022e8a59dbdd7373b7ba646d7af103",
+          "server-observation.log": "ae51e0cdecbc22cd689069e8aad18fba0fdafc79eb8e18051ef131d5b219eed5"
+        }
+      },
+      "shutdown_method": "Normal stop saved and closed world, followed by forced cleanup of lingering JVM"
+    },
+    {
+      "phase": "full-pack-persistence-only-final-reload",
+      "result": "NBT comparison and post-restart player GUI checks passed",
+      "jar_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "runtime": "Minecraft 1.20.1 / Forge 47.4.20 / MineColonies 1.1.1237 / WarNTaxes 5.0.9",
+      "saved_state": {
+        "colony_id": 1,
+        "colony_name": "Persistence Full Pack",
+        "buildings": [
+          {
+            "type": "minecolonies:townhall",
+            "level": 1,
+            "location": {
+              "z": 2871,
+              "x": 588,
+              "y": 75
+            },
+            "pack": "TFC Alpine",
+            "path": "fundamentals\\Townhall 1.blueprint"
+          },
+          {
+            "type": "minecolonies:builder",
+            "level": 1,
+            "location": {
+              "z": 2843,
+              "x": 585,
+              "y": 69
+            },
+            "pack": "TFC Alpine",
+            "path": "fundamentals\\builder1.blueprint"
+          },
+          {
+            "type": "minecolonies:kitchen",
+            "level": 1,
+            "location": {
+              "z": 2863,
+              "x": 606,
+              "y": 70
+            },
+            "pack": "TFC Interrior Only Universal",
+            "path": "craftsmanship\\luxury\\kitchen 1.blueprint",
+            "Pot": {
+              "Y": 70,
+              "Z": 2863,
+              "X": 611
+            },
+            "Ovens": [
+              {
+                "Y": 71,
+                "Z": 2856,
+                "X": 607
+              }
+            ]
+          },
+          {
+            "type": "minecolonies:university",
+            "level": 1,
+            "location": {
+              "z": 2824,
+              "x": 591,
+              "y": 69
+            },
+            "pack": "TFC Interrior Only Universal",
+            "path": "education\\University 1.blueprint"
+          },
+          {
+            "type": "minecolonies:glassblower",
+            "level": 1,
+            "location": {
+              "z": 2846,
+              "x": 607,
+              "y": 69
+            },
+            "pack": "TFC Interrior Only Universal",
+            "path": "craftsmanship\\luxury\\Glassblower 1.blueprint",
+            "forge": {
+              "Y": 69,
+              "Z": 2844,
+              "X": 609
+            }
+          }
+        ],
+        "workers": [
+          {
+            "id": 1,
+            "name": "Ishaan X. Annesley",
+            "job_type": "minecolonies:builder",
+            "work_position": {
+              "z": 2843,
+              "x": 585,
+              "y": 69
+            }
+          },
+          {
+            "id": 2,
+            "name": "Dylan Z. Miller",
+            "job_type": "minecolonies:chef",
+            "work_position": {
+              "z": 2863,
+              "x": 606,
+              "y": 70
+            }
+          },
+          {
+            "id": 3,
+            "name": "Darwin A. Asger",
+            "job_type": "minecolonies:researcher",
+            "work_position": {
+              "z": 2824,
+              "x": 591,
+              "y": 69
+            }
+          },
+          {
+            "id": 4,
+            "name": "Aya O. Cod",
+            "job_type": "minecolonies:glassblower",
+            "work_position": {
+              "z": 2846,
+              "x": 607,
+              "y": 69
+            }
+          }
+        ],
+        "research": {
+          "state": 2,
+          "branch": "minecolonies:civilian",
+          "progress": 7,
+          "depth": 1,
+          "id": "minecolonies:civilian/firstaid"
+        }
+      },
+      "persistence_errors_found": false,
+      "artifact_scope": "Persistence fix only; independent AI changes excluded",
+      "shutdown_method": "Previous JVM saved and closed world; lingering scheduled executor required verified forced process cleanup",
+      "limits": [
+        "No production or general AI-fix claim",
+        "Pre-stop world ran the separately tested AI artifact; reload and re-save used the persistence-only artifact",
+        "No remote server parity or mid-write power-loss claim"
+      ],
+      "file_sha256": {
+        "capabilities.dat": "dba7f4b2e6633c48d78635b818e51c01c1c65572d45754312cc88a75667d37b0",
+        "server-observation.log": "c6fcf1460cffe4dfbc19dbca2a5ee0fcd8c2a5a564b7e8e9323338a1f5e64e8e"
+      },
+      "post_restart_player_gui": "See full-pack-persistence-only-final-player-gui"
+    },
+    {
+      "phase": "full-pack-persistence-only-final-player-gui",
+      "result": "passed",
+      "jar_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "kitchen_gui": {
+        "level": 1,
+        "assigned_worker": "Dylan Z. Miller"
+      },
+      "research_gui": {
+        "id": "minecolonies:civilian/firstaid",
+        "completed_checkmark": true
+      },
+      "post_observation_flush": "02:32:31",
+      "post_flush_nbt": {
+        "building_count": 5,
+        "citizen_count": 4,
+        "research": {
+          "state": 2,
+          "branch": "minecolonies:civilian",
+          "progress": 7,
+          "depth": 1,
+          "id": "minecolonies:civilian/firstaid"
+        },
+        "kitchen_pot": {
+          "Y": 70,
+          "Z": 2863,
+          "X": 611
+        },
+        "kitchen_ovens": [
+          {
+            "Y": 71,
+            "Z": 2856,
+            "X": 607
+          }
+        ],
+        "VAT_tag_present": false
+      },
+      "persistence_error_found": false,
+      "separate_ai_error": "Existing glassblower ClassCastException and worker pauses reappeared after removing the independent AI fix; not addressed by this persistence PR",
+      "file_sha256": {
+        "2026-10-24_02.31.38.png": "ca606425017ad1ab50b2197591ecd52f2754b29507bb0160e2539e7f646aaaff",
+        "2026-10-24_02.31.55.png": "107a4802ff0e8e959bfa797567e9db8b3e59bd5de053a4c6c230538049e30019",
+        "capabilities.dat": "bd70d8277ab889ef8c0ad8e27ffe70762c67cbc3133cf4c4840aaacae60d0068",
+        "server-observation.log": "e7a9227fbdfe0b62e61f1b9ff39727117e456a002ddf8596936ee5b9ca0196b7"
+      }
+    }
+  ],
+  "pending": [],
+  "scope": "Colony persistence only; independent glassblower AI fixes and TFC glassworking production are excluded",
+  "limitations": [
+    "No production AI or navigation acceptance claim",
+    "Full-pack checks include WarNTaxes 5.0.9, but remote server configuration and specific incidents are not verified",
+    "Full-pack stops required forced cleanup of a lingering scheduled executor after the server thread exited and the world was saved",
+    "Forced termination after completed flush does not simulate a mid-write power loss"
+  ]
+}

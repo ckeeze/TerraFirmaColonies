@@ -1,0 +1,336 @@
+{
+  "baseline": {
+    "blockui-1.20.1-1.0.190-snapshot.jar": {
+      "size": 390916,
+      "sha256": "b6ed0fbf31f7351d6ad151a01c507a3d51e405f09bf2e2a46cb528fcdcf96a96"
+    },
+    "domum_ornamentum-1.20.1-1.0.288-snapshot-universal.jar": {
+      "size": 1139998,
+      "sha256": "f92741d361749140fc176b177c3ff83c86e254b66b473d4811c14057efd2264e"
+    },
+    "Firmalife-1.20.1-2.1.28.jar": {
+      "size": 4671061,
+      "sha256": "d6379c5536360feeb9c7b2334764917c8441762a28b08edc2ce2122c55d17737"
+    },
+    "FirmalifeEnhance-Forge-1.20.1-1.0.0.jar": {
+      "size": 222065,
+      "sha256": "c00dcaaf852f1ca63e42cccd006c15c8a10f91635de8cd7aa8512fb8aceeb48c"
+    },
+    "minecolonies-1.20.1-1.1.1237-snapshot.jar": {
+      "size": 77801209,
+      "sha256": "7ba02e0cb62a33bcd027ee26772c9298e22bddf50345e8b64a532077d7cdda29"
+    },
+    "Patchouli-1.20.1-85-FORGE.jar": {
+      "size": 642732,
+      "sha256": "05f7b5d52f6b8f0fd7f8b4822fa07a192d1394d83a264309c9d221d6d4fd21c5"
+    },
+    "persistence-probe.jar": {
+      "size": 12763,
+      "sha256": "112366a0ac4aa65778b4f2c67236392267b3163c41dec713d2c4bd681308296a"
+    },
+    "structurize-1.20.1-1.0.806-snapshot.jar": {
+      "size": 1124580,
+      "sha256": "b095261e31a517264f44aa6f369243857fb253102c180f62e1514d6d1af94fc0"
+    },
+    "terrafirmacolonies-0.1.3.4.jar": {
+      "size": 564711,
+      "sha256": "8f79cbc4abd68d048493da1e1ccf2aa2b77407a9f383c3f9b546741ec7459b29"
+    },
+    "TerraFirmaCraft-Forge-1.20.1-3.2.27.jar": {
+      "size": 47433654,
+      "sha256": "8e493c970c6fb18809e84ff443ba11fd2a65dc0980f77a8b85e638f4d47bb1cd"
+    }
+  },
+  "runs": [
+    {
+      "mode": "inspect-control",
+      "label": "control-restart",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "probe_sha256": "112366a0ac4aa65778b4f2c67236392267b3163c41dec713d2c4bd681308296a",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE inspect-control",
+        "PASS one persisted colony",
+        "RESTART name=UNSAVED_PROGRESS buildings=2 research=[minecolonies:technology/woodwork]",
+        "PASS expected name after restart",
+        "PASS expected building count after restart",
+        "PASS expected research after restart",
+        "READY"
+      ],
+      "log_sha256": "c56122bd849afc6b466d566ba563cee93fcd7c8db345df587c2c7446bc9753df",
+      "capabilities_sha256": "3ed8311502f9ac8eee3bfd7dcdf38bc336e6aed6031a61590edc209f954aabb4",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "UNSAVED_PROGRESS",
+          "building_count": 2,
+          "research_fields": {
+            "research": {
+              "researchTree": [
+                {
+                  "Data": {
+                    "depth": 1,
+                    "progress": 0,
+                    "state": 2,
+                    "id": "minecolonies:technology/woodwork",
+                    "branch": "minecolonies:technology"
+                  },
+                  "NType": 29
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "control",
+      "label": "control-save",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "probe_sha256": "112366a0ac4aa65778b4f2c67236392267b3163c41dec713d2c4bd681308296a",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE control",
+        "EXPECTED_NULL kitchen",
+        "PASS fresh kitchen serialization fails",
+        "EXPECTED_NULL glassblower",
+        "PASS fresh glassblower serialization fails",
+        "EXPECTED_NULL stonesmeltery",
+        "PASS fresh stonesmeltery serialization fails",
+        "PASS kitchen with pot but no VAT fails",
+        "PASS kitchen with both coordinates serializes",
+        "PASS kitchen loses saved oven list on deserialize (wrong NBT type)",
+        "PASS glassblower with forge serializes",
+        "PASS stonesmeltery with forge but no bellow fails",
+        "PASS stonesmeltery with forge and bellow serializes",
+        "PASS research completed in memory",
+        "PASS new building exists in memory",
+        "PASS valid kitchen allows new colony snapshot",
+        "READY"
+      ],
+      "log_sha256": "71ead874fcf6302d10e0be649c90a87601f6a33206d8c5c36d9a2381a70f55ed",
+      "capabilities_sha256": "c825695b0d0d40ff28ccd4fc0e18d914e86fb4195e7b3a5432954360cb3d84fe",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "UNSAVED_PROGRESS",
+          "building_count": 2,
+          "research_fields": {
+            "research": {
+              "researchTree": [
+                {
+                  "Data": {
+                    "depth": 1,
+                    "progress": 0,
+                    "state": 2,
+                    "id": "minecolonies:technology/woodwork",
+                    "branch": "minecolonies:technology"
+                  },
+                  "NType": 29
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "mutate",
+      "label": "crash-mutate",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": true,
+      "exit_code": 1,
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE mutate",
+        "EXPECTED_NULL kitchen",
+        "PASS fresh kitchen serialization fails",
+        "EXPECTED_NULL glassblower",
+        "PASS fresh glassblower serialization fails",
+        "EXPECTED_NULL stonesmeltery",
+        "PASS fresh stonesmeltery serialization fails",
+        "PASS kitchen with pot but no VAT fails",
+        "PASS kitchen with both coordinates serializes",
+        "PASS kitchen loses saved oven list on deserialize (wrong NBT type)",
+        "PASS glassblower with forge serializes",
+        "PASS stonesmeltery with forge but no bellow fails",
+        "PASS stonesmeltery with forge and bellow serializes",
+        "PASS research completed in memory",
+        "PASS new building exists in memory",
+        "PASS failed serialization returns SAME previous cached colony tag",
+        "PASS cached data remains unchanged",
+        "READY"
+      ],
+      "log_sha256": "ed61a60d148c90ba6c63df480ca3a86a2e36420d271f6988c79273f640173bce",
+      "capabilities_sha256": "c16ca6357691a92a1ab1bba548dde81488c305c14bb68b283ca661a6170d8813",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "BASELINE",
+          "building_count": 1,
+          "research_fields": {
+            "research": {
+              "researchTree": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "inspect",
+      "label": "crash-restart",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE inspect",
+        "PASS one persisted colony",
+        "RESTART name=BASELINE buildings=1 research=[]",
+        "PASS expected name after restart",
+        "PASS expected building count after restart",
+        "PASS expected research after restart",
+        "READY"
+      ],
+      "log_sha256": "2d17e903e65d8be8ba5df68c5c3bf866966230b0df1cd517de7e105049cc08c7",
+      "capabilities_sha256": "ec76032cc527683854e9396ef31b63fc39d7d847118cb22197098696ad4e837f",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "BASELINE",
+          "building_count": 1,
+          "research_fields": {
+            "research": {
+              "researchTree": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "mutate",
+      "label": "graceful-mutate",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "shutdown_error_in_log": true,
+      "assertions": [
+        "MODE mutate",
+        "EXPECTED_NULL kitchen",
+        "PASS fresh kitchen serialization fails",
+        "EXPECTED_NULL glassblower",
+        "PASS fresh glassblower serialization fails",
+        "EXPECTED_NULL stonesmeltery",
+        "PASS fresh stonesmeltery serialization fails",
+        "PASS kitchen with pot but no VAT fails",
+        "PASS kitchen with both coordinates serializes",
+        "PASS research completed in memory",
+        "PASS new building exists in memory",
+        "PASS failed serialization returns SAME previous cached colony tag",
+        "PASS cached data remains unchanged",
+        "READY"
+      ],
+      "log_sha256": "e35f4e369fb9e4ab6f251d5cccccc7ce76f535ea5272c78e2a6cbd0f84e2e378",
+      "capabilities_sha256": "c18d914b3d105d30a325d6fad0ad9fdfbf65b35c3aa8562d759f0a8a494c6c48",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "BASELINE",
+          "building_count": 1,
+          "research_fields": {
+            "research": {
+              "researchTree": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "inspect",
+      "label": "graceful-restart",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE inspect",
+        "PASS one persisted colony",
+        "RESTART name=BASELINE buildings=1 research=[]",
+        "PASS expected name after restart",
+        "PASS expected building count after restart",
+        "PASS expected research after restart",
+        "READY"
+      ],
+      "log_sha256": "83a2513f45aaa07eda0c8a81d08c21ca75859a2ee2762974e5b42590336ebb36",
+      "capabilities_sha256": "b3f4319b20fcb5b5d72dc7397858a4d19e2f2ca4e4110a18536d6ac685757c63",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "BASELINE",
+          "building_count": 1,
+          "research_fields": {
+            "research": {
+              "researchTree": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "seed",
+      "label": "seed",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE seed",
+        "PASS fresh lab world",
+        "PASS baseline serializes",
+        "READY"
+      ],
+      "log_sha256": "f3f95157ce2962f632afe84720d07a50e74fbab64f476205cf3cc986a039ff3f",
+      "capabilities_sha256": "d827ff3642418a67d0699561d9bdc464162116b78cb4435fd656e701e5f965c6",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "BASELINE",
+          "building_count": 1,
+          "research_fields": {
+            "research": {
+              "researchTree": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

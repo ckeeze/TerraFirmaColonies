@@ -1,0 +1,325 @@
+{
+  "baseline": {
+    "blockui-1.20.1-1.0.190-snapshot.jar": {
+      "size": 390916,
+      "sha256": "b6ed0fbf31f7351d6ad151a01c507a3d51e405f09bf2e2a46cb528fcdcf96a96"
+    },
+    "domum_ornamentum-1.20.1-1.0.288-snapshot-universal.jar": {
+      "size": 1139998,
+      "sha256": "f92741d361749140fc176b177c3ff83c86e254b66b473d4811c14057efd2264e"
+    },
+    "Firmalife-1.20.1-2.1.28.jar": {
+      "size": 4671061,
+      "sha256": "d6379c5536360feeb9c7b2334764917c8441762a28b08edc2ce2122c55d17737"
+    },
+    "FirmalifeEnhance-Forge-1.20.1-1.0.0.jar": {
+      "size": 222065,
+      "sha256": "c00dcaaf852f1ca63e42cccd006c15c8a10f91635de8cd7aa8512fb8aceeb48c"
+    },
+    "minecolonies-1.20.1-1.1.1237-snapshot.jar": {
+      "size": 77801209,
+      "sha256": "7ba02e0cb62a33bcd027ee26772c9298e22bddf50345e8b64a532077d7cdda29"
+    },
+    "Patchouli-1.20.1-85-FORGE.jar": {
+      "size": 642732,
+      "sha256": "05f7b5d52f6b8f0fd7f8b4822fa07a192d1394d83a264309c9d221d6d4fd21c5"
+    },
+    "persistence-probe.jar": {
+      "size": 17095,
+      "sha256": "cb48856c86678def9a0a09aeda4e5008436123c24ed2aee183916b69caf063e2"
+    },
+    "structurize-1.20.1-1.0.806-snapshot.jar": {
+      "size": 1124580,
+      "sha256": "b095261e31a517264f44aa6f369243857fb253102c180f62e1514d6d1af94fc0"
+    },
+    "terrafirmacolonies-0.1.3.4.jar": {
+      "size": 566501,
+      "sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68"
+    },
+    "TerraFirmaCraft-Forge-1.20.1-3.2.27.jar": {
+      "size": 47433654,
+      "sha256": "8e493c970c6fb18809e84ff443ba11fd2a65dc0980f77a8b85e638f4d47bb1cd"
+    }
+  },
+  "runs": [
+    {
+      "mode": "inspect",
+      "label": "fixed-crash-restart",
+      "expected": "fixed",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "mod_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "probe_sha256": "cb48856c86678def9a0a09aeda4e5008436123c24ed2aee183916b69caf063e2",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE inspect",
+        "PASS one persisted colony",
+        "RESTART name=UNSAVED_PROGRESS buildings=4 research=[minecolonies:technology/woodwork]",
+        "PASS expected name after restart",
+        "PASS expected building count after restart",
+        "PASS expected research after restart",
+        "PASS restart preserves absent 16 getPotPos",
+        "PASS restart preserves absent 16 getVatPos",
+        "PASS restart preserves absent 32 getCharcoalPos",
+        "PASS restart preserves absent 48 getCharcoalPos",
+        "PASS restart preserves absent 48 getBellowPos",
+        "READY"
+      ],
+      "log_sha256": "629b5b4f18e517f2c28d2e591657590d2d1bd613e2823d21230493d954194bfb",
+      "capabilities_sha256": "8025a4fe732592534854ad8e43b47d6ffb14dbbfb321dd1a0ae2ce032b0289e7",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "UNSAVED_PROGRESS",
+          "building_count": 4,
+          "research_fields": {
+            "research": {
+              "researchTree": [
+                {
+                  "Data": {
+                    "depth": 1,
+                    "progress": 0,
+                    "state": 2,
+                    "id": "minecolonies:technology/woodwork",
+                    "branch": "minecolonies:technology"
+                  },
+                  "NType": 29
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "control",
+      "label": "fixed-crash",
+      "expected": "fixed",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": true,
+      "exit_code": 1,
+      "mod_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "probe_sha256": "cb48856c86678def9a0a09aeda4e5008436123c24ed2aee183916b69caf063e2",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE control",
+        "PASS new name exists in memory",
+        "PASS all three unfinished buildings remain in memory",
+        "PASS completed research remains in memory",
+        "READY"
+      ],
+      "log_sha256": "cfc18f9932d5e780c79b512d2b644d419e96347b2a6446f299b025cd873682ab",
+      "capabilities_sha256": "39d51cc519e90a71a78824969d3635a7547a445190eba43587521b7964850474",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "UNSAVED_PROGRESS",
+          "building_count": 4,
+          "research_fields": {
+            "research": {
+              "researchTree": [
+                {
+                  "Data": {
+                    "depth": 1,
+                    "progress": 0,
+                    "state": 2,
+                    "id": "minecolonies:technology/woodwork",
+                    "branch": "minecolonies:technology"
+                  },
+                  "NType": 29
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "inspect",
+      "label": "fixed-graceful-restart",
+      "expected": "fixed",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "mod_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "probe_sha256": "cb48856c86678def9a0a09aeda4e5008436123c24ed2aee183916b69caf063e2",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE inspect",
+        "PASS one persisted colony",
+        "RESTART name=UNSAVED_PROGRESS buildings=4 research=[minecolonies:technology/woodwork]",
+        "PASS expected name after restart",
+        "PASS expected building count after restart",
+        "PASS expected research after restart",
+        "PASS restart preserves absent 16 getPotPos",
+        "PASS restart preserves absent 16 getVatPos",
+        "PASS restart preserves absent 32 getCharcoalPos",
+        "PASS restart preserves absent 48 getCharcoalPos",
+        "PASS restart preserves absent 48 getBellowPos",
+        "READY"
+      ],
+      "log_sha256": "18ee0ee9489e39adcb79043dc9407a0e61476bc471850985f00e2dee4bd9977f",
+      "capabilities_sha256": "b3ba1ea5979576178c6ac9bb16796295155e15fae7b44010d5b1602fbffed75b",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "UNSAVED_PROGRESS",
+          "building_count": 4,
+          "research_fields": {
+            "research": {
+              "researchTree": [
+                {
+                  "Data": {
+                    "depth": 1,
+                    "progress": 0,
+                    "state": 2,
+                    "id": "minecolonies:technology/woodwork",
+                    "branch": "minecolonies:technology"
+                  },
+                  "NType": 29
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "mutate",
+      "label": "fixed-mutate",
+      "expected": "fixed",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "mod_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "probe_sha256": "0cf0dccc32d10b5bc9cd17349335f0e0cd135ba23a79e10914f670438e4f67dd",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE mutate",
+        "PASS kitchen omits absent Pot",
+        "PASS kitchen omits absent VAT",
+        "PASS kitchen keeps absent getPotPos null",
+        "PASS kitchen keeps absent getVatPos null",
+        "PASS kitchen restores distinct Pot",
+        "PASS kitchen restores distinct VAT",
+        "PASS kitchen repeated deserialize preserves exactly one list entry",
+        "PASS kitchen rejects incomplete coordinates",
+        "PASS kitchen rejects incomplete coordinates",
+        "PASS kitchen rejects wrong coordinate tag type",
+        "PASS kitchen rejects wrong coordinate tag type",
+        "PASS kitchen preserves explicit origin coordinates",
+        "PASS kitchen preserves explicit origin coordinates",
+        "PASS kitchen clears stale list on empty load",
+        "PASS kitchen clears stale optional coordinate on empty load",
+        "PASS kitchen clears stale optional coordinate on empty load",
+        "PASS glassblower omits absent forge",
+        "PASS glassblower keeps absent getCharcoalPos null",
+        "PASS glassblower restores distinct forge",
+        "PASS glassblower rejects incomplete coordinates",
+        "PASS glassblower rejects wrong coordinate tag type",
+        "PASS glassblower preserves explicit origin coordinates",
+        "PASS glassblower clears stale optional coordinate on empty load",
+        "PASS stonesmeltery omits absent forge",
+        "PASS stonesmeltery omits absent bellow",
+        "PASS stonesmeltery keeps absent getCharcoalPos null",
+        "PASS stonesmeltery keeps absent getBellowPos null",
+        "PASS stonesmeltery restores distinct forge",
+        "PASS stonesmeltery restores distinct bellow",
+        "PASS stonesmeltery repeated deserialize preserves exactly one list entry",
+        "PASS stonesmeltery rejects incomplete coordinates",
+        "PASS stonesmeltery rejects incomplete coordinates",
+        "PASS stonesmeltery rejects wrong coordinate tag type",
+        "PASS stonesmeltery rejects wrong coordinate tag type",
+        "PASS stonesmeltery preserves explicit origin coordinates",
+        "PASS stonesmeltery preserves explicit origin coordinates",
+        "PASS stonesmeltery clears stale list on empty load",
+        "PASS stonesmeltery clears stale optional coordinate on empty load",
+        "PASS stonesmeltery clears stale optional coordinate on empty load",
+        "PASS baker repeated deserialize preserves exactly one list entry",
+        "PASS baker clears stale list on empty load",
+        "PASS unfinished buildings allow a fresh whole-colony snapshot",
+        "PASS new name exists in memory",
+        "PASS all three unfinished buildings remain in memory",
+        "PASS completed research remains in memory",
+        "READY"
+      ],
+      "log_sha256": "cedeb5b81233baf6cbe4783c8a7fa0143901b6f33879d8c95d38e96c767e2fd2",
+      "capabilities_sha256": "f1909bcdc893da9daf1b119b33ce03b28302396336e2219522e38de891d3f5f3",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "UNSAVED_PROGRESS",
+          "building_count": 4,
+          "research_fields": {
+            "research": {
+              "researchTree": [
+                {
+                  "Data": {
+                    "depth": 1,
+                    "progress": 0,
+                    "state": 2,
+                    "id": "minecolonies:technology/woodwork",
+                    "branch": "minecolonies:technology"
+                  },
+                  "NType": 29
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "mode": "seed",
+      "label": "fixed-seed",
+      "expected": "fixed",
+      "probe_ready": true,
+      "save_command_completed": true,
+      "fatal": false,
+      "shutdown_error": false,
+      "cleanup_kill": false,
+      "forced_kill": false,
+      "exit_code": 0,
+      "mod_sha256": "a110ae8b5d717bf7382f9dc7632007e30b28a6926187119fe3591406f883ad68",
+      "probe_sha256": "0cf0dccc32d10b5bc9cd17349335f0e0cd135ba23a79e10914f670438e4f67dd",
+      "shutdown_error_in_log": false,
+      "assertions": [
+        "MODE seed",
+        "PASS fresh lab world",
+        "PASS baseline serializes",
+        "READY"
+      ],
+      "log_sha256": "4d5ad518bdbb354d9b28c55c81192fb68e64745b3d049fa4a9134186fb568726",
+      "capabilities_sha256": "6248e93c12f5067d9e51a9ee2b1532e2e8d17c3db67e2ecc288c1ceff0d794bd",
+      "colonies": [
+        {
+          "path": "/data/minecolonies:colonymanager",
+          "name": "BASELINE",
+          "building_count": 1,
+          "research_fields": {
+            "research": {
+              "researchTree": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
