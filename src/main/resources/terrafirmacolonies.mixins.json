@@ -6,6 +6,9 @@
   "refmap": "terrafirmacolonies.refmap.json",
   "mixins": [
     "CitizenRequestFoodTransferMixin",
+    "RestaurantFoodStockRequestMixin",
+    "RestaurantFoodRequestMatchMixin",
+    "RestaurantMenuRequestCancellationMixin",
     "WaiterServingStatisticsMixin",
     "CitizenEatingEquipmentSyncMixin",
     "FoodMenuMatchMixin",
