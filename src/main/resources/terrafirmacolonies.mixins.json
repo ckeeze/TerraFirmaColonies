@@ -8,6 +8,8 @@
     "CitizenRequestFoodTransferMixin",
     "RestaurantFoodStockRequestMixin",
     "RestaurantFoodRequestMatchMixin",
+    "WarehouseMenuFoodCountMixin",
+    "WarehouseMenuFoodSelectionMixin",
     "RestaurantMenuRequestCancellationMixin",
     "WaiterServingStatisticsMixin",
     "CitizenEatingEquipmentSyncMixin",
